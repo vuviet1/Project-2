@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('address');
             $table->string('email');
             $table->bigInteger('cccd');
-
             $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->integer('role');
