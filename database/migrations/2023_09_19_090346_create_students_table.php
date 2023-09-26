@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('update_by');
             $table->timestamps();
 
-            $table->unsignedBigInteger('id_account');
-            $table->foreign('id_account')->references('id')->on('accounts');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

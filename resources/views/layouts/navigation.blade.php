@@ -24,31 +24,43 @@
     <li class="nav-item @if(request()->routeIs('users.index')) active @endif">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-users"></i>
-            <span>{{ __('Users') }}</span></a>
+            <span>{{ __('Học phí') }}</span></a>
     </li>
 
     <li class="nav-item @if(request()->routeIs('about')) active @endif">
         <a class="nav-link" href="{{ route('about') }}">
             <i class="fas fa-fw fa-eye"></i>
-            <span>{{ __('About') }}</span></a>
+            <span>{{ __('Quản lý học sinh') }}</span></a>
+    </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item @if(request()->routeIs('home')) active @endif">
+        <a class="nav-link" href="{{ route('home') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>{{ __('Quản lý thu chi') }}</span></a>
+    </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item @if(request()->routeIs('home')) active @endif">
+        <a class="nav-link" href="{{ route('home') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>{{ __('Hóa đơn') }}</span></a>
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+{{--    <hr class="sidebar-divider">--}}
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo" style="padding-top: inherit;">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Two-level menu</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Child menu</a>
-            </div>
-        </div>
-    </li>
+{{--    <!-- Nav Item - Pages Collapse Menu -->--}}
+{{--    <li class="nav-item">--}}
+{{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"--}}
+{{--           aria-expanded="true" aria-controls="collapseTwo" style="padding-top: inherit;">--}}
+{{--            <i class="fas fa-fw fa-cog"></i>--}}
+{{--            <span>Two-level menu</span>--}}
+{{--        </a>--}}
+{{--        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">--}}
+{{--            <div class="bg-white py-2 collapse-inner rounded">--}}
+{{--                <a class="collapse-item" href="#">Child menu</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </li>--}}
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline pt-4">
