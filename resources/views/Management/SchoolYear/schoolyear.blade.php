@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Niên khóa</h5>
-                    {{--                    <a type="button" style="margin-bottom: 30px" class="btn btn-primary m-1" href="{{route('class.add')}}">Add</a>--}}
+                    
                     <br>
                     <br>
                     <div class="card">
@@ -20,26 +20,21 @@
                                 <tr>
                                     <th scope="col">Số thứ tự</th>
                                     <th scope="col">Niên khóa</th>
-                                    <th scope="col">Chương trình học</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Hành Động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{--                                @if(!empty($classList))--}}
-                                {{--                                    @foreach($classList as $key => $item)--}}
-                                {{--                                        <tr>--}}
-                                {{--                                            <td hidden>{{$item->id_class}}</td>--}}
-                                {{--                                            <td>{{$key+1}}</td>--}}
-                                {{--                                            <td>{{$item->name_class}}</td>--}}
-                                {{--                                            <td>{{$item->training_route}}</td>--}}
-                                {{--                                            <td>{{$item->name_majors}}</td>--}}
-                                {{--                                            <td>{{$item->number_course}}</td>--}}
-                                {{--                                            <td><a class="btn btn-warning m-1" href="{{route('class.edit',['id'=>$item->id_class])}}">Sửa</a>--}}
-                                {{--                                                <a onclick="return confirm('Ban co chac chan muon xoa hay khong?')" class="btn btn-danger m-1" href="{{route('class.destroy',['id'=>$item->id_class])}}">Xóa</a>--}}
-                                {{--                                            </td>--}}
-                                {{--                                        </tr>--}}
-                                {{--                                    @endforeach--}}
-                                {{--                                @endif--}}
+                                    @forelse ($schoolYears as $f)
+                                        <tr>
+                                            <td>{{$f->id}}</td>
+                                            <td>{{$f->number_course}}</td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <th>Không có dữ liệu</th>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

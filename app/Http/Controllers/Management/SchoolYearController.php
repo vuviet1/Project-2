@@ -4,63 +4,55 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\School_year; // Corrected the import statement
 
 class SchoolYearController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $schoolYear; // Renamed the variable to follow naming conventions
+
+    public function __construct()
+    {
+        $this->schoolYear = new School_year(); // Corrected the instantiation
+    }
+
     public function index()
     {
-        //
-        return view('Management.SchoolYear.schoolyear');
+        // Use $this->schoolYear to access the model's methods
+        $schoolYears = $this->schoolYear->show(); // Assuming you want to retrieve all school years
+        return view('Management.SchoolYear.schoolyear', compact('schoolYears'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        // Show a form to create a new school year (if needed)
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        // Store a new school year in the database (if needed)
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        // Show a specific school year based on the provided ID
+        // Example: $schoolYear = $this->schoolYear->find($id);
+
+        // Return the view with the specific school year data
+        // Example: return view('Management.SchoolYear.show', compact('schoolYear'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        // Show a form to edit a specific school year based on the provided ID
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        // Update a specific school year in the database based on the provided ID
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        // Delete a specific school year from the database based on the provided ID
     }
 }
