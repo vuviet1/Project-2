@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->integer('school_payment_times');
             $table->integer('original_fee');
-            $table->string('create_by');
-            $table->string('update_by');
 
             $table->unsignedBigInteger('id_school_year');
             $table->foreign('id_school_year')->references('id')->on('school_years');

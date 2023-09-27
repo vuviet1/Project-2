@@ -16,8 +16,6 @@ return new class extends Migration
             $table->integer('payment_times');
             $table->integer('fee');
             $table->text('note');
-            $table->string('create_by');
-            $table->string('update_by');
 
             $table->unsignedBigInteger('id_student');
             $table->foreign('id_student')->references('id')->on('students');

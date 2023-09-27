@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('school_payment_times');
             $table->integer('scholarship');
-            $table->string('create_by');
-            $table->string('update_by');
             $table->timestamps();
 
             $table->unsignedBigInteger('id_user');

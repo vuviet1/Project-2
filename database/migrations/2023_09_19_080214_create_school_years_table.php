@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('school_years', function (Blueprint $table) {
             $table->id();
             $table->string('number_course');
-            $table->string('create_by');
-            $table->string('update_by');
             $table->timestamps();
         });
     }
