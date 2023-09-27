@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TuitionController extends Controller
+class SchoolYearController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class TuitionController extends Controller
     public function index()
     {
         //
-        return view('Management.Tuition.tuition');
+        return view('Management.SchoolYear.schoolyear');
     }
 
     /**

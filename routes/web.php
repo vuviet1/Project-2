@@ -28,6 +28,20 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+
+
+    Route::get('school_year', [\App\Http\Controllers\Management\SchoolYearController::class, 'index'])->name('school_year');
+
+    Route::get('major', [\App\Http\Controllers\Management\MajorController::class, 'index'])->name('major');
+
+    Route::get('fee', [\App\Http\Controllers\Management\FeeController::class, 'index'])->name('fee');
+
+    Route::get('student', [\App\Http\Controllers\Management\StudentController::class, 'index'])->name('student');
+
+    Route::get('user', [\App\Http\Controllers\UserController::class, 'index'])->name('user');
+
+    Route::get('tuition', [\App\Http\Controllers\Management\TuitionController::class, 'index'])->name('tuition');
 });
 
 
