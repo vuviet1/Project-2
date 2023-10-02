@@ -17,9 +17,6 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
                         Thêm mới
                     </button>
-                    <!-- Modal -->
-
-                    {{-- End modal--}}
 
                     <div class="card">
                         <div class="card-body">
@@ -40,6 +37,9 @@
                                             <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit">
                                                 Sửa
+                                            </button>
+                                            <button type="button" class="btn btn-danger">
+                                                Xóa
                                             </button>
                                         </td>
                                     </tr>

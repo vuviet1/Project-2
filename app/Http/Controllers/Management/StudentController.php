@@ -3,17 +3,27 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public $data = [];
+    private $student; // Renamed the variable to follow naming conventions
+
+    public function __construct()
+    {
+        $this->student = new Student(); // Corrected the instantiation
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        return view('Management.Student.student');
+        $this->data['student'] = $this->student->show();
+        $student = $this->student->show(); // Assuming you want to retrieve all school years
+        return view('Management.Student.student', $this->data);
     }
 
     /**

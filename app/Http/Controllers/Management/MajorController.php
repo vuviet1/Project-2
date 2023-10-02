@@ -3,17 +3,30 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Models\Major;
 use Illuminate\Http\Request;
 
 class MajorController extends Controller
 {
+    public $data = [];
+
+    private $major; // Renamed the variable to follow naming conventions
+
+    public function __construct()
+    {
+        $this->major = new Major(); // Corrected the instantiation
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return view('Management.Major.major');
+        $this->data['major'] = $this->major->show();
+//        $major = $this->major->show(); // Assuming you want to retrieve all school years
+//        return view('Management.Major.major', compact('major'));
+        return view('Management.Major.major', $this->data);
     }
 
     /**

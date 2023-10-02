@@ -5,30 +5,48 @@
 @endsection
 
 @section('content')
+    @include('Management.Student.add')
+    @include('Management.Student.edit')
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Danh sách học sinh/ Học viên</h5>
-{{--                    <a type="button" style="margin-bottom: 30px" class="btn btn-primary m-1" href="{{route('addstudent')}}">Add</a>--}}
-                    <br>
-                    <br>
+
+                    <!-- Button trigger modal Add-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
+                        Thêm mới
+                    </button>
+
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Số thứ tự</th>
+{{--                                    <th scope="col">Số thứ tự</th>--}}
                                     <th scope="col">Mã SV</th>
                                     <th scope="col">Họ và tên</th>
-                                    <th scope="col">Ngày sinh</th>
-                                    <th scope="col">Điện thoại</th>
-                                    <th scope="col">Trạng thái</th>
-                                    <th scope="col">Lớp học</th>
-                                    <th></th>
+                                    <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @forelse ($student as $f)
+                                    <tr>
+                                        <td>{{$f->id}}</td>
+                                        <td>{{$f->name}}</td>
+                                        <td>
+                                            <!-- Button to trigger the modal Edit-->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit">
+                                                Sửa
+                                            </button>
+                                            <button type="button" class="btn btn-danger">
+                                                Xóa
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <th>Không có dữ liệu</th>
+                                @endforelse
 {{--                                @if(!empty($student))--}}
 {{--                                    @foreach($student as $key => $item)--}}
 {{--                                        <tr>--}}

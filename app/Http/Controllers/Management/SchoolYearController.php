@@ -8,6 +8,7 @@ use App\Models\School_year; // Corrected the import statement
 
 class SchoolYearController extends Controller
 {
+    public $data = [];
     private $schoolYear; // Renamed the variable to follow naming conventions
 
     public function __construct()
@@ -18,8 +19,10 @@ class SchoolYearController extends Controller
     public function index()
     {
         // Use $this->schoolYear to access the model's methods
+        $this->data['schoolYears'] = $this->schoolYear->show();
         $schoolYears = $this->schoolYear->show(); // Assuming you want to retrieve all school years
-        return view('Management.SchoolYear.schoolyear', compact('schoolYears'));
+//        return view('Management.SchoolYear.schoolyear', compact('schoolYears'));
+        return view('Management.SchoolYear.schoolyear', $this->data);
     }
 
     public function create()
@@ -31,7 +34,7 @@ class SchoolYearController extends Controller
     public function store(Request $request)
     {
         // Store a new school year in the database (if needed)
-        
+
     }
 
     public function show(string $id)
