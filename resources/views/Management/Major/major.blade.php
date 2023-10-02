@@ -11,6 +11,23 @@
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Chuyên ngành</h5>
 {{--                    <a type="button" style="margin-bottom: 30px" class="btn btn-primary m-1" href="{{route('class.add')}}">Add</a>--}}
+
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Launch Static Backdrop Modal</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Static Backdrop Modal</h5>
+                                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">...</div>
+                                <div class="modal-footer"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Understood</button></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <br>
                     <br>
                     <div class="card">
