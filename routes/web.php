@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('school_year')->group(function () {
         Route::get('show', [SchoolYearController::class, 'index'])->name('school_year');
         Route::post('add_school_year', [SchoolYearController::class, 'store'])->name('add.school_year');
+        Route::post('delete_school_year', [SchoolYearController::class, 'destroy'])->name('delete.school_year');
+        Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
     });
 
     Route::get('major', [\App\Http\Controllers\Management\MajorController::class, 'index'])->name('major');

@@ -6,7 +6,7 @@
 
 @section('content')
     @include('Management.SchoolYear.addSchoolyear')
-    @include('Management.SchoolYear.editSchoolyear')
+
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="card">
@@ -38,9 +38,14 @@
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit">
                                                 Sửa
                                             </button>
-                                            <button type="button" class="btn btn-danger">
+                                            @include('Management.SchoolYear.editSchoolyear')
+                                            <form action="{{ route('delete.school_year')}}" method="post">
+                                                @csrf
+                                                <input hidden name="id" value="{{$f->id}}">
+                                            <button type="submit" class="btn btn-danger">
                                                 Xóa
                                             </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty

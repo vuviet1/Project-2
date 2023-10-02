@@ -14,7 +14,4 @@ class School_year extends Model
         $fillable = DB::table('school_years')->get();
         return $fillable;
     }
-    public function create(Request $request){
-        dd($request->all());
-    }
 }

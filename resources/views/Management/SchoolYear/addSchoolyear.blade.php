@@ -14,10 +14,6 @@
                     <div class="card-body">
                         <div class="row g-3">
                             <div class="col">
-                                <label for="idClass" class="form-label">Mã niên khóa</label>
-                                <input type="text" class="form-control" placeholder="Mã niên khóa" name="id" disabled>
-                            </div>
-                            <div class="col">
                                 <label for="nameStudent" class="form-label">Niên khóa</label>
                                 <input type="text" class="form-control" placeholder="Niên khóa" name="number_course">
                             </div>
