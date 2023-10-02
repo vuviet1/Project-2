@@ -25,11 +25,13 @@ class SchoolYearController extends Controller
     public function create()
     {
         // Show a form to create a new school year (if needed)
+
     }
 
     public function store(Request $request)
     {
         // Store a new school year in the database (if needed)
+        
     }
 
     public function show(string $id)

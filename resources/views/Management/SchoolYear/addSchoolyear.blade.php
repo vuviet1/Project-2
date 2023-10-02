@@ -1,5 +1,4 @@
-<div class="modal fade" id="staticBackdropAdd" data-backdrop="static" data-keyboard="false"
-     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdropAdd" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,27 +7,27 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Mã niên khóa</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Mã niên khóa"
-                                   name="id" disabled>
-                        </div>
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Niên khóa</label>
-                            <input type="date" class="form-control"
-                                   placeholder="Niên khóa"
-                                   name="number_course">
+            <form action="{{ route('add.school_year') }}" method="post">
+                @csrf <!-- CSRF Protection -->
+
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="idClass" class="form-label">Mã niên khóa</label>
+                                <input type="text" class="form-control" placeholder="Mã niên khóa" name="id" disabled>
+                            </div>
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Niên khóa</label>
+                                <input type="text" class="form-control" placeholder="Niên khóa" name="number_course">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Thêm mới</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -11,7 +11,10 @@ class School_year extends Model
     use HasFactory;
     protected $fillable = ['number_course', 'create_at', 'update_at'];
     public function show(){
-        $fillabl = DB::table('school_years')->get();
-        return $fillabl;
+        $fillable = DB::table('school_years')->get();
+        return $fillable;
+    }
+    public function create(Request $request){
+        dd($request->all());
     }
 }
