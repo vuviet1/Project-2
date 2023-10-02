@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Form sửa thông tin học sinh</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Form sửa thông tin phiếu thu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,35 +13,41 @@
 
                     <div class="row g-3">
                         <div class="col">
-                            <label for="idClass" class="form-label">Mã hoc sinh</label>
+                            <label for="idClass" class="form-label">Mã phiếu thu</label>
                             <input type="text" class="form-control"
-                                   placeholder="Mã hoc sinh"
-                                   name="id">
+                                   placeholder="Mã phiếu thu"
+                                   name="id" disabled>
                         </div>
                         <div class="col">
-                            <label for="nameStudent" class="form-label">Số lần đóng</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Số lần đóng"
+                            <label for="nameStudent" class="form-label">Lần đóng thứ</label>
+                            <input type="number" class="form-control"
+                                   placeholder="Lần đóng thứ"
                                    name="number_course">
                         </div>
                     </div>
 
                     <div class="row g-3">
                         <div class="col">
-                            <label for="idClass" class="form-label">Học bổng</label>
+                            <label for="idClass" class="form-label">Số tiền đóng</label>
                             <input type="text" class="form-control"
-                                   placeholder="Số tiền"
-                                   name="id">
+                                   placeholder="..."
+                                   name="id" >
+                        </div>
+                        <div class="col">
+                            <label for="nameStudent" class="form-label">Ghi chú</label>
+                            <input type="text" class="form-control"
+                                   placeholder="Ghi chú"
+                                   name="number_course">
                         </div>
                     </div>
 
                     <div class="row g-3">
-                        {{--                        <div class="col">--}}
-                        {{--                            <label for="idClass" class="form-label">Mã tài khoản</label>--}}
-                        {{--                            <input type="text" class="form-control"--}}
-                        {{--                                   placeholder="Mã tài khoản"--}}
-                        {{--                                   name="id" disabled>--}}
-                        {{--                        </div>--}}
+                        <div class="col">
+                            <label for="idClass" class="form-label">Mã sinh viên</label>
+                            <input type="text" class="form-control"
+                                   placeholder="Mã sinh viên"
+                                   name="id">
+                        </div>
                         <div class="col">
                             <label for="nameStudent" class="form-label">Họ và tên</label>
                             <input type="text" class="form-control"
@@ -49,6 +55,7 @@
                                    name="number_course" disabled>
                         </div>
                     </div>
+
 
                 </div>
             </div>

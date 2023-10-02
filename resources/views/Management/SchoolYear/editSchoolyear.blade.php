@@ -8,25 +8,27 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('update.school_year')}}" method="post">
             <div class="modal-body">
                 <div class="card-body">
                     <div class="row g-3">
-                        @csrf
-                        <input hidden name="id" value="{{$f->id}}">
+                        <div class="col">
+                            <label for="idClass" class="form-label">Mã niên khóa</label>
+                            <input type="text" class="form-control"
+                                   placeholder="Mã niên khóa"
+                                   name="id" disabled>
+                        </div>
                         <div class="col">
                             <label for="nameStudent" class="form-label">Niên khóa</label>
-                            <input type="text" class="form-control"
+                            <input type="date" class="form-control"
                                    placeholder="Niên khóa"
-                                   name="number_course" value="{{$f->number_course}}">
+                                   name="number_course">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Sửa</button>
+                <button type="button" class="btn btn-primary">Thêm mới</button>
             </div>
-            </form>
         </div>
     </div>
 </div>

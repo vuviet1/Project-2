@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Thêm mới</button>
+                <button type="button" class="btn btn-primary">Cập nhật</button>
             </div>
         </div>
     </div>

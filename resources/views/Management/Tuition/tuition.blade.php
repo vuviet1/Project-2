@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    @include('Management.Tuition.add')
+    @include('Management.Tuition.edit')
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="container-fluid">
@@ -12,13 +14,11 @@
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Danh sách thu phí</h5>
 
+                    <!-- Button trigger modal Add-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
+                        Thêm mới
+                    </button>
 
-
-                    <div class="card">
-
-
-
-                    </div>
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Danh sách học sinh/sinh viên</h5>
@@ -28,11 +28,10 @@
                                     <th scope="col">Số thứ tự</th>
                                     <th scope="col">Mã SV</th>
                                     <th scope="col">Họ và tên</th>
-                                    <th scope="col">Lớp học</th>
                                     <th scope="col">Số lần đóng</th>
                                     <th scope="col">Số tiền đã đóng</th>
-                                    <th scope="col">Tổng tiền</th>
-                                    <th></th>
+                                    <th scope="col">Số đợt đóng</th>
+                                    <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
