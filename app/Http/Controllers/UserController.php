@@ -60,6 +60,7 @@ class UserController extends Controller
         $address = $request->input('address');
         $cccd = $request->input('cccd');
         $role = $request->input('role');
+        dd($role);
         $password = $request->input('password');
         $result = DB::table('users')->where('id', '=', $id)->update([
             'name' => $name, 'email' => $email, 'birthday' => $birthday, 'phone_number' => $phone_number, 'address' => $address, 'cccd' => $cccd, 'role' => $role, 'password' => $password,

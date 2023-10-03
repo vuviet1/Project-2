@@ -21,22 +21,20 @@
                                        placeholder="Họ và tên"
                                        name="name">
                             </div>
-                            <div class="col">
-                                <label for="nameStudent" class="form-label">Cấp quyền</label>
-                                <input type="number" class="form-control"
-                                       placeholder="Quyền"
-                                       name="role">
-                            </div>
+{{--                            <div class="col">--}}
+{{--                                <label for="nameStudent" class="form-label">Cấp quyền</label>--}}
+{{--                                <input type="number" class="form-control"--}}
+{{--                                       placeholder="Quyền"--}}
+{{--                                       name="role">--}}
+{{--                            </div>--}}
 
                             <div class="col">
-                                <select class="form-select" name="role" aria-label="Cấp quyền">
-                                    <option selected>Cấp quyền</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <label for="role" class="form-label">Cấp quyền</label>
+                                <select id="role" class="form-control" name="role" disabled>
+                                    <option value="1">Học sinh</option>
+                                    <option value="0">Thu ngân</option>
                                 </select>
                             </div>
-
                         </div>
 
                         <div class="row g-3">
