@@ -8,27 +8,26 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Mã chuyên ngành</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Mã chuyên ngành"
-                                   name="id" disabled>
-                        </div>
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Chuyên ngành</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Chuyên ngành"
-                                   name="number_course">
+
+            <form action="{{ route('add.major') }}" method="post">
+                @csrf <!-- CSRF Protection -->
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Chuyên ngành</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Chuyên ngành"
+                                       name="majors_name">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Thêm mới</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

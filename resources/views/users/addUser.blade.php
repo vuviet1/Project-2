@@ -8,83 +8,81 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="card-body">
 
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Mã tài khoản</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Mã tài khoản"
-                                   name="id" disabled>
+            <form action="{{ route('add.user') }}" method="post">
+                @csrf <!-- CSRF Protection -->
+                <div class="modal-body">
+                    <div class="card-body">
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Họ và tên"
+                                       name="name">
+                            </div>
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Cấp quyền</label>
+                                <input type="number" class="form-control"
+                                       placeholder="Quyền"
+                                       name="role">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Họ và tên</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Họ và tên"
-                                   name="number_course">
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="idClass" class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Số điện thoại"
+                                       name="phone_number">
+                            </div>
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Ngày sinh</label>
+                                <input type="date" class="form-control"
+                                       placeholder="Ngày sinh"
+                                       name="birthday">
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="idClass" class="form-label">Số căn cước công dân</label>
+                                <input type="text" class="form-control"
+                                       placeholder="CCCD"
+                                       name="cccd">
+                            </div>
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Email</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Email"
+                                       name="email">
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="idClass" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Địa chỉ"
+                                       name="address">
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Mật khẩu</label>
+                                <input type="password" class="form-control"
+                                       placeholder="Mật khẩu"
+                                       name="password">
+                            </div>
                         </div>
                     </div>
-
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Số điện thoại</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Số điện thoại"
-                                   name="id">
-                        </div>
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Ngày sinh</label>
-                            <input type="date" class="form-control"
-                                   placeholder="Ngày sinh"
-                                   name="number_course">
-                        </div>
-                    </div>
-
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Số căn cước công dân</label>
-                            <input type="text" class="form-control"
-                                   placeholder="CCCD"
-                                   name="id" >
-                        </div>
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Email</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Email"
-                                   name="number_course">
-                        </div>
-                    </div>
-
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Địa chỉ</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Địa chỉ"
-                                   name="id">
-                        </div>
-                    </div>
-
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Tài khoản</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Tài khoản"
-                                   name="id">
-                        </div>
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Mật khẩu</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Mật khẩu"
-                                   name="number_course">
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Thêm mới</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

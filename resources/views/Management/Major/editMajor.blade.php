@@ -8,27 +8,26 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <form action="{{ route('update.major')}}" method="post">
             <div class="modal-body">
                 <div class="card-body">
                     <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Mã chuyên ngành</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Mã chuyên ngành"
-                                   name="id" disabled>
-                        </div>
+                        @csrf
+                        <input hidden name="id" value="{{$f->id}}">
                         <div class="col">
                             <label for="nameStudent" class="form-label">Chuyên ngành</label>
                             <input type="text" class="form-control"
                                    placeholder="Chuyên ngành"
-                                   name="number_course">
+                                   name="majors_name" value="{{$f->majors_name}}">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Cập nhật</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

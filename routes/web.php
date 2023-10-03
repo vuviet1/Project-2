@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management\SchoolYearController;
+use App\Http\Controllers\Management\MajorController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,13 +40,24 @@ Route::middleware('auth')->group(function () {
         Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
     });
 
-    Route::get('major', [\App\Http\Controllers\Management\MajorController::class, 'index'])->name('major');
+    Route::prefix('major')->group(function () {
+        Route::get('show', [MajorController::class, 'index'])->name('major');
+        Route::post('add_major', [MajorController::class, 'store'])->name('add.major');
+        Route::post('delete_major', [MajorController::class, 'destroy'])->name('delete.major');
+        Route::post('update_major', [MajorController::class, 'update'])->name('update.major');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('show', [UserController::class, 'index'])->name('user');
+        Route::post('add_user', [UserController::class, 'store'])->name('add.user');
+        Route::post('delete_user', [UserController::class, 'destroy'])->name('delete.user');
+        Route::post('update_user', [UserController::class, 'update'])->name('update.user');
+    });
+
 
     Route::get('fee', [\App\Http\Controllers\Management\FeeController::class, 'index'])->name('fee');
 
     Route::get('student', [\App\Http\Controllers\Management\StudentController::class, 'index'])->name('student');
-
-    Route::get('user', [\App\Http\Controllers\UserController::class, 'index'])->name('user');
 
     Route::get('tuition', [\App\Http\Controllers\Management\TuitionController::class, 'index'])->name('tuition');
 });

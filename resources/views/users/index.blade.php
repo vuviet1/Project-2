@@ -2,7 +2,6 @@
 
 @section('content')
     @include('users.addUser')
-    @include('users.editUser')
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
@@ -28,18 +27,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($users as $f)
                             <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td>{{ $f->name }}</td>
+                                <td>{{ $f->email }}</td>
                                 <td>
                                     <!-- Button to trigger the modal Edit-->
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit">
                                         Sửa
                                     </button>
-                                    <button type="button" class="btn btn-danger">
-                                        Xóa
-                                    </button>
+                                    @include('users.editUser')
+                                    <form action="{{ route('delete.user')}}" method="post">
+                                        @csrf
+                                        <input hidden name="id" value="{{$f->id}}">
+                                        <button type="submit" class="btn btn-danger">
+                                            Xóa
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

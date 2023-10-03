@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MajorController extends Controller
 {
@@ -43,6 +44,18 @@ class MajorController extends Controller
     public function store(Request $request)
     {
         //
+        // Store a new major in the database (if needed)
+        $majors_name = $request->input('majors_name');
+        $result = DB::table('majors')->insert([
+            'majors_name' => $majors_name
+        ]);
+        if($result){
+            flash()->addSuccess('Thêm thành công');
+            return redirect()->route('major');
+        }else{
+            flash()->addSuccess("Thêm thất bại");
+            return redirect()->route('major');
+        }
     }
 
     /**
@@ -64,16 +77,38 @@ class MajorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        // Update a specific major in the database based on the provided ID
+        $id = $request->input('id');
+        $majors_name = $request->input('majors_name');
+        $result = DB::table('majors')->where('id', '=', $id)->update([
+            'majors_name' => $majors_name
+        ]);
+        if($result){
+            flash()->addSuccess('Sửa thành công');
+            return redirect()->route('major');
+        }else{
+            flash()->addSuccess("Sửa thất bại");
+            return redirect()->route('major');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         //
+        // Delete a specific major from the database based on the provided ID
+        $id = $request->input('id');
+        $result = DB::table('majors')->where('id', '=', $id)->delete();
+        if($result){
+            flash()->addSuccess('Xóa thành công');
+            return redirect()->route('major');
+        }else{
+            flash()->addSuccess("Xóa thất bại");
+            return redirect()->route('major');
+        }
     }
 }

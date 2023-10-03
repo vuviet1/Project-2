@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Management;
-use Illuminate\Support\Facades\DB;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\School_year; // Corrected the import statement
+use Illuminate\Support\Facades\DB;
 
 class SchoolYearController extends Controller
 {
@@ -20,7 +21,7 @@ class SchoolYearController extends Controller
     {
         // Use $this->schoolYear to access the model's methods
         $this->data['schoolYears'] = $this->schoolYear->show();
-        $schoolYears = $this->schoolYear->show(); // Assuming you want to retrieve all school years
+//        $schoolYears = $this->schoolYear->show(); // Assuming you want to retrieve all school years
 //        return view('Management.SchoolYear.schoolyear', compact('schoolYears'));
         return view('Management.SchoolYear.schoolyear', $this->data);
     }
