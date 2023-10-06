@@ -53,7 +53,7 @@ class MajorController extends Controller
             flash()->addSuccess('Thêm thành công');
             return redirect()->route('major');
         }else{
-            flash()->addSuccess("Thêm thất bại");
+            flash()->addError("Thêm thất bại");
             return redirect()->route('major');
         }
     }
@@ -89,7 +89,7 @@ class MajorController extends Controller
             flash()->addSuccess('Sửa thành công');
             return redirect()->route('major');
         }else{
-            flash()->addSuccess("Sửa thất bại");
+            flash()->addError("Sửa thất bại");
             return redirect()->route('major');
         }
     }
@@ -107,7 +107,7 @@ class MajorController extends Controller
             flash()->addSuccess('Xóa thành công');
             return redirect()->route('major');
         }else{
-            flash()->addSuccess("Xóa thất bại");
+            flash()->addError("Xóa thất bại");
             return redirect()->route('major');
         }
     }
