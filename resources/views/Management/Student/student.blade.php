@@ -6,7 +6,6 @@
 
 @section('content')
     @include('Management.Student.add')
-    @include('Management.Student.edit')
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="card">
@@ -36,30 +35,22 @@
                                         <td>{{$f->name}}</td>
                                         <td>
                                             <!-- Button to trigger the modal Edit-->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit{{$f->id}}">
                                                 Sửa
                                             </button>
-                                            <button type="button" class="btn btn-danger">
-                                                Xóa
-                                            </button>
+                                            @include('Management.Student.edit')
+                                            <form action="{{ route('delete.student')}}" method="post">
+                                                @csrf
+                                                <input hidden name="id" value="{{$f->id}}">
+                                                <button type="submit" class="btn btn-danger">
+                                                    Xóa
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <th>Không có dữ liệu</th>
                                 @endforelse
-{{--                                @if(!empty($student))--}}
-{{--                                    @foreach($student as $key => $item)--}}
-{{--                                        <tr>--}}
-{{--                                            <th scope="row">{{$key+1}}</th>--}}
-{{--                                            <td>{{$item->student_code}}</td>--}}
-{{--                                            <td>{{$item->name_student}}</td>--}}
-{{--                                            <td>{{$item->birthday}}</td>--}}
-{{--                                            <td>{{$item->phone_number}}</td>--}}
-{{--                                            <td>{{$item->status}}</td>--}}
-{{--                                            <td>{{$item->name_class}}</td>--}}
-{{--                                        </tr>--}}
-{{--                                    @endforeach--}}
-{{--                                @endif--}}
                                 </tbody>
                             </table>
                         </div>

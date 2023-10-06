@@ -1,4 +1,4 @@
-<div class="modal fade" id="staticBackdropEdit" data-backdrop="static" data-keyboard="false"
+<div class="modal fade" id="staticBackdropEdit{{$f->id}}" data-backdrop="static" data-keyboard="false"
      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -8,53 +8,48 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="card-body">
 
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Mã hoc sinh</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Mã hoc sinh"
-                                   name="id">
-                        </div>
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Số lần đóng</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Số lần đóng"
-                                   name="number_course">
-                        </div>
-                    </div>
+            <form action="{{route('update.student')}}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <input hidden name="id" value="{{$f->id}}">
+                            <div class="col">
+                                <label for="idClass" class="form-label">Mã hoc sinh (BKC)</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Mã hoc sinh" disabled
+                                       value="{{$f->id}}">
+                            </div>
 
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="idClass" class="form-label">Học bổng</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Số tiền"
-                                   name="id">
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Họ và tên" disabled
+                                       value="{{$f->name}}">
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row g-3">
-                        {{--                        <div class="col">--}}
-                        {{--                            <label for="idClass" class="form-label">Mã tài khoản</label>--}}
-                        {{--                            <input type="text" class="form-control"--}}
-                        {{--                                   placeholder="Mã tài khoản"--}}
-                        {{--                                   name="id" disabled>--}}
-                        {{--                        </div>--}}
-                        <div class="col">
-                            <label for="nameStudent" class="form-label">Họ và tên</label>
-                            <input type="text" class="form-control"
-                                   placeholder="Họ và tên"
-                                   name="number_course" disabled>
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="idClass" class="form-label">Học bổng</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Số tiền"
+                                       name="scholarship" value="{{$f->scholarship}}">
+                            </div>
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Số lần đóng</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Số lần đóng"
+                                       name="school_payment_times" value="{{$f->school_payment_times}}">
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Cập nhật</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

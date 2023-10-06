@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management\SchoolYearController;
 use App\Http\Controllers\Management\MajorController;
+use App\Http\Controllers\Management\StudentController;
 use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::view('about', 'about')->name('about');
 
-    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+//    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 
@@ -36,8 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::prefix('school_year')->group(function () {
         Route::get('show', [SchoolYearController::class, 'index'])->name('school_year');
         Route::post('add_school_year', [SchoolYearController::class, 'store'])->name('add.school_year');
-        Route::post('delete_school_year', [SchoolYearController::class, 'destroy'])->name('delete.school_year');
         Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
+        Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
+        Route::post('delete_school_year', [SchoolYearController::class, 'destroy'])->name('delete.school_year');
     });
 
     Route::prefix('major')->group(function () {
@@ -54,10 +57,12 @@ Route::middleware('auth')->group(function () {
         Route::post('update_user', [UserController::class, 'update'])->name('update.user');
     });
 
-
-    Route::get('fee', [\App\Http\Controllers\Management\FeeController::class, 'index'])->name('fee');
-
-    Route::get('student', [\App\Http\Controllers\Management\StudentController::class, 'index'])->name('student');
+    Route::prefix('student')->group(function () {
+        Route::get('show', [StudentController::class, 'index'])->name('student');
+        Route::post('add_student', [StudentController::class, 'store'])->name('add.student');
+        Route::post('delete_student', [StudentController::class, 'destroy'])->name('delete.student');
+        Route::post('update_student', [StudentController::class, 'update'])->name('update.student');
+    });
 
     Route::get('tuition', [\App\Http\Controllers\Management\TuitionController::class, 'index'])->name('tuition');
 });

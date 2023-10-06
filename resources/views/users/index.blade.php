@@ -33,7 +33,7 @@
                                 <td>{{ $f->email }}</td>
                                 <td>
                                     <!-- Button to trigger the modal Edit-->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit{{$f->id}}">
                                         Sửa
                                     </button>
                                     @include('users.editUser')

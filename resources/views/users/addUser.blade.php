@@ -30,9 +30,9 @@
 
                             <div class="col">
                                 <label for="role" class="form-label">Cấp quyền</label>
-                                <select id="role" class="form-control" name="role" disabled>
-                                    <option value="1">Học sinh</option>
-                                    <option value="0">Thu ngân</option>
+                                <select id="role" class="form-control" name="role">
+                                    <option value="0">Học sinh</option>
+                                    <option value="1" disabled>Thu ngân</option>
                                 </select>
                             </div>
                         </div>

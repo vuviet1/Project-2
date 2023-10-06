@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('update.school_year')}}" method="post">
+            <form action="{{route('update.school_year', ['id'=>$f->id])}}" method="post">
             <div class="modal-body">
                 <div class="card-body">
                     <div class="row g-3">

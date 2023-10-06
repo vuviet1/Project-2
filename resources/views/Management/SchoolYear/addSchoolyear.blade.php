@@ -7,9 +7,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <form action="{{ route('add.school_year') }}" method="post">
                 @csrf <!-- CSRF Protection -->
-
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row g-3">

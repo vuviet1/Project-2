@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -22,7 +23,6 @@ class StudentController extends Controller
     public function index()
     {
         $this->data['student'] = $this->student->show();
-        $student = $this->student->show(); // Assuming you want to retrieve all school years
         return view('Management.Student.student', $this->data);
     }
 
@@ -39,7 +39,20 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Store a new student in the database (if needed)
+        $school_payment_times = $request->input('school_payment_times');
+        $scholarship = $request->input('scholarship');
+        $id_user = $request->input('id_user');
+        $result = DB::table('students')->insert([
+            'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $id_user
+        ]);
+        if($result){
+            flash()->addSuccess('Thêm thành công');
+            return redirect()->route('student');
+        }else{
+            flash()->addError("Thêm thất bại");
+            return redirect()->route('student');
+        }
     }
 
     /**
@@ -61,16 +74,39 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         //
+        // Update a specific school year in the database based on the provided ID
+        $id = $request->input('id');
+        $school_payment_times = $request->input('school_payment_times');
+        $scholarship = $request->input('scholarship');
+        $result = DB::table('students')->where('id', '=', $id)->update([
+                'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times
+        ]);
+        if($result){
+            flash()->addSuccess('Sửa thành công');
+            return redirect()->route('student');
+        }else{
+            flash()->addError("Sửa thất bại");
+            return redirect()->route('student');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         //
+        $id = $request->input('id');
+        $result = DB::table('students')->where('id', '=', $id)->delete();
+        if($result){
+            flash()->addSuccess('Xóa thành công');
+            return redirect()->route('student');
+        }else{
+            flash()->addError("Xóa thất bại");
+            return redirect()->route('student');
+        }
     }
 }

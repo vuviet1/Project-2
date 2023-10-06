@@ -21,8 +21,6 @@ class SchoolYearController extends Controller
     {
         // Use $this->schoolYear to access the model's methods
         $this->data['schoolYears'] = $this->schoolYear->show();
-//        $schoolYears = $this->schoolYear->show(); // Assuming you want to retrieve all school years
-//        return view('Management.SchoolYear.schoolyear', compact('schoolYears'));
         return view('Management.SchoolYear.schoolyear', $this->data);
     }
 
@@ -43,7 +41,7 @@ class SchoolYearController extends Controller
             flash()->addSuccess('Thêm thành công');
             return redirect()->route('school_year');
         }else{
-            flash()->addSuccess("Thêm thất bại");
+            flash()->addError("Thêm thất bại");
             return redirect()->route('school_year');
         }
     }
@@ -67,6 +65,13 @@ class SchoolYearController extends Controller
         // Update a specific school year in the database based on the provided ID
         $id = $request->input('id');
         $number_course = $request->input('number_course');
+        $check =  DB::table('school_years')->get('number_course');
+        foreach ($check as $key => $value) {
+            if($value == $number_course){
+                flash()->addError("Sửa thất bại");
+                return redirect()->route('school_year');
+            }
+        }
         $result = DB::table('school_years')->where('id', '=', $id)->update([
             'number_course' => $number_course
         ]);
@@ -74,7 +79,7 @@ class SchoolYearController extends Controller
             flash()->addSuccess('Sửa thành công');
             return redirect()->route('school_year');
         }else{
-            flash()->addSuccess("Sửa thất bại");
+            flash()->addError("Sửa thất bại");
             return redirect()->route('school_year');
         }
     }
@@ -88,7 +93,7 @@ class SchoolYearController extends Controller
             flash()->addSuccess('Xóa thành công');
             return redirect()->route('school_year');
         }else{
-            flash()->addSuccess("Xóa thất bại");
+            flash()->addError("Xóa thất bại");
             return redirect()->route('school_year');
         }
     }
