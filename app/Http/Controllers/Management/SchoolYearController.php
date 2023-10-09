@@ -34,6 +34,14 @@ class SchoolYearController extends Controller
     {
         // Store a new school year in the database (if needed)
         $number_course = $request->input('number_course');
+        $check =  DB::table('school_years')->get();
+        foreach ($check as $key) {
+            if($key -> number_course == $number_course){
+//                dd($value);
+                flash()->addError("Thêm thất bại");
+                return redirect()->route('school_year');
+            }
+        }
         $result = DB::table('school_years')->insert([
             'number_course' => $number_course
         ]);
@@ -65,9 +73,9 @@ class SchoolYearController extends Controller
         // Update a specific school year in the database based on the provided ID
         $id = $request->input('id');
         $number_course = $request->input('number_course');
-        $check =  DB::table('school_years')->get('number_course');
-        foreach ($check as $key => $value) {
-            if($value == $number_course){
+        $check =  DB::table('school_years')->get();
+        foreach ($check as $key) {
+            if($key -> number_course == $number_course){
                 flash()->addError("Sửa thất bại");
                 return redirect()->route('school_year');
             }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management\SchoolYearController;
 use App\Http\Controllers\Management\MajorController;
 use App\Http\Controllers\Management\StudentController;
+use App\Http\Controllers\Management\TuitionController;
+use App\Http\Controllers\Management\FeeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -64,7 +66,20 @@ Route::middleware('auth')->group(function () {
         Route::post('update_student', [StudentController::class, 'update'])->name('update.student');
     });
 
-    Route::get('tuition', [\App\Http\Controllers\Management\TuitionController::class, 'index'])->name('tuition');
+    Route::prefix('tuition')->group(function () {
+        Route::get('show', [TuitionController::class, 'index'])->name('tuition');
+        Route::post('add_tuition', [TuitionController::class, 'store'])->name('add.tuition');
+        Route::post('delete_tuition', [TuitionController::class, 'destroy'])->name('delete.tuition');
+        Route::post('update_tuition', [TuitionController::class, 'update'])->name('update.tuition');
+    });
+
+    Route::prefix('fee')->group(function () {
+        Route::get('show', [FeeController::class, 'index'])->name('fee');
+        Route::post('add_fee', [FeeController::class, 'store'])->name('add.fee');
+        Route::post('delete_fee', [FeeController::class, 'destroy'])->name('delete.fee');
+        Route::post('update_fee', [FeeController::class, 'update'])->name('update.fee');
+    });
+
 });
 
 

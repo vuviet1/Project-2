@@ -34,12 +34,17 @@
             <span>{{ __('Chuyên ngành') }}</span></a>
     </li>
 
+    <li class="nav-item @if(request()->routeIs('fee')) active @endif">
+        <a class="nav-link" href="{{ route('fee') }}">
+            <i class="fas fa-fw fa-eye"></i>
+            <span>{{ __('Quản lý đợt đóng') }}</span></a>
+    </li>
+
     <li class="nav-item @if(request()->routeIs('tuition')) active @endif">
         <a class="nav-link" href="{{ route('tuition') }}">
             <i class="fas fa-fw fa-eye"></i>
             <span>{{ __('Quản lý học phí') }}</span></a>
     </li>
-
 
     <li class="nav-item @if(request()->routeIs('student')) active @endif">
         <a class="nav-link" href="{{ route('student') }}">

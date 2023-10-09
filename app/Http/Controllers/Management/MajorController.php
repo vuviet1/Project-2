@@ -46,6 +46,13 @@ class MajorController extends Controller
         //
         // Store a new major in the database (if needed)
         $majors_name = $request->input('majors_name');
+        $check =  DB::table('majors')->get();
+        foreach ($check as $key) {
+            if($key -> majors_name == $majors_name){
+                flash()->addError("Thêm thất bại");
+                return redirect()->route('major');
+            }
+        }
         $result = DB::table('majors')->insert([
             'majors_name' => $majors_name
         ]);
@@ -82,6 +89,13 @@ class MajorController extends Controller
         // Update a specific major in the database based on the provided ID
         $id = $request->input('id');
         $majors_name = $request->input('majors_name');
+        $check =  DB::table('majors')->get();
+        foreach ($check as $key) {
+            if($key -> majors_name == $majors_name){
+                flash()->addError("Thêm thất bại");
+                return redirect()->route('major');
+            }
+        }
         $result = DB::table('majors')->where('id', '=', $id)->update([
             'majors_name' => $majors_name
         ]);

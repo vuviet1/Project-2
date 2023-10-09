@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-    @include('Management.Tuition.add')
+    @include('Management.Fee.add')
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold mb-4">Danh sách thu phí</h5>
+                    <h5 class="card-title fw-semibold mb-4">Danh sách đợt đóng</h5>
 
                     <!-- Button trigger modal Add-->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
@@ -20,36 +20,34 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title fw-semibold mb-4">Danh sách học sinh/sinh viên</h5>
+                            <h5 class="card-title fw-semibold mb-4">Danh sách đợt đóng</h5>
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th scope="col">Số thứ tự</th>
-                                    <th scope="col">Mã SV (BKC)</th>
-                                    <th scope="col">Họ và tên</th>
-                                    <th scope="col">Số lần đóng</th>
-                                    <th scope="col">Số tiền đã đóng</th>
                                     <th scope="col">Số đợt đóng</th>
+                                    <th scope="col">Tổng tiền phải đóng</th>
+                                    <th scope="col">Tên chuyên ngành</th>
+                                    <th scope="col">Niên khóa</th>
                                     <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse ($tuition as $f)
+                                @forelse ($fee as $f)
                                     <tr>
                                         <td>{{$f->id}}</td>
-                                        <td>{{$f->id_student}}</td>
-                                        <td>{{$f->name}}</td>
-                                        <td>{{$f->payment_times}}</td>
-                                        <td>{{$f->fee}}</td>
                                         <td>{{$f->school_payment_times}}</td>
+                                        <td>{{$f->original_fee}}</td>
+                                        <td>{{$f->majors_name}}</td>
+                                        <td>{{$f->number_course}}</td>
                                         <td>
                                             <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#staticBackdropEdit{{$f->id}}">
                                                 Sửa
                                             </button>
-                                            @include('Management.Tuition.edit')
-                                            <form action="{{ route('delete.tuition')}}" method="post">
+                                            @include('Management.Fee.edit')
+                                            <form action="{{ route('delete.fee')}}" method="post">
                                                 @csrf
                                                 <input hidden name="id" value="{{$f->id}}">
                                                 <button type="submit" class="btn btn-danger">
