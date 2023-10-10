@@ -39,7 +39,9 @@
 {{--                                    <option selected>-- Chọn niên khóa --</option>--}}
                                     <option value="{{$f->id_school_year}}">{{$f->number_course}}</option>
                                     @foreach($year as $y)
-                                        <option value="{{$y->id}}">{{$y->number_course}}</option>
+                                        @if($y->number_course != $f->number_course)
+                                            <option value="{{$y->id}}">{{$y->number_course}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -49,9 +51,12 @@
 {{--                                       placeholder="Chuyên ngành"--}}
 {{--                                       name="id_major" value="{{$f->id_major}}">--}}
                                 <select class="form-control" name="id_major">
-                                    <option selected>-- Chọn chuyên ngành --</option>
+{{--                                    <option selected>-- Chọn chuyên ngành --</option>--}}
+                                    <option value="{{$f->id_major}}">{{$f->majors_name}}</option>
                                     @foreach($major as $m)
-                                        <option value="{{$m->id}}">{{$m->majors_name}}</option>
+                                        @if($m->majors_name != $f->majors_name)
+                                            <option value="{{$m->id}}">{{$m->majors_name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
