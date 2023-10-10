@@ -13,8 +13,10 @@ class Student extends Model
     public function show(){
         $fillable = DB::table('students')
             ->join('users', 'students.id_user', '=', 'users.id')
-            ->select('students.*', 'users.name')
+            ->join('tuitions', 'tuitions.id_student', '=', 'students.id')
+            ->select('students.*', 'users.name', 'users.id as id_user', 'tuitions.payment_times')
             ->get();
         return $fillable;
     }
+
 }

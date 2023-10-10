@@ -25,6 +25,7 @@
 {{--                                    <th scope="col">Số thứ tự</th>--}}
                                     <th scope="col">Mã SV</th>
                                     <th scope="col">Họ và tên</th>
+                                    <th scope="col">Trạng thái</th>
                                     <th>Hành động</th>
                                 </tr>
                                 </thead>
@@ -33,6 +34,11 @@
                                     <tr>
                                         <td>{{$f->id}}</td>
                                         <td>{{$f->name}}</td>
+                                        <td>@if ($f->school_payment_times >= $f->payment_times)
+                                            Hoàn thành
+                                            @else
+                                            Nợ học phí
+                                        @endif</td>
                                         <td>
                                             <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit{{$f->id}}">

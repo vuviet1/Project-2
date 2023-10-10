@@ -18,13 +18,13 @@
                                 <label for="idClass" class="form-label">Mã hoc sinh</label>
                                 <input type="text" class="form-control"
                                        placeholder="Mã hoc sinh"
-                                       name="id_user">
+                                       name="id">
                             </div>
-                            <div class="col">
+                            <div class="col" hidden>
                                 <label for="nameStudent" class="form-label">Số lần đóng</label>
                                 <input type="text" class="form-control"
                                        placeholder="Số lần đóng"
-                                       name="school_payment_times">
+                                       name="school_payment_times" value="0">
                             </div>
                         </div>
 
@@ -44,14 +44,21 @@
                             {{--                                   placeholder="Mã tài khoản"--}}
                             {{--                                   name="id" disabled>--}}
                             {{--                        </div>--}}
-                            <div class="col">
+                            {{-- <div class="col">
                                 <label for="nameStudent" class="form-label">Họ và tên</label>
                                 <input type="text" class="form-control"
                                        placeholder="Họ và tên"
                                        name="" disabled
-                                    {{--                                   value="{{$f->name}}"--}}
+                                                                      value="{{$f->name}}"
                                 >
-                            </div>
+                            </div> --}}
+                            <label for="idClass" class="form-label">Họ và tên</label>
+                            <select class="form-control" name="id_user">
+                                <option selected>-- Chọn tên --</option>
+                                @foreach($student as $y)
+                                <option value="{{$y->id_user}}">{{$y->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                     </div>

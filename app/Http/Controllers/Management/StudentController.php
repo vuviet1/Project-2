@@ -31,7 +31,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -43,14 +43,8 @@ class StudentController extends Controller
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
         $id_user = $request->input('id_user');
-        $check =  DB::table('students')->get();
-        foreach ($check as $key) {
-            if($key -> school_payment_times == $school_payment_times){
-                flash()->addError("Thêm thất bại");
-                return redirect()->route('student');
-            }
-        }
-        $result = DB::table('students')->insert([
+        $id = $request->input('id');
+        $result = DB::table('students')->insert(['id' => $id,
             'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $id_user
         ]);
         if($result){
