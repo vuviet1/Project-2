@@ -25,7 +25,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">Số thứ tự</th>
-                                    <th scope="col">Mã SV (BKC)</th>
+                                    <th scope="col">Mã SV</th>
                                     <th scope="col">Họ và tên</th>
                                     <th scope="col">Số lần đóng</th>
                                     <th scope="col">Số tiền đã đóng</th>
@@ -36,8 +36,8 @@
                                 <tbody>
                                 @forelse ($tuition as $f)
                                     <tr>
-                                        <td>{{$f->id}}</td>
-                                        <td>{{$f->id_student}}</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>BKC {{$f->id_student}}</td>
                                         <td>{{$f->name}}</td>
                                         <td>{{$f->payment_times}}</td>
                                         <td>{{$f->fee}}</td>

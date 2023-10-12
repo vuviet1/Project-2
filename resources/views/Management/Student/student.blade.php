@@ -35,9 +35,11 @@
                                         <td>{{$f->id}}</td>
                                         <td>{{$f->name}}</td>
                                         <td>@if ($f->school_payment_times >= $f->payment_times)
-                                            Hoàn thành
+{{--                                            Hoàn thành--}}
+                                                <button class="btn btn-success">Hoàn thành</button>
                                             @else
-                                            Nợ học phí
+{{--                                            Nợ học phí--}}
+                                                <button class="btn btn-danger">Nợ học phí : {{($f->original_fee / 30) * ($f->payment_times - $f->school_payment_times)}} VND</button>
                                         @endif</td>
                                         <td>
                                             <!-- Button to trigger the modal Edit-->

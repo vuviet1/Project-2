@@ -36,31 +36,6 @@
                                        name="scholarship">
                             </div>
                         </div>
-
-                        <div class="row g-3">
-                            {{--                        <div class="col">--}}
-                            {{--                            <label for="idClass" class="form-label">Mã tài khoản</label>--}}
-                            {{--                            <input type="text" class="form-control"--}}
-                            {{--                                   placeholder="Mã tài khoản"--}}
-                            {{--                                   name="id" disabled>--}}
-                            {{--                        </div>--}}
-                            {{-- <div class="col">
-                                <label for="nameStudent" class="form-label">Họ và tên</label>
-                                <input type="text" class="form-control"
-                                       placeholder="Họ và tên"
-                                       name="" disabled
-                                                                      value="{{$f->name}}"
-                                >
-                            </div> --}}
-                            <label for="idClass" class="form-label">Họ và tên</label>
-                            <select class="form-control" name="id_user">
-                                <option selected>-- Chọn tên --</option>
-                                @foreach($student as $y)
-                                <option value="{{$y->id_user}}">{{$y->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
                     </div>
                 </div>
                 <div class="modal-footer">

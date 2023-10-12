@@ -14,7 +14,8 @@ class Student extends Model
         $fillable = DB::table('students')
             ->join('users', 'students.id_user', '=', 'users.id')
             ->join('tuitions', 'tuitions.id_student', '=', 'students.id')
-            ->select('students.*', 'users.name', 'users.id as id_user', 'tuitions.payment_times')
+            ->join('fees', 'fees.id', '=', 'tuitions.id_fee')
+            ->select('students.*', 'users.name', 'users.id as id_user', 'tuitions.payment_times', 'fees.original_fee')
             ->get();
         return $fillable;
     }

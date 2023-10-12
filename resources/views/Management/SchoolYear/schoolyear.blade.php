@@ -31,7 +31,7 @@
                                 <tbody>
                                 @forelse ($schoolYears as $f)
                                     <tr>
-                                        <td>{{$f->id}}</td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>{{$f->number_course}}</td>
                                         <td>
                                             <!-- Button to trigger the modal Edit-->

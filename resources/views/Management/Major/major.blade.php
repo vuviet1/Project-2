@@ -30,7 +30,7 @@
                                 <tbody>
                                 @forelse ($major as $f)
                                     <tr>
-                                        <td>{{$f->id}}</td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>{{$f->majors_name}}</td>
                                         <td>
                                             <!-- Button to trigger the modal Edit-->

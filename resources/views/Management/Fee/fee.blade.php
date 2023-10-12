@@ -35,7 +35,7 @@
                                 <tbody>
                                 @forelse ($fee as $f)
                                     <tr>
-                                        <td>{{$f->id}}</td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>{{$f->school_payment_times}}</td>
                                         <td>{{$f->original_fee}}</td>
                                         <td>{{$f->majors_name}}</td>

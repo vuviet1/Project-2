@@ -37,7 +37,6 @@
                                 <select class="form-control" name="id_school_year">
                                     <option selected>-- Chọn niên khóa --</option>
                                     @foreach($year as $y)
-
                                     <option value="{{$y->id}}">{{$y->number_course}}</option>
                                     @endforeach
                                 </select>

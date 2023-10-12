@@ -47,7 +47,7 @@
 {{--                                       name="id_student" value="{{$f->id_student}}" readonly>--}}
                                 <select class="form-control" name="id_student">
 {{--                                    <option selected>-- Chọn sinh viên --</option>--}}
-                                    <option value="{{$f->id}}">{{$f->name}}</option>
+                                    <option value="{{$f->id_student}}">{{$f->name}}</option>
 {{--                                    @foreach($student as $s)--}}
 {{--                                        <option value="{{$s->id}}">{{$s->name}}</option>--}}
 {{--                                    @endforeach--}}

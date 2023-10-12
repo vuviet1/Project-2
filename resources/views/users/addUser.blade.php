@@ -16,18 +16,26 @@
 
                         <div class="row g-3">
                             <div class="col">
+                                <label for="idClass" class="form-label">Mã hoc sinh</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Mã hoc sinh"
+                                       name="id">
+                            </div>
+                            <div class="col">
                                 <label for="nameStudent" class="form-label">Họ và tên</label>
                                 <input type="text" class="form-control"
                                        placeholder="Họ và tên"
                                        name="name">
                             </div>
-{{--                            <div class="col">--}}
-{{--                                <label for="nameStudent" class="form-label">Cấp quyền</label>--}}
-{{--                                <input type="number" class="form-control"--}}
-{{--                                       placeholder="Quyền"--}}
-{{--                                       name="role">--}}
-{{--                            </div>--}}
+                            {{--                            <div class="col">--}}
+                            {{--                                <label for="nameStudent" class="form-label">Cấp quyền</label>--}}
+                            {{--                                <input type="number" class="form-control"--}}
+                            {{--                                       placeholder="Quyền"--}}
+                            {{--                                       name="role">--}}
+                            {{--                            </div>--}}
+                        </div>
 
+                        <div class="row g-3">
                             <div class="col">
                                 <label for="role" class="form-label">Cấp quyền</label>
                                 <select id="role" class="form-control" name="role">
