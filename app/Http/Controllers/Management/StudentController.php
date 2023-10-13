@@ -23,6 +23,7 @@ class StudentController extends Controller
     public function index()
     {
         $this->data['student'] = $this->student->show();
+        // dd($this->data['student']);
         return view('Management.Student.student', $this->data);
     }
 
