@@ -18,7 +18,7 @@
                                 <label for="idClass" class="form-label">Mã hoc sinh</label>
                                 <input type="text" class="form-control"
                                        placeholder="Mã hoc sinh"
-                                       name="id">
+                                       name="id_user">
                             </div>
                             <div class="col" hidden>
                                 <label for="nameStudent" class="form-label">Số lần đóng</label>

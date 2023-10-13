@@ -43,8 +43,7 @@ class StudentController extends Controller
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
         $id_user = $request->input('id_user');
-        $id = $request->input('id');
-        $result = DB::table('students')->insert(['id' => $id,
+        $result = DB::table('students')->insert([
             'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $id_user
         ]);
         if($result){
