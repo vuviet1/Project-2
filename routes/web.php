@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
         Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
         Route::post('delete_school_year', [SchoolYearController::class, 'destroy'])->name('delete.school_year');
+        Route::post('search_school_year', [SchoolYearController::class, 'search'])->name('search.school_year');
     });
 
     Route::prefix('major')->group(function () {

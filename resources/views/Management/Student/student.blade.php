@@ -34,13 +34,17 @@
                                     <tr>
                                         <td>{{$f->id}}</td>
                                         <td>{{$f->name}}</td>
-                                        <td>@if ($f->school_payment_times >= $f->payment_times)
-{{--                                            Hoàn thành--}}
+
+                                        <td>
+                                            @if ($f->school_payment_times >= $f->fee_time)
+                                                {{-- Hoàn thành --}}
                                                 <button class="btn btn-success">Hoàn thành</button>
                                             @else
-{{--                                            Nợ học phí--}}
-                                                <button class="btn btn-danger">Nợ học phí : {{($f->original_fee / 30) * ($f->payment_times - $f->school_payment_times)}} VND</button>
-                                        @endif</td>
+                                                {{-- Nợ học phí --}}
+                                                <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
+                                            @endif
+                                        </td>
+
                                         <td>
                                             <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit{{$f->id}}">
