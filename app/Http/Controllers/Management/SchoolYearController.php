@@ -23,11 +23,16 @@ class SchoolYearController extends Controller
         $this->data['schoolYears'] = $this->schoolYear->show();
         return view('Management.SchoolYear.schoolyear', $this->data);
     }
-
-    public function create()
-    {
-        // Show a form to create a new school year (if needed)
-
+    public function search(Request $request){
+        $search = $request->input('search');
+        if (empty($search)) {
+            return $this->index();
+        } else {
+            $this->data['schoolYears'] = (new School_year)->search($search);
+            $this->data['search'] = $search;
+            $this->data['schoolYearsCount'] = $this->data['schoolYears']->count();
+        }
+        return view('Management.SchoolYear.schoolyear', $this->data);
     }
 
     public function store(Request $request)

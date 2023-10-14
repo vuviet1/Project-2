@@ -17,7 +17,19 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
                         Thêm mới
                     </button>
-
+                    <form method="post" action="{{ route('search.school_year') }}">
+                        @csrf
+                        <div class="form-group row">
+                          <label for="inputPassword" class="col-sm-2 col-form-label">Tìm kiếm</label>
+                          <div class="col-sm-10">
+                            <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">
+                          </div>
+                        </div>
+                        <button type="submit" hidden></button>
+                      </form>
+                      <div>
+                        <p >Tìm thấy {{ $schoolYearsCount ?? '' }} kết quả</p>
+                      </div>
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -56,6 +68,7 @@
 
                                 </tbody>
                             </table>
+                            {{ $schoolYears->links() }}
                         </div>
                     </div>
                 </div>
