@@ -10,33 +10,18 @@ public function collection()
 {
     $data = [
         [
-            'Student code' => 'Value 1',
-            'Email' => 'Value 2',
-            'Password' => 'Value 3',
-            'Birthday' => 'Value 4',
-            'Address' => 'Value 5',
-            'Phone number' => 'Value 6',
-            'CCCD' => 'Value 7',
-            'Role' => 'Value 8',
+            'Student code' => 'Student code',
+            'Email' => 'Email',
+            'Password' => 'Password',
+            'Birthday' => 'Birthday',
+            'Address' => 'Address',
+            'Phone number' => 'Phone number',
+            'CCCD' => 'CCCD',
+            'Role' => 'Role',
         ],
         // Add more data rows as needed
     ];
 
     return new Collection($data);
 }
-
-public function headings(): array
-{
-    return [
-        'Student code',
-        'Email',
-        'Password',
-        'Birthday',
-        'Address',
-        'Phone number',
-        'CCCD',
-        'Role',
-    ];
-}
-
 }
