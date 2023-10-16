@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 
 class UserController extends Controller
 {
@@ -24,6 +27,17 @@ class UserController extends Controller
         $this->data['users'] = User::paginate();
 
         return view('users.index', $this->data);
+    }
+    public function import(Request $request){
+        $file = $request->file('file');
+        Excel::import(new UsersImport(), $file);
+        flash()->addSuccess('Import thành công');
+        return redirect()->back();
+    }
+    public function export()
+    {
+        //
+        return Excel::download(new UsersExport(), 'mau.xlsx');
     }
 
     public function store(Request $request)

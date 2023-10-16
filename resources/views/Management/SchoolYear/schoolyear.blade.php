@@ -27,9 +27,11 @@
                         </div>
                         <button type="submit" hidden></button>
                       </form>
+                      @if(!empty($schoolYearsCount))
                       <div>
                         <p >Tìm thấy {{ $schoolYearsCount ?? '' }} kết quả</p>
                       </div>
+                      @endif
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered">

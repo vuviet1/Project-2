@@ -19,10 +19,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
             $table->bigInteger('cccd')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->integer('role');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

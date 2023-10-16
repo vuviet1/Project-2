@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Tuition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\tuitionExport;
 class TuitionController extends Controller
 {
 
@@ -34,9 +35,10 @@ class TuitionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function export()
     {
         //
+        return Excel::download(new tuitionExport(), 'tuition.xlsx');
     }
 
     /**
