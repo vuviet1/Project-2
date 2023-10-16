@@ -16,6 +16,15 @@
                     Thêm mới
                 </button>
             </div>
+            <form action="{{ route('import.user')}}" id="import" method="post">
+                @csrf
+                <input type="file" id="file" name="file" hidden onchange="document.getElementById('file').submit()">
+                <button onclick="document.getElementById('file').click()" type="button">Import</button>
+            </form>
+            <form action="{{ route('export.user') }}" method="post">
+                @csrf
+                <button type="submit">Tải xuống mẫu</button>
+                </form>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

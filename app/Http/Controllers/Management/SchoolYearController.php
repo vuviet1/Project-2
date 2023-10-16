@@ -26,7 +26,7 @@ class SchoolYearController extends Controller
     public function search(Request $request){
         $search = $request->input('search');
         if (empty($search)) {
-            return $this->index();
+            return redirect()->route('school_year');
         } else {
             $this->data['schoolYears'] = (new School_year)->search($search);
             $this->data['search'] = $search;

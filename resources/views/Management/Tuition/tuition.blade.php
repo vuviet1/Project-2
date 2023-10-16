@@ -17,7 +17,10 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
                         Thêm mới
                     </button>
-
+                    <form action="{{ route('export.tuition') }}" method="post">
+                    @csrf
+                    <button type="submit">Tải xuống</button>
+                    </form>
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Danh sách học sinh/sinh viên</h5>
