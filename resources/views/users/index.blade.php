@@ -11,20 +11,30 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <!-- Button trigger modal Add-->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
-                    Thêm mới
-                </button>
+
+                <div class="d-flex">
+                    <!-- Button trigger modal Add-->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
+                        Thêm mới
+                    </button>
+                    <div class="flex-grow-1"></div>
+                    <form action="{{ route('export.user') }}" method="post" style="margin-right: 10px">
+                        @csrf
+                        <button type="submit" class="btn btn-info">Tải xuống file Exel mẫu</button>
+                    </form>
+                    <form action="{{ route('import.user')}}" id="formImport" method="post" enctype="multipart/form-data"
+                          class="me-3">
+                        @csrf
+                        <input onchange="document.getElementById('formImport').submit()"
+                               type="file" id="file" name="fileExel" hidden>
+                        <button onclick="document.getElementById('file').click()"
+                                type="button" class="btn btn-success">Cập nhật thông tin sinh viên
+                        </button>
+                    </form>
+                </div>
+
             </div>
-            <form action="{{ route('import.user')}}" id="import" method="post">
-                @csrf
-                <input type="file" id="file" name="file" style="display: none;" onchange="document.getElementById('import').submit()">
-                <button type="button" onclick="document.getElementById('file').click()">Import</button>
-            </form>
-            <form action="{{ route('export.user') }}" method="post">
-                @csrf
-                <button type="submit">Tải xuống mẫu</button>
-                </form>
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -42,7 +52,8 @@
                                 <td>{{ $f->email }}</td>
                                 <td>
                                     <!-- Button to trigger the modal Edit-->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit{{$f->id}}">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#staticBackdropEdit{{$f->id}}">
                                         Sửa
                                     </button>
                                     @include('users.editUser')

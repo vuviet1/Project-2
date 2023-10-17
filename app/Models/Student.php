@@ -13,9 +13,9 @@ class Student extends Model
     public function show(){
         $fillable = DB::table('students')
             ->join('users', 'students.id_user', '=', 'users.id')
-            ->join('tuitions', 'tuitions.id_student', '=', 'students.id')
-            ->join('fees', 'fees.id', '=', 'tuitions.id_fee')
-            ->select('students.*', 'users.name', 'users.id as id_user', 'tuitions.payment_times', 'fees.original_fee')
+            ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
+            ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
+            ->select('students.*', 'users.name', 'users.id as id_user', 'fees.school_payment_times as fee_time', 'fees.original_fee' )
             ->get();
         return $fillable;
     }

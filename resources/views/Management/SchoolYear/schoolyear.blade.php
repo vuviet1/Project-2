@@ -20,7 +20,7 @@
                     <form method="post" action="{{ route('search.school_year') }}">
                         @csrf
                         <div class="form-group row">
-                          <label for="inputPassword" class="col-sm-2 col-form-label">Tìm kiếm</label>
+                          <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm</b></label>
                           <div class="col-sm-10">
                             <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">
                           </div>
@@ -29,7 +29,13 @@
                       </form>
                       @if(!empty($schoolYearsCount))
                       <div>
-                        <p >Tìm thấy {{ $schoolYearsCount ?? '' }} kết quả</p>
+{{--                          @if($schoolYearsCount == 0)--}}
+{{--                              Không tìm thấy kết quả nào--}}
+{{--                          @else--}}
+                        <p>Tìm thấy
+                            <b style="color: red">{{ $schoolYearsCount ?? '' }}</b> kết quả
+                        </p>
+{{--                          @endif--}}
                       </div>
                       @endif
                     <div class="card">

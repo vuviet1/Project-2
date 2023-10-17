@@ -11,6 +11,7 @@ public function collection()
     $data = [
         [
             'Student code' => 'Student code',
+            'Name' =>'Name',
             'Email' => 'Email',
             'Password' => 'Password',
             'Birthday' => 'Birthday',

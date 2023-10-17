@@ -28,18 +28,6 @@ class UserController extends Controller
 
         return view('users.index', $this->data);
     }
-    public function import(Request $request){
-        $file = $request->file('file');
-        dd($file);
-        Excel::import(new UsersImport(), $file);
-        flash()->addSuccess('Import thành công');
-        return redirect()->back();
-    }
-    public function export()
-    {
-        //
-        return Excel::download(new UsersExport(), 'mau.xlsx');
-    }
 
     public function store(Request $request)
     {
@@ -122,6 +110,23 @@ class UserController extends Controller
             flash()->addError("Xóa thất bại");
             return redirect()->route('user');
         }
+    }
+
+//    Import , Export
+    public function import(Request $request){
+        $file = $request->file('fileExel');
+        Excel::import(new UsersImport(), $file);
+        flash()->addSuccess('Import thành công');
+        return redirect()->back();
+//        dd($file);
+//        Excel::import(new UsersImport(), $file);
+//        flash()->addSuccess('Import thành công');
+//        return redirect()->back();
+    }
+    public function export()
+    {
+        //
+        return Excel::download(new UsersExport(), 'mau.xlsx');
     }
 
 }
