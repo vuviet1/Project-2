@@ -18,8 +18,8 @@
             </div>
             <form action="{{ route('import.user')}}" id="import" method="post">
                 @csrf
-                <input type="file" id="file" name="file" hidden onchange="document.getElementById('file').submit()">
-                <button onclick="document.getElementById('file').click()" type="button">Import</button>
+                <input type="file" id="file" name="file" style="display: none;" onchange="document.getElementById('import').submit()">
+                <button type="button" onclick="document.getElementById('file').click()">Import</button>
             </form>
             <form action="{{ route('export.user') }}" method="post">
                 @csrf

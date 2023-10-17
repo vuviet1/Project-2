@@ -30,6 +30,7 @@ class UserController extends Controller
     }
     public function import(Request $request){
         $file = $request->file('file');
+        dd($file);
         Excel::import(new UsersImport(), $file);
         flash()->addSuccess('Import thành công');
         return redirect()->back();
