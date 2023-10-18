@@ -18,7 +18,7 @@ class Student extends Model
             ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
             ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
             ->select('students.*', 'users.name', 'users.id as id_user', 'fees.school_payment_times as fee_time', 'fees.original_fee' )
-            ->get();
+            ->paginate($this->limit);
         return $fillable;
     }
 

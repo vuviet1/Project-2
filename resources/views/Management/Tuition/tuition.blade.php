@@ -26,21 +26,21 @@
                     </div>
 
                     <hr>
-{{--                    <form method="get" action="{{ route('search.tuition') }}">--}}
-{{--                        @csrf--}}
-{{--                        <div class="form-group row">--}}
-{{--                            <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm theo mã SV</b></label>--}}
-{{--                            <div class="col-sm-10">--}}
-{{--                                <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <button type="submit" hidden></button>--}}
-{{--                        @if(!empty($tuitionCount))--}}
-{{--                            <div>--}}
-{{--                                <p>Kết quả tìm kiếm</p>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    </form>--}}
+                   <form method="get" action="{{ route('search.tuition') }}">
+                       @csrf
+                       <div class="form-group row">
+                           <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm theo mã SV</b></label>
+                           <div class="col-sm-10">
+                               <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">
+                           </div>
+                       </div>
+                       <button type="submit" hidden></button>
+                       @if(!empty($tuitionCount))
+                           <div>
+                               <p>Kết quả tìm kiếm</p>
+                           </div>
+                    @endif
+                   </form>
 
                     <div class="card">
                         <div class="card-body">
@@ -87,7 +87,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
-{{--                            {{ $tuition->appends(['search' => $search ?? ''])->links() }}--}}
+                           {{ $tuition->appends(['search' => $search ?? ''])->links() }}
                         </div>
                     </div>
                 </div>
