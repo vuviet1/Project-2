@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
                         Thêm mới
                     </button>
-                    <form method="post" action="{{ route('search.school_year') }}">
+                    <form method="get" action="{{ route('search.school_year') }}">
                         @csrf
                         <div class="form-group row">
                           <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm</b></label>
@@ -76,7 +76,7 @@
 
                                 </tbody>
                             </table>
-                            {{ $schoolYears->links() }}
+                            {{ $schoolYears->appends(['search' => $search ?? ''])->links() }}
                         </div>
                     </div>
                 </div>
