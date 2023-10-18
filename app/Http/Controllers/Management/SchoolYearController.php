@@ -23,17 +23,7 @@ class SchoolYearController extends Controller
         $this->data['schoolYears'] = $this->schoolYear->show();
         return view('Management.SchoolYear.schoolyear', $this->data);
     }
-    public function search(Request $request){
-        $search = $request->input('search');
-        if (empty($search)) {
-            return redirect()->route('school_year');
-        } else {
-            $this->data['schoolYears'] = (new School_year)->search($search);
-            $this->data['search'] = $search;
-            $this->data['schoolYearsCount'] = $this->data['schoolYears']->count();
-        }
-        return view('Management.SchoolYear.schoolyear', $this->data);
-    }
+
 
     public function store(Request $request)
     {
@@ -61,11 +51,7 @@ class SchoolYearController extends Controller
 
     public function show(string $id)
     {
-        // Show a specific school year based on the provided ID
-        // Example: $schoolYear = $this->schoolYear->find($id);
 
-        // Return the view with the specific school year data
-        // Example: return view('Management.SchoolYear.show', compact('schoolYear'));
     }
 
     public function edit(string $id)
@@ -109,5 +95,18 @@ class SchoolYearController extends Controller
             flash()->addError("Xóa thất bại");
             return redirect()->route('school_year');
         }
+    }
+
+//    Search
+    public function search(Request $request){
+        $search = $request->input('search');
+        if (empty($search)) {
+            return redirect()->route('school_year');
+        } else {
+            $this->data['schoolYears'] = (new School_year)->search($search);
+            $this->data['search'] = $search;
+            $this->data['schoolYearsCount'] = $this->data['schoolYears']->count();
+        }
+        return view('Management.SchoolYear.schoolyear', $this->data);
     }
 }

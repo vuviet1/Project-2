@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $this->data['users'] = User::paginate();
+        $this->data['user'] = User::paginate();
 
         return view('users.index', $this->data);
     }
@@ -125,8 +125,20 @@ class UserController extends Controller
     }
     public function export()
     {
-        //
         return Excel::download(new UsersExport(), 'mau.xlsx');
+    }
+
+    //    Search
+    public function search(Request $request){
+        $search = $request->input('search');
+        if (empty($search)) {
+            return redirect()->route('user');
+        } else {
+            $this->data['user'] = (new User)->search($search);
+            $this->data['search'] = $search;
+            $this->data['userCount'] = $this->data['user']->count();
+        }
+        return view('users.index', $this->data);
     }
 
 }

@@ -124,4 +124,20 @@ class TuitionController extends Controller
             return redirect()->route('tuition');
         }
     }
+
+    //    Search
+    public function search(Request $request){
+        $this->data['tuition'] = $this->tuition->show();
+        $this->data['student'] = $this->tuition->showStudent();
+        $this->data['fee'] = $this->tuition->showFee();
+        $search = $request->input('search');
+        if (empty($search)) {
+            return redirect()->route('tuition');
+        } else {
+            $this->data['tuition'] = (new Tuition)->search($search);
+            $this->data['search'] = $search;
+            $this->data['tuitionCount'] = $this->data['tuition']->count();
+        }
+        return view('Management.Tuition.tuition', $this->data);
+    }
 }

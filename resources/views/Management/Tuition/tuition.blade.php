@@ -12,15 +12,36 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Danh sách thu phí</h5>
+                    <div class="d-flex">
+                        <!-- Button trigger modal Add-->
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#staticBackdropAdd">
+                            Thêm mới
+                        </button>
+                        <div class="flex-grow-1"></div>
+                        <form action="{{ route('export.tuition') }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success">Tải xuống file Exel</button>
+                        </form>
+                    </div>
 
-                    <!-- Button trigger modal Add-->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
-                        Thêm mới
-                    </button>
-                    <form action="{{ route('export.tuition') }}" method="post">
-                    @csrf
-                    <button type="submit">Tải xuống</button>
-                    </form>
+                    <hr>
+{{--                    <form method="get" action="{{ route('search.tuition') }}">--}}
+{{--                        @csrf--}}
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm theo mã SV</b></label>--}}
+{{--                            <div class="col-sm-10">--}}
+{{--                                <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <button type="submit" hidden></button>--}}
+{{--                        @if(!empty($tuitionCount))--}}
+{{--                            <div>--}}
+{{--                                <p>Kết quả tìm kiếm</p>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                    </form>--}}
+
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Danh sách học sinh/sinh viên</h5>
@@ -44,7 +65,7 @@
                                         <td>{{$f->name}}</td>
                                         <td>{{$f->payment_times}}</td>
                                         <td>{{$f->fee}}</td>
-                                        <td>{{$f->school_payment_times}}</td>
+                                        <td>{{$f->student_school_payment_times}}</td>
                                         <td>
                                             <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -66,6 +87,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
+{{--                            {{ $tuition->appends(['search' => $search ?? ''])->links() }}--}}
                         </div>
                     </div>
                 </div>

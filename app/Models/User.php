@@ -6,12 +6,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    private $limit = 5;
     /**
      * The attributes that are mass assignable.
      *
@@ -46,4 +47,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function search($searchTerm){
+        return DB::table('users')
+            ->select('users.*')
+            ->where('users.id', 'like', "%$searchTerm%")
+            ->orWhere('users.email', 'like', "%$searchTerm%")
+            ->paginate($this->limit);
+    }
 }

@@ -17,6 +17,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
                         Thêm mới
                     </button>
+                    <hr>
                     <form method="get" action="{{ route('search.school_year') }}">
                         @csrf
                         <div class="form-group row">
@@ -26,18 +27,12 @@
                           </div>
                         </div>
                         <button type="submit" hidden></button>
+                        @if(!empty($schoolYearsCount))
+                        <div>
+                            <p>Kết quả tìm kiếm</p>
+                        </div>
+                        @endif
                       </form>
-                      @if(!empty($schoolYearsCount))
-                      <div>
-{{--                          @if($schoolYearsCount == 0)--}}
-{{--                              Không tìm thấy kết quả nào--}}
-{{--                          @else--}}
-                        <p>Tìm thấy
-                            <b style="color: red">{{ $schoolYearsCount ?? '' }}</b> kết quả
-                        </p>
-{{--                          @endif--}}
-                      </div>
-                      @endif
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered">

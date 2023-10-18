@@ -116,4 +116,17 @@ class StudentController extends Controller
             return redirect()->route('student');
         }
     }
+
+    //    Search
+    public function search(Request $request){
+        $search = $request->input('search');
+        if (empty($search)) {
+            return redirect()->route('student');
+        } else {
+            $this->data['student'] = (new Student)->search($search);
+            $this->data['search'] = $search;
+            $this->data['studentCount'] = $this->data['student']->count();
+        }
+        return view('Management.Student.student', $this->data);
+    }
 }

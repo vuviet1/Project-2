@@ -41,7 +41,6 @@ Route::middleware('auth')->group(function () {
         Route::get('show', [SchoolYearController::class, 'index'])->name('school_year');
         Route::post('add_school_year', [SchoolYearController::class, 'store'])->name('add.school_year');
         Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
-        Route::post('update_school_year', [SchoolYearController::class, 'update'])->name('update.school_year');
         Route::post('delete_school_year', [SchoolYearController::class, 'destroy'])->name('delete.school_year');
         Route::get('search_school_year', [SchoolYearController::class, 'search'])->name('search.school_year');
     });
@@ -51,6 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::post('add_major', [MajorController::class, 'store'])->name('add.major');
         Route::post('delete_major', [MajorController::class, 'destroy'])->name('delete.major');
         Route::post('update_major', [MajorController::class, 'update'])->name('update.major');
+        Route::get('search_major', [MajorController::class, 'search'])->name('search.major');
     });
 
     Route::prefix('user')->group(function () {
@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
         Route::post('update_user', [UserController::class, 'update'])->name('update.user');
         Route::post('import_user', [UserController::class, 'import'])->name('import.user');
         Route::post('export_user', [UserController::class, 'export'])->name('export.user');
+        Route::get('search_user', [UserController::class, 'search'])->name('search.user');
+
     });
 
     Route::prefix('student')->group(function () {
@@ -67,6 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::post('add_student', [StudentController::class, 'store'])->name('add.student');
         Route::post('delete_student', [StudentController::class, 'destroy'])->name('delete.student');
         Route::post('update_student', [StudentController::class, 'update'])->name('update.student');
+        Route::get('search_student', [StudentController::class, 'search'])->name('search.student');
     });
 
     Route::prefix('tuition')->group(function () {
@@ -75,7 +78,7 @@ Route::middleware('auth')->group(function () {
         Route::post('delete_tuition', [TuitionController::class, 'destroy'])->name('delete.tuition');
         Route::post('update_tuition', [TuitionController::class, 'update'])->name('update.tuition');
         Route::post('export_tuition', [TuitionController::class, 'export'])->name('export.tuition');
-
+        Route::get('search_tuition', [TuitionController::class, 'search'])->name('search.tuition');
     });
 
     Route::prefix('fee')->group(function () {

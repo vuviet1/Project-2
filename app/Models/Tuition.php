@@ -10,12 +10,14 @@ class Tuition extends Model
 {
     use HasFactory;
     protected $fillable = ['payment_times', 'fee', 'note', 'id_student', 'id_fee', 'create_at', 'update_at'];
+    private $limit = 5;
+
     public function show(){
         $fillable = DB::table('tuitions')
             ->join('students', 'tuitions.id_student', '=', 'students.id')
             ->join('fees', 'tuitions.id_fee', '=', 'fees.id')
             ->join('users', 'students.id_user', '=', 'users.id')
-            ->select('students.school_payment_times', 'students.school_payment_times', 'fees.school_payment_times', 'fees.original_fee', 'users.name', 'tuitions.*')
+            ->select('students.school_payment_times as student_school_payment_times', 'fees.school_payment_times', 'fees.original_fee', 'users.name', 'tuitions.*')
             ->get();
         return $fillable;
     }
@@ -37,4 +39,18 @@ class Tuition extends Model
             ->get();
         return $fillable;
     }
+
+//    public function search($searchTerm){
+//        return DB::table('tuitions')
+//            ->join('students', 'tuitions.id_student', '=', 'students.id')
+//            ->join('fees', 'tuitions.id_fee', '=', 'fees.id')
+//            ->join('users', 'students.id_user', '=', 'users.id')
+//            ->select('students.school_payment_times as student_school_payment_times',
+//                'fees.school_payment_times as fee_school_payment_times',
+//                'fees.original_fee',
+//                'users.name',
+//                'tuitions.*')
+//            ->where('tuitions.id_student', 'like', "%$searchTerm%")
+//            ->paginate($this->limit);
+//    }
 }

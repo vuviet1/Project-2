@@ -17,6 +17,23 @@
                         Thêm mới
                     </button>
 
+                    <hr>
+                    <form method="get" action="{{ route('search.major') }}">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm</b></label>
+                            <div class="col-sm-10">
+                                <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">
+                            </div>
+                        </div>
+                        <button type="submit" hidden></button>
+                        @if(!empty($majorCount))
+                            <div>
+                                <p>Kết quả tìm kiếm</p>
+                            </div>
+                        @endif
+                    </form>
+
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -52,6 +69,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
+                            {{ $major->appends(['search' => $search ?? ''])->links() }}
                         </div>
                     </div>
                 </div>

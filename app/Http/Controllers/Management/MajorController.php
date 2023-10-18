@@ -125,4 +125,18 @@ class MajorController extends Controller
             return redirect()->route('major');
         }
     }
+
+    //    Search
+    public function search(Request $request){
+        $search = $request->input('search');
+        if (empty($search)) {
+            return redirect()->route('major');
+        } else {
+            $this->data['major'] = (new Major)->search($search);
+            $this->data['search'] = $search;
+            $this->data['majorCount'] = $this->data['major']->count();
+        }
+        return view('Management.Major.major', $this->data);
+    }
+
 }
