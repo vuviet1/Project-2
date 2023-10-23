@@ -27,12 +27,24 @@ class SchoolYearController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'number_course' => 'required|integer|min:1',
+        ]);
+
+
         // Store a new school year in the database (if needed)
         $number_course = $request->input('number_course');
+//        $request->validate([
+//            'number_course' => 'required|integer|min:1',
+//        ]);
+
         $check =  DB::table('school_years')->get();
         foreach ($check as $key) {
+            $request->validate([
+                'number_course' => 'numeric',
+            ]);
             if($key -> number_course == $number_course){
-//                dd($value);
                 flash()->addError("Thêm thất bại");
                 return redirect()->route('school_year');
             }

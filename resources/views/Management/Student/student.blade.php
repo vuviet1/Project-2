@@ -47,19 +47,20 @@
                                 </thead>
                                 <tbody>
                                 @forelse ($student as $f)
+
                                     <tr>
                                         <td>{{$f->id}}</td>
                                         <td>{{$f->name}}</td>
 
                                         <td>
                                             @if ($f->school_payment_times >= $f->fee_time)
-                                                {{-- Hoàn thành --}}
-                                                <button class="btn btn-success">Hoàn thành</button>
-                                            @else
-                                                {{-- Nợ học phí --}}
-                                                <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
+                                            {{-- Hoàn thành --}}
+                                            <button class="btn btn-success">Hoàn thành</button>
+                                        @else
+                                            {{-- Nợ học phí --}}
+                                            <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
                                             @endif
-                                        </td>
+                                            </td>
 
                                         <td>
                                             <!-- Button to trigger the modal Edit-->
@@ -81,7 +82,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
-                            {{ $student->appends(['search' => $search ?? ''])->links() }}
+{{--                            {{ $student->appends(['search' => $search ?? ''])->links() }}--}}
                         </div>
                     </div>
                 </div>

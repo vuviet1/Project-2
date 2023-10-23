@@ -40,6 +40,7 @@
                                         <td>{{$f->original_fee}}</td>
                                         <td>{{$f->majors_name}}</td>
                                         <td>{{$f->number_course}}</td>
+                                        @if($f->school_payment_times <30)
                                         <td>
                                             <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -55,10 +56,13 @@
                                                 </button>
                                             </form>
                                         </td>
+                                        @endif
                                     </tr>
                                 @empty
+
                                     <th>Không có dữ liệu</th>
                                 @endforelse
+
                                 </tbody>
                             </table>
                         </div>
