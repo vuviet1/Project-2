@@ -44,15 +44,26 @@ class FeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $school_payment_times = $request->input('school_payment_times');
         $original_fee = $request->input('original_fee');
         $id_school_year = $request->input('id_school_year');
         $id_major = $request->input('id_major');
+        // dd($request);
+        // dd($id_school_year);
+        // dd($id_major);
+        if ($id_school_year === null || $id_major === null) {
+            flash()->addError("Thêm thất bại");
+            return redirect()->route('fee');
+        } else {
+            $result = DB::table('fees')->insert([
+                'school_payment_times' => $school_payment_times,
+                'original_fee' => $original_fee,
+                'id_school_year' => $id_school_year,
+                'id_major' => $id_major
+            ]);
+        }
 
-        $result = DB::table('fees')->insert([
-            'school_payment_times' => $school_payment_times, 'original_fee' => $original_fee, 'id_school_year' => $id_school_year, 'id_major' => $id_major
-        ]);
         if($result){
             flash()->addSuccess('Thêm thành công');
             return redirect()->route('fee');

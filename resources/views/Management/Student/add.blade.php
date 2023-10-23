@@ -18,13 +18,13 @@
                                 <label for="idClass" class="form-label">Mã hoc sinh</label>
                                 <input type="text" class="form-control"
                                        placeholder="Mã hoc sinh"
-                                       name="id_user">
+                                       name="id_user" required>
                             </div>
                             <div class="col" hidden>
                                 <label for="nameStudent" class="form-label">Số lần đóng</label>
                                 <input type="text" class="form-control"
                                        placeholder="Số lần đóng"
-                                       name="school_payment_times" value="0">
+                                       name="school_payment_times" value="0" required>
                             </div>
                         </div>
 
@@ -33,7 +33,7 @@
                                 <label for="idClass" class="form-label">Học bổng</label>
                                 <input type="text" class="form-control"
                                        placeholder="Số tiền"
-                                       name="scholarship">
+                                       name="scholarship" required>
                             </div>
                         </div>
                     </div>

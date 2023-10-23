@@ -18,6 +18,7 @@ class Tuition extends Model
             ->join('fees', 'tuitions.id_fee', '=', 'fees.id')
             ->join('users', 'students.id_user', '=', 'users.id')
             ->select('students.school_payment_times as student_school_payment_times', 'fees.school_payment_times', 'fees.original_fee', 'users.name', 'tuitions.*')
+            ->orderBy('tuitions.id', 'desc')
             ->paginate($this->limit);
         return $fillable;
     }
@@ -51,6 +52,7 @@ class Tuition extends Model
                'users.name',
                'tuitions.*')
            ->where('tuitions.id_student', 'like', "%$searchTerm%")
+           ->orderBy('tuitions.id', 'desc')
            ->paginate($this->limit);
    }
 }
