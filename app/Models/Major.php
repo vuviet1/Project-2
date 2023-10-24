@@ -13,7 +13,7 @@ class Major extends Model
     private $limit = 5;
 
     public function show(){
-        $fillable = DB::table('majors')->paginate($this->limit);
+        $fillable = DB::table('majors')->orderBy('majors.id', 'desc')->paginate($this->limit);
         return $fillable;
     }
 
@@ -21,6 +21,7 @@ class Major extends Model
         return DB::table('majors')
             ->select('majors.*')
             ->where('majors.majors_name', 'like', "%$searchTerm%")
+            ->orderBy('majors.id', 'desc')
             ->paginate($this->limit);
     }
 

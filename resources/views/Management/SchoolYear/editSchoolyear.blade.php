@@ -16,7 +16,7 @@
                         <input hidden name="id" value="{{$f->id}}">
                         <div class="col">
                             <label for="nameStudent" class="form-label">Niên khóa</label>
-                            <input type="text" class="form-control"
+                            <input type="number" class="form-control"
                                    placeholder="Niên khóa"
                                    name="number_course" value="{{$f->number_course}}">
                         </div>

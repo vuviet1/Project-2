@@ -18,13 +18,15 @@
                                 <label for="payment_times" class="form-label">Số đợt đóng</label>
                                 <input type="number" class="form-control"
                                        placeholder="Số đợt đóng"
-                                       name="school_payment_times">
+                                       min="1"
+                                       max="30"
+                                       name="school_payment_times" required>
                             </div>
                             <div class="col">
                                 <label for="fee" class="form-label">Tổng tiền</label>
                                 <input type="text" class="form-control"
                                        placeholder=""
-                                       name="original_fee">
+                                       name="original_fee" required>
                             </div>
                         </div>
 
@@ -35,7 +37,7 @@
 {{--                                       placeholder="Mã sinh viên"--}}
 {{--                                       name="id_school_year" >--}}
                                 <select class="form-control" name="id_school_year">
-                                    <option selected>-- Chọn niên khóa --</option>
+                                    <option value="">-- Chọn niên khóa --</option>
                                     @foreach($year as $y)
                                     <option value="{{$y->id}}">{{$y->number_course}}</option>
                                     @endforeach
@@ -47,7 +49,7 @@
 {{--                                       placeholder="Chuyên ngành"--}}
 {{--                                       name="id_major">--}}
                                 <select class="form-control" name="id_major">
-                                    <option selected>-- Chọn chuyên ngành --</option>
+                                    <option value="">-- Chọn chuyên ngành --</option>
                                     @foreach($major as $m)
                                         <option value="{{$m->id}}">{{$m->majors_name}}</option>
                                     @endforeach

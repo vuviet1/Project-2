@@ -17,13 +17,6 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
                         Thêm mới
                     </button>
-
-                    @if (session('flash_notification.message'))
-                        <div class="alert alert-{{ session('flash_notification.level') }}">
-                            {!! session('flash_notification.message') !!}
-                        </div>
-                    @endif
-
                     <hr>
                     <form method="get" action="{{ route('search.school_year') }}">
                         @csrf
