@@ -45,8 +45,8 @@ class SchoolYearController extends Controller
                 'number_course' => 'numeric',
             ]);
             if($key -> number_course == $number_course){
-                flash()->addError("Thêm thất bại");
-                return redirect()->route('school_year');
+                flash()->addError("Thêm thất bại - Đã tồn tại");
+                return redirect()->back();
             }
         }
         $result = DB::table('school_years')->insert([
@@ -57,7 +57,7 @@ class SchoolYearController extends Controller
             return redirect()->route('school_year');
         }else{
             flash()->addError("Thêm thất bại");
-            return redirect()->route('school_year');
+            return redirect()->back();
         }
     }
 
@@ -79,7 +79,7 @@ class SchoolYearController extends Controller
         $check =  DB::table('school_years')->get();
         foreach ($check as $key) {
             if($key -> number_course == $number_course){
-                flash()->addError("Sửa thất bại");
+                flash()->addError("Sửa thất bại - Đã tồn tại");
                 return redirect()->route('school_year');
             }
         }
@@ -91,7 +91,7 @@ class SchoolYearController extends Controller
             return redirect()->route('school_year');
         }else{
             flash()->addError("Sửa thất bại");
-            return redirect()->route('school_year');
+            return redirect()->back();
         }
     }
 
@@ -99,6 +99,11 @@ class SchoolYearController extends Controller
     {
         // Delete a specific school year from the database based on the provided ID
         $id = $request->input('id');
+        $hasRelatedRecords = DB::table('fees')->where('id_school_year', $id)->exists();
+        if ($hasRelatedRecords) {
+            flash()->addError("Xóa thất bại - Có dữ liệu liên quan");
+            return redirect()->back();
+        }
         $result = DB::table('school_years')->where('id', '=', $id)->delete();
         if($result){
             flash()->addSuccess('Xóa thành công');

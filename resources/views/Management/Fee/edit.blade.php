@@ -19,6 +19,8 @@
                                 <label for="payment_times" class="form-label">Số đợt đóng</label>
                                 <input type="number" class="form-control"
                                        placeholder="Số đợt đóng"
+                                       min="1"
+                                       max="30"
                                        name="school_payment_times" value="{{$f->school_payment_times}}">
                             </div>
                             <div class="col">
@@ -32,11 +34,7 @@
                         <div class="row g-3">
                             <div class="col">
                                 <label for="idClass" class="form-label">Niên khóa</label>
-{{--                                <input type="text" class="form-control"--}}
-{{--                                       placeholder="Mã sinh viên"--}}
-{{--                                       name="id_school_year" value="{{$f->id_school_year}}">--}}
                                 <select class="form-control" name="id_school_year">
-{{--                                    <option selected>-- Chọn niên khóa --</option>--}}
                                     <option value="{{$f->id_school_year}}">{{$f->number_course}}</option>
                                     @foreach($year as $y)
                                         @if($y->number_course != $f->number_course)
@@ -47,11 +45,7 @@
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Chuyên ngành</label>
-{{--                                <input type="text" class="form-control"--}}
-{{--                                       placeholder="Chuyên ngành"--}}
-{{--                                       name="id_major" value="{{$f->id_major}}">--}}
                                 <select class="form-control" name="id_major">
-{{--                                    <option selected>-- Chọn chuyên ngành --</option>--}}
                                     <option value="{{$f->id_major}}">{{$f->majors_name}}</option>
                                     @foreach($major as $m)
                                         @if($m->majors_name != $f->majors_name)

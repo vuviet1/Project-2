@@ -13,7 +13,7 @@ class School_year extends Model
     private $limit = 5;
 
     public function show(){
-        $fillable = DB::table('school_years')->paginate($this->limit);
+        $fillable = DB::table('school_years')->orderBy('school_years.id', 'desc')->paginate($this->limit);
         return $fillable;
     }
     // School_year model
@@ -22,6 +22,7 @@ class School_year extends Model
         return DB::table('school_years')
             ->select('school_years.*')
             ->where('school_years.number_course', 'like', "%$searchTerm%")
+            ->orderBy('school_years.id', 'desc')
             ->paginate($this->limit);
     }
 }

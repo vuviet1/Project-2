@@ -53,6 +53,7 @@ class User extends Authenticatable
             ->select('users.*')
             ->where('users.id', 'like', "%$searchTerm%")
             ->orWhere('users.email', 'like', "%$searchTerm%")
+            ->orderBy('users.id', 'desc')
             ->paginate($this->limit);
     }
 }

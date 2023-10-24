@@ -43,6 +43,11 @@ class StudentController extends Controller
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
         $id_user = $request->input('id_user');
+        $hasRelatedRecords = DB::table('students')->where('id_user', $id_user)->exists();
+        if ($hasRelatedRecords) {
+            flash()->addError("Thêm thất bại - Đã tồn tại");
+            return redirect()->back();
+        }
         $result = DB::table('students')->insert([
             'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $id_user
         ]);
@@ -107,6 +112,11 @@ class StudentController extends Controller
     {
         //
         $id = $request->input('id');
+        $hasRelatedRecords = DB::table('tuitions')->where('id_student', $id)->exists();
+        if ($hasRelatedRecords) {
+            flash()->addError("Xóa thất bại - Có dữ liệu liên quan");
+            return redirect()->back();
+        }
         $result = DB::table('students')->where('id', '=', $id)->delete();
         if($result){
             flash()->addSuccess('Xóa thành công');

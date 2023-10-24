@@ -56,6 +56,12 @@
                                                 </button>
                                             </form>
                                         </td>
+                                        @else
+                                        <td>
+                                            <button type="button" class="btn btn-success">
+                                                Đã hoàn Thành
+                                            </button>
+                                        </td>
                                         @endif
                                     </tr>
                                 @empty
