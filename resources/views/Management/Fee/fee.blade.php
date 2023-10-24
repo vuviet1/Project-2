@@ -18,6 +18,23 @@
                         Thêm mới
                     </button>
 
+                    <hr>
+                    <form method="get" action="{{ route('search.fee') }}">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm theo niên khoá</b></label>
+                            <div class="col-sm-10">
+                                <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">
+                            </div>
+                        </div>
+                        <button type="submit" hidden></button>
+                        @if(!empty($feeCount))
+                            <div>
+                                <p>Kết quả tìm kiếm</p>
+                            </div>
+                        @endif
+                    </form>
+
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Danh sách đợt đóng</h5>
@@ -68,9 +85,9 @@
 
                                     <th>Không có dữ liệu</th>
                                 @endforelse
-
                                 </tbody>
                             </table>
+                            {{ $fee->appends(['search' => $search ?? ''])->links() }}
                         </div>
                     </div>
                 </div>

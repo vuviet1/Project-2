@@ -10,7 +10,7 @@
             </div>
 
             <form action="{{ route('add.fee') }}" method="post">
-                @csrf <!-- CSRF Protection -->
+                @csrf
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row g-3">
@@ -33,9 +33,6 @@
                         <div class="row g-3">
                             <div class="col">
                                 <label for="idClass" class="form-label">Niên khóa</label>
-{{--                                <input type="text" class="form-control"--}}
-{{--                                       placeholder="Mã sinh viên"--}}
-{{--                                       name="id_school_year" >--}}
                                 <select class="form-control" name="id_school_year">
                                     <option value="">-- Chọn niên khóa --</option>
                                     @foreach($year as $y)
@@ -45,9 +42,6 @@
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Chuyên ngành</label>
-{{--                                <input type="text" class="form-control"--}}
-{{--                                       placeholder="Chuyên ngành"--}}
-{{--                                       name="id_major">--}}
                                 <select class="form-control" name="id_major">
                                     <option value="">-- Chọn chuyên ngành --</option>
                                     @foreach($major as $m)
@@ -59,7 +53,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
             </form>
         </div>

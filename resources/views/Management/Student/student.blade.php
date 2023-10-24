@@ -21,7 +21,7 @@
                     <form method="get" action="{{ route('search.student') }}">
                         @csrf
                         <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm</b></label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm theo mã SV</b></label>
                             <div class="col-sm-10">
                                 <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">
                             </div>
@@ -82,7 +82,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
-{{--                            {{ $student->appends(['search' => $search ?? ''])->links() }}--}}
+                            {{ $student->appends(['search' => $search ?? ''])->links() }}
                         </div>
                     </div>
                 </div>

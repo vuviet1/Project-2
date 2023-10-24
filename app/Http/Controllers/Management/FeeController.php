@@ -129,4 +129,20 @@ class FeeController extends Controller
             return redirect()->route('fee');
         }
     }
+
+    //    Search
+    public function search(Request $request){
+        $search = $request->input('search');
+        if (empty($search)) {
+            return redirect()->route('fee');
+        } else {
+            $this->data['fee'] = (new Fee)->search($search);
+            $this->data['search'] = $search;
+            $this->data['feeCount'] = $this->data['fee']->count();
+            $this->data['year'] = $this->fee->showYear();
+            $this->data['major'] = $this->fee->showMajor();
+        }
+        return view('Management.Fee.fee', $this->data);
+    }
+
 }

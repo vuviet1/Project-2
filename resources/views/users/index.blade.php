@@ -87,7 +87,7 @@
                         </tbody>
                     </table>
 
-{{--                    {{ $users->links() }}--}}
+{{--                    {{ $user->links() }}--}}
                     {{ $user->appends(['search' => $search ?? ''])->links() }}
 
                 </div>

@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -23,12 +24,12 @@ class UsersImport implements ToCollection, WithHeadingRow
                 'id' => $row['student_code'],
                 'name' =>$row['name'],
                 'email' => $row['email'],
-                'password' => $row['password'],
-                'birthday' => $row->birthday = Carbon::createFromFormat('d/m/Y', $row['birthday'])->format('Y-m-d'),
+                'password' => Hash::make($row['password']),
+//                'birthday' => $row->birthday = Carbon::createFromFormat('d/m/Y', $row['birthday'])->format('Y-m-d'),
                 'address' => $row['address'],
                 'phone_number' => $row['phone_number'],
                 'cccd' => $row['cccd'],
-                'role' => $row['role'],
+                'role' => 0,
             ]);
         }
     }

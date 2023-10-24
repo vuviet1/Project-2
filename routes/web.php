@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
         Route::post('add_fee', [FeeController::class, 'store'])->name('add.fee');
         Route::post('delete_fee', [FeeController::class, 'destroy'])->name('delete.fee');
         Route::post('update_fee', [FeeController::class, 'update'])->name('update.fee');
+        Route::get('search_fee', [FeeController::class, 'search'])->name('search.fee');
     });
 
 });
