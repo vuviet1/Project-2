@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('scholarship');
             $table->timestamps();
 
-            $table->unsignedBigInteger('id_user');
+            $table->bigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
         });
     }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
+use App\Imports\StudentImport;
 
 class UserController extends Controller
 {
@@ -24,7 +25,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $this->data['user'] = User::orderBy('id', 'desc')->paginate(5);
+        $this->data['user'] = User::orderBy('id', 'desc')->paginate();
 
         return view('users.index', $this->data);
     }
@@ -117,6 +118,7 @@ class UserController extends Controller
         $file = $request->file('fileExel');
         Excel::import(new UsersImport(), $file);
         flash()->addSuccess('Import thành công');
+
         return redirect()->back();
 //        dd($file);
 //        Excel::import(new UsersImport(), $file);

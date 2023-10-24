@@ -57,7 +57,7 @@ class TuitionController extends Controller
             'payment_times' => $payment_times, 'fee' => $fee, 'note' => $note, 'id_student' => $id_student, 'id_fee' => $id_fee
         ]);
         if($result){
-            DB::table('students')->where('id', $id_student)->increment('school_payment_times');
+            DB::table('students')->where('id', $id_student)->update(['school_payment_times' => $payment_times]);
             flash()->addSuccess('Thêm thành công');
             return redirect()->route('tuition');
         }else{
@@ -100,6 +100,7 @@ class TuitionController extends Controller
             'payment_times' => $payment_times, 'fee' => $fee, 'note' => $note, 'id_student' => $id_student, 'id_fee' => $id_fee
         ]);
         if($result){
+            DB::table('students')->where('id', $id_student)->update(['school_payment_times' => $payment_times]);
             flash()->addSuccess('Sửa thành công');
             return redirect()->route('tuition');
         }else{

@@ -47,7 +47,6 @@
                                 </thead>
                                 <tbody>
                                 @forelse ($student as $f)
-
                                     <tr>
                                         <td>{{$f->id}}</td>
                                         <td>{{$f->name}}</td>
