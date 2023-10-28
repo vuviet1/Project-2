@@ -59,9 +59,10 @@
                                         <td>{{$f->number_course}}</td>
                                         @if($f->school_payment_times <30)
                                         <td>
+                                            <div class="d-flex">
                                             <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#staticBackdropEdit{{$f->id}}">
+                                                    data-target="#staticBackdropEdit{{$f->id}}" style="margin-right: 20px">
                                                 Sửa
                                             </button>
                                             @include('Management.Fee.edit')
@@ -72,6 +73,7 @@
                                                     Xóa
                                                 </button>
                                             </form>
+                                            </div>
                                         </td>
                                         @else
                                         <td>

@@ -27,7 +27,7 @@
                                 <label for="fee" class="form-label">Tổng tiền</label>
                                 <input type="text" class="form-control"
                                        placeholder=""
-                                       name="original_fee" value="{{$f->original_fee}}">
+                                       name="original_fee" value="{{$f->original_fee}}" disabled>
                             </div>
                         </div>
 

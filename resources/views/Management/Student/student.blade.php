@@ -41,6 +41,7 @@
                                 <tr>
                                     <th scope="col">Mã SV</th>
                                     <th scope="col">Họ và tên</th>
+                                    <th scope="col">Trạng thái học phí</th>
                                     <th scope="col">Trạng thái</th>
                                     <th>Hành động</th>
                                 </tr>
@@ -48,9 +49,8 @@
                                 <tbody>
                                 @forelse ($student as $f)
                                     <tr>
-                                        <td>{{$f->id}}</td>
+                                        <td>{{$f->id_user}}</td>
                                         <td>{{$f->name}}</td>
-
                                         <td>
                                             @if ($f->school_payment_times >= $f->fee_time)
                                             {{-- Hoàn thành --}}
@@ -59,11 +59,21 @@
                                             {{-- Nợ học phí --}}
                                             <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
                                             @endif
-                                            </td>
-
+                                        </td>
                                         <td>
+                                            @if ($f->school_payment_times >= $f->fee_time)
+                                                {{-- Hoàn thành --}}
+                                                <button class="btn btn-success">Hoàn thành</button>
+                                            @else
+                                                {{-- Nợ học phí --}}
+                                                <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
                                             <!-- Button to trigger the modal Edit-->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit{{$f->id}}">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#staticBackdropEdit{{$f->id}}" style="margin-right: 20px">
                                                 Sửa
                                             </button>
                                             @include('Management.Student.edit')
@@ -74,6 +84,7 @@
                                                     Xóa
                                                 </button>
                                             </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

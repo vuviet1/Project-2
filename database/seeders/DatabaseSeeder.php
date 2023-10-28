@@ -21,10 +21,14 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $user = new User();
+        $user->id = '1';
         $user->name = 'Admin';
         $user->email = 'a@a';
         $user->password = 'aaaa';
-        $user->role = '1';
+$user->phone_number = '2134567';
+        $user->cccd = '2134345567';
+        $user->address = '34';
+        $user->birthday = '2003-4-24';
         $user->save();
     }
 }

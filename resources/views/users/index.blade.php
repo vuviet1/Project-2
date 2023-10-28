@@ -59,6 +59,7 @@
                         <tr>
                             <th>Họ và tên</th>
                             <th>Email</th>
+                            <th>Số điện thoại</th>
                             <th>Hành động</th>
                         </tr>
                         </thead>
@@ -67,10 +68,12 @@
                             <tr>
                                 <td>{{ $f->name }}</td>
                                 <td>{{ $f->email }}</td>
+                                <td>{{ $f->phone_number }}</td>
                                 <td>
+                                    <div class="d-flex">
                                     <!-- Button to trigger the modal Edit-->
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#staticBackdropEdit{{$f->id}}">
+                                            data-target="#staticBackdropEdit{{$f->id}}" style="margin-right: 20px">
                                         Sửa
                                     </button>
                                     @include('users.editUser')
@@ -81,6 +84,7 @@
                                             Xóa
                                         </button>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

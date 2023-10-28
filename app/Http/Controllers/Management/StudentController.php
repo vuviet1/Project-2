@@ -49,7 +49,7 @@ class StudentController extends Controller
             return redirect()->back();
         }
         $result = DB::table('students')->insert([
-            'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $id_user
+            'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $id_user, 'status' => '1'
         ]);
         if($result){
             flash()->addSuccess('Thêm thành công');

@@ -50,8 +50,10 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$f->majors_name}}</td>
                                         <td>
+                                            <div class="d-flex">
                                             <!-- Button to trigger the modal Edit-->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropEdit{{$f->id}}">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#staticBackdropEdit{{$f->id}}" style="margin-right: 20px">
                                                 Sửa
                                             </button>
                                             @include('Management.Major.editMajor')
@@ -62,6 +64,7 @@
                                                     Xóa
                                                 </button>
                                             </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

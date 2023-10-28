@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('school_payment_times');
             $table->integer('scholarship');
+            $table->integer('status');
             $table->timestamps();
 
             $table->bigInteger('id_user');

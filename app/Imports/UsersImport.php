@@ -2,14 +2,14 @@
 
 namespace App\Imports;
 
+use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class UsersImport implements ToCollection, WithHeadingRow
 {
@@ -18,25 +18,37 @@ class UsersImport implements ToCollection, WithHeadingRow
         return 1;
     }
 
+    public function map($row): array
+    {
+        if (gettype($row['birthday']) == 'double') {
+            $timestamp = Date::excelToTimestamp($row['birthday']);
+            $formattedBirthday = Carbon::createFromTimestamp($timestamp)->format('d/m/Y');
+            $row['birthday'] = $formattedBirthday;
+        }
+        return $row['birthday'];
+    }
+
     public function collection(Collection $collection)
     {
         foreach ($collection as $row) {
-           $user= User::create([
-                // 'id' => $row['student_code'],
-                // dd($row['student_code']),
+            $user = User::create([
+                'id' => $row['student_code'],
                 'name' => $row['name'],
                 'email' => $row['email'],
                 'password' => Hash::make($row['password']),
-                // 'birthday' => Carbon::createFromFormat('d/m/Y', $row['birthday'])->format('Y-m-d'),
+                'birthday' => $row['birthday'], // 'birthday' field is now correctly formatted
                 'address' => $row['address'],
                 'phone_number' => $row['phone_number'],
                 'cccd' => $row['cccd'],
                 'role' => 0,
             ]);
 
-            
+            Student::create([
+                'id_user' => $row['student_code'],
+                'scholarship' => $row['scholarship'],
+                'status' => 1,
+                'school_payment_times' => 0,
+            ]);
         }
-
-
     }
 }

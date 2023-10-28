@@ -12,22 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+//            $table->id();
             $table->bigInteger('id');
             $table->string('name', 30);
             $table->string('email')->unique();
-            $table->date('birthday')->nullable();
-            $table->string('address')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->bigInteger('cccd')->nullable();
+            $table->date('birthday');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->bigInteger('cccd');
             $table->string('password')->nullable();
-            $table->integer('role')->default(1);
+            $table->integer('role')->default('1');
             $table->timestamps();
 
-            // Định nghĩa trường 'id' làm trường khóa chính
             $table->primary('id');
         });
-
-
     }
 
     /**
