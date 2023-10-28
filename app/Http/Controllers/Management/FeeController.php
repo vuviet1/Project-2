@@ -47,10 +47,20 @@ class FeeController extends Controller
         $original_fee = $request->input('original_fee');
         $id_school_year = $request->input('id_school_year');
         $id_major = $request->input('id_major');
-        if ($id_school_year === null || $id_major === null) {
+        $check = Fee::all();
+
+        foreach ($check as $item) {
+            if ($item->id_school_year == $id_school_year && $item->id_major == $id_major) {
+                flash()->addError("Thêm thất bại - Dữ liệu đã tồn tại");
+                return redirect()->route('fee');
+            }
+        }
+
+        if ($id_school_year == null || $id_major == null) {
             flash()->addError("Thêm thất bại");
             return redirect()->route('fee');
-        } else {
+        }
+        else {
             $result = DB::table('fees')->insert([
                 'school_payment_times' => '1',
                 'original_fee' => $original_fee,
@@ -92,12 +102,20 @@ class FeeController extends Controller
         //
         $id = $request->input('id');
         $school_payment_times = $request->input('school_payment_times');
-//        $original_fee = $request->input('original_fee');
         $id_school_year = $request->input('id_school_year');
         $id_major = $request->input('id_major');
+        $check = DB::table('fees')
+            ->where('id_school_year' , '=', $id_school_year)
+            ->where('id_major', '=', $id_major)->get();
+        foreach ($check as $item){
+            if ($item->school_payment_times >= $school_payment_times){
+                flash()->addError("Sửa thất bại");
+                return redirect()->route('fee');
+            }
+        }
 
         $result = DB::table('fees')->where('id', '=', $id)->update([
-                'school_payment_times' => $school_payment_times, 'id_school_year' => $id_school_year, 'id_major' => $id_major
+                'school_payment_times' => $school_payment_times
             ]);
         if($result){
             flash()->addSuccess('Sửa thành công');
@@ -115,6 +133,11 @@ class FeeController extends Controller
     {
         //
         $id = $request->input('id');
+        $hasRelatedRecords = DB::table('tuitions')->where('id_fee', $id)->exists();
+        if ($hasRelatedRecords) {
+            flash()->addError("Xóa thất bại - Có dữ liệu liên quan");
+            return redirect()->back();
+        }
         $result = DB::table('fees')->where('id', '=', $id)->delete();
         if($result){
             flash()->addSuccess('Xóa thành công');

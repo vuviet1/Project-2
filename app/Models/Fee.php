@@ -18,6 +18,7 @@ class Fee extends Model
             ->join('school_years', 'fees.id_school_year', '=', 'school_years.id')
             ->select( 'fees.*', 'majors.majors_name', 'school_years.number_course')
             ->orderBy('fees.id', 'desc')
+            ->orderBy('fees.school_payment_times', 'asc')
             ->paginate($this->limit);
         return $fillable;
     }
@@ -39,6 +40,7 @@ class Fee extends Model
             ->select( 'fees.*', 'majors.majors_name', 'school_years.number_course')
             ->where('school_years.number_course', 'like', "%$searchTerm%")
             ->orderBy('fees.id_school_year', 'desc')
+            ->orderBy('fees.school_payment_times', 'asc')
             ->paginate($this->limit);
     }
 
