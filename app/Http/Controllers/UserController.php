@@ -45,14 +45,14 @@ class UserController extends Controller
 
         $check =  DB::table('users')->get();
         foreach ($check as $key) {
-            if($key -> id == $id ||$key -> email == $email || $key -> cccd == $cccd || $key -> phone_number == $phone_number){
+            if($key -> student_code == $id ||$key -> email == $email || $key -> cccd == $cccd || $key -> phone_number == $phone_number){
                 flash()->addError("Thêm thất bại");
                 return redirect()->route('user');
             }
         }
 
         $result = DB::table('users')->insert([
-            'id'=>$id, 'name' => $name, 'email' => $email, 'birthday' => $birthday, 'phone_number' => $phone_number, 'address' => $address, 'cccd' => $cccd, 'password' => $password, 'role' => $role
+            'student_code'=>$id, 'name' => $name, 'email' => $email, 'birthday' => $birthday, 'phone_number' => $phone_number, 'address' => $address, 'cccd' => $cccd, 'password' => $password, 'role' => $role
         ]);
         if($result){
             flash()->addSuccess('Thêm thành công');

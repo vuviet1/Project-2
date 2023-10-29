@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
 //            $table->id();
-            $table->bigInteger('id');
+            $table->id();
+            $table->string('student_code');
             $table->string('name', 30);
             $table->string('email')->unique();
             $table->date('birthday');
@@ -23,8 +24,6 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->integer('role')->default('1');
             $table->timestamps();
-
-            $table->primary('id');
         });
     }
 

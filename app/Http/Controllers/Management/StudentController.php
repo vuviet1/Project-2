@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,13 +44,15 @@ class StudentController extends Controller
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
         $id_user = $request->input('id_user');
+        
+        $get_id = User::find($id_user);
         $hasRelatedRecords = DB::table('students')->where('id_user', $id_user)->exists();
         if ($hasRelatedRecords) {
             flash()->addError("Thêm thất bại - Đã tồn tại");
             return redirect()->back();
         }
         $result = DB::table('students')->insert([
-            'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $id_user, 'status' => '1'
+            'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $get_id->id, 'status' => '1'
         ]);
         if($result){
             flash()->addSuccess('Thêm thành công');

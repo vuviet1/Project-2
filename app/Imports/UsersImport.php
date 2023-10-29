@@ -18,31 +18,23 @@ class UsersImport implements ToCollection, WithHeadingRow
         return 1;
     }
 
-    public function map($row): array
-    {
-        if (gettype($row['birthday']) == 'double') {
-            $timestamp = Date::excelToTimestamp($row['birthday']);
-            $formattedBirthday = Carbon::createFromTimestamp($timestamp)->format('d/m/Y');
-            $row['birthday'] = $formattedBirthday;
-        }
-        return $row['birthday'];
-    }
-
     public function collection(Collection $collection)
     {
+
         foreach ($collection as $row) {
+            $birthday = Carbon::createFromFormat('d/m/Y', $row['birthday'])->format('Y-m-d');
             $user = User::create([
-                'id' => $row['student_code'],
+                'student_code' => $row['student_code'],
                 'name' => $row['name'],
                 'email' => $row['email'],
                 'password' => Hash::make($row['password']),
-                'birthday' => $row['birthday'], // 'birthday' field is now correctly formatted
+                'birthday' => $birthday,
                 'address' => $row['address'],
                 'phone_number' => $row['phone_number'],
                 'cccd' => $row['cccd'],
                 'role' => 0,
             ]);
-
+            dd($user);
             Student::create([
                 'id_user' => $row['student_code'],
                 'scholarship' => $row['scholarship'],
