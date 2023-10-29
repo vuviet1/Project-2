@@ -11,12 +11,9 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-4">Danh sách học sinh/ Học viên</h5>
-
-                    <!-- Button trigger modal Add-->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdropAdd">
                         Thêm mới
                     </button>
-
                     <hr>
                     <form method="get" action="{{ route('search.student') }}">
                         @csrf
@@ -33,7 +30,6 @@
                             </div>
                         @endif
                     </form>
-
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-bordered">
@@ -49,29 +45,26 @@
                                 <tbody>
                                 @forelse ($student as $f)
                                     <tr>
-                                        <td>{{$f->id_user}}</td>
+                                        <td>{{$f->student_code}}</td>
                                         <td>{{$f->name}}</td>
                                         <td>
                                             @if ($f->school_payment_times >= $f->fee_time)
-                                            {{-- Hoàn thành --}}
                                             <button class="btn btn-success">Hoàn thành</button>
                                         @else
-                                            {{-- Nợ học phí --}}
                                             <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($f->school_payment_times >= $f->fee_time)
-                                                {{-- Hoàn thành --}}
-                                                <button class="btn btn-success">Hoàn thành</button>
+                                            @if ($f->status == 1)
+                                                <button class="btn btn-success">Đang học</button>
+                                            @elseif($f->student_code == 2)
+                                                <button class="btn btn-danger">Đã học xong</button>
                                             @else
-                                                {{-- Nợ học phí --}}
-                                                <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
+                                                <button class="btn btn-danger">Bỏ học</button>
                                             @endif
                                         </td>
                                         <td>
                                             <div class="d-flex">
-                                            <!-- Button to trigger the modal Edit-->
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#staticBackdropEdit{{$f->id}}" style="margin-right: 20px">
                                                 Sửa
@@ -99,5 +92,4 @@
             </div>
         </div>
     </div>
-
 @endsection

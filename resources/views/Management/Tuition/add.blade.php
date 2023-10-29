@@ -21,10 +21,10 @@
                                        name="payment_times">
                             </div>
                             <div class="col">
-                                <label for="fee" class="form-label">Số tiền đóng</label>
+                                <label for="fee" class="form-label">Số tiền 1 lần đóng</label>
                                 <input type="text" class="form-control"
                                        placeholder="..."
-                                       name="fee">
+                                       name="fee" >
                             </div>
                         </div>
 
@@ -39,18 +39,6 @@
                         </div>
 
                         <div class="row g-3">
-{{--                            <div class="col">--}}
-{{--                                <label for="idClass" class="form-label">Mã sinh viên</label>--}}
-{{--                                <input type="text" class="form-control"--}}
-{{--                                       placeholder="Mã sinh viên"--}}
-{{--                                       name="id_student">--}}
-{{--                            </div>--}}
-{{--                            <div class="col">--}}
-{{--                                <label for="nameStudent" class="form-label">Họ và tên</label>--}}
-                                {{--                                <input type="text" class="form-control"--}}
-                                {{--                                       placeholder="Họ và tên"--}}
-                                {{--                                       name="">--}}
-                                {{--                            </div>--}}
                                 <div class="col">
                                     <label for="nameStudent" class="form-label">Họ và tên</label>
                                     <select class="form-control" name="id_student">
@@ -65,9 +53,6 @@
                             <div class="row g-3">
                                 <div class="col">
                                     <label for="fee" class="form-label">Mã học phí</label>
-{{--                                    <input type="text" class="form-control"--}}
-{{--                                           placeholder="Mã học phí"--}}
-{{--                                           name="id_fee">--}}
                                     <select class="form-control" name="id_fee">
                                         <option selected>-- Chọn học phí --</option>
                                         @foreach($fee as $s)

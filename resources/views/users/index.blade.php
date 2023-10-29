@@ -64,7 +64,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($user as $f)
+                        @forelse($user as $f)
                             <tr>
                                 <td>{{ $f->name }}</td>
                                 <td>{{ $f->email }}</td>
@@ -87,7 +87,9 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <th>Không có dữ liệu</th>
+                        @endforelse
                         </tbody>
                     </table>
 

@@ -19,7 +19,7 @@
                                 <label for="idClass" class="form-label">Mã hoc sinh (BKC)</label>
                                 <input type="text" class="form-control"
                                        placeholder="Mã hoc sinh" disabled
-                                       value="{{$f->id}}">
+                                       value="{{$f->student_code}}">
                             </div>
 
                             <div class="col">
@@ -34,13 +34,7 @@
                                 <label for="idClass" class="form-label">Học bổng</label>
                                 <input type="text" class="form-control"
                                        placeholder="Số tiền"
-                                       name="scholarship" value="{{$f->scholarship}}">
-                            </div>
-                            <div class="col">
-                                <label for="nameStudent" class="form-label">Số lần đóng</label>
-                                <input type="text" class="form-control"
-                                       placeholder="Số lần đóng"
-                                       name="school_payment_times" value="{{$f->school_payment_times}}">
+                                       name="scholarship" value="{{$f->scholarship}}" readonly>
                             </div>
                         </div>
                     </div>

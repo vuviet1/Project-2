@@ -17,11 +17,17 @@ class Tuition extends Model
             ->join('students', 'tuitions.id_student', '=', 'students.id')
             ->join('fees', 'tuitions.id_fee', '=', 'fees.id')
             ->join('users', 'students.id_user', '=', 'users.id')
-            ->select('students.school_payment_times as student_school_payment_times', 'fees.school_payment_times', 'fees.original_fee', 'users.name', 'tuitions.*')
+            ->join('majors', 'fees.id_major', '=', 'majors.id')
+            ->join('school_years', 'fees.id_school_year', '=', 'school_years.id')
+            ->select('students.school_payment_times as student_school_payment_times',
+             'fees.school_payment_times',
+              'fees.original_fee', 'users.name',
+               'tuitions.*', 'majors.majors_name', 'school_years.number_course', 'users.student_code')
             ->orderBy('tuitions.id', 'desc')
             ->paginate($this->limit);
         return $fillable;
     }
+
 
     public function showStudent()
     {

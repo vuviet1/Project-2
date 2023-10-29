@@ -61,11 +61,11 @@
                                 @forelse ($tuition as $f)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>BKC {{$f->id_student}}</td>
+                                        <td>{{$f->student_code}}</td>
                                         <td>{{$f->name}}</td>
                                         <td>{{$f->payment_times}}</td>
-                                        <td>{{$f->fee}}</td>
-                                        <td>{{$f->student_school_payment_times}}</td>
+                                        <td>{{ number_format($f->fee * $f->payment_times, 0, ',', '.') }} VND</td>
+                                        <td>{{$f->school_payment_times}}</td>
                                         <td>
                                             <div class="d-flex">
                                             <!-- Button to trigger the modal Edit-->

@@ -54,7 +54,7 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$f->school_payment_times}}</td>
-                                        <td>{{$f->original_fee}}</td>
+                                        <td>{{ number_format($f->original_fee, 0, ',', '.') }} VND</td>
                                         <td>{{$f->majors_name}}</td>
                                         <td>{{$f->number_course}}</td>
                                         @if($f->school_payment_times <30)

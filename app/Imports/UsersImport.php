@@ -34,9 +34,8 @@ class UsersImport implements ToCollection, WithHeadingRow
                 'cccd' => $row['cccd'],
                 'role' => 0,
             ]);
-            dd($user);
             Student::create([
-                'id_user' => $row['student_code'],
+                'id_user' => $user->id,
                 'scholarship' => $row['scholarship'],
                 'status' => 1,
                 'school_payment_times' => 0,

@@ -20,7 +20,7 @@ class Student extends Model
             ->select(
                 'students.*',
                 'users.name',
-                'users.id as id_user',
+                'users.student_code',
                 'fees.school_payment_times as fee_time',
                 'fees.original_fee',
                 DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
