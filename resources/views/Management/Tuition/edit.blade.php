@@ -19,6 +19,8 @@
                                 <label for="payment_times" class="form-label">Lần đóng thứ</label>
                                 <input type="number" class="form-control"
                                        placeholder="Lần đóng thứ"
+                                       min="{{$f->payment_times}}"
+                                       max="30"
                                        name="payment_times" value="{{$f->payment_times}}">
                             </div>
                         </div>
@@ -34,6 +36,7 @@
                         <div class="row g-3">
                             <div class="col" >
                                 <label for="idClass" class="form-label">Mã sinh viên</label>
+                                <input hidden name="id_student" value="{{$f->student_id}}">
                                 <input class="form-control" type="text" value="{{$f->name}}" readonly>
                             </div>
                         </div>

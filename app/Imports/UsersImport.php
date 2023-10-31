@@ -23,6 +23,16 @@ class UsersImport implements ToCollection, WithHeadingRow
 
         foreach ($collection as $row) {
             $birthday = Carbon::createFromFormat('d/m/Y', $row['birthday'])->format('Y-m-d');
+            $check = User::Where('student_code', $row['student_code'])
+            ->Where('name', $row['name'])
+            ->Where('email', $row['email'])
+            ->Where('birthday', $birthday)
+            ->Where('cccd', $row['cccd'])
+            ->Where('phone_number', $row['phone_number'])->exists();
+            if ($check) {
+                flash()->addError("Thêm thất bại - Dữ liệu đã tồn tại");
+                return redirect()->route('user');
+            }else{
             $user = User::create([
                 'student_code' => $row['student_code'],
                 'name' => $row['name'],
@@ -40,6 +50,8 @@ class UsersImport implements ToCollection, WithHeadingRow
                 'status' => 1,
                 'school_payment_times' => 0,
             ]);
+            }
         }
+
     }
 }

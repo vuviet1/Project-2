@@ -66,6 +66,7 @@
                                         <td>{{$f->payment_times}}</td>
                                         <td>{{ number_format($f->fee * $f->payment_times, 0, ',', '.') }} VND</td>
                                         <td>{{$f->school_payment_times}}</td>
+                                        @if($f->payment_times <30)
                                         <td>
                                             <div class="d-flex">
                                             <!-- Button to trigger the modal Edit-->
@@ -83,6 +84,13 @@
                                             </form>
                                             </div>
                                         </td>
+                                        @else
+                                        <td>
+                                            <button type="button" class="btn btn-success">
+                                                Đã hoàn Thành
+                                            </button>
+                                        </td>
+                                        @endif
                                     </tr>
                                 @empty
                                     <th>Không có dữ liệu</th>

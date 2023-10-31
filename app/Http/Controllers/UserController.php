@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $this->data['user'] = User::orderBy('id', 'desc')->paginate();
+        $this->data['user'] = User::orderBy('id', 'desc')->paginate(5);
 
         return view('users.index', $this->data);
     }
@@ -118,13 +118,8 @@ class UserController extends Controller
     public function import(Request $request){
         $file = $request->file('fileExel');
         Excel::import(new UsersImport(), $file);
-        flash()->addSuccess('Import thành công');
-
         return redirect()->back();
-//        dd($file);
-//        Excel::import(new UsersImport(), $file);
-//        flash()->addSuccess('Import thành công');
-//        return redirect()->back();
+
     }
     public function export()
     {

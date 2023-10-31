@@ -19,7 +19,7 @@
                                 <label for="payment_times" class="form-label">Số đợt đóng</label>
                                 <input type="number" class="form-control"
                                        placeholder="Số đợt đóng"
-                                       min="1"
+                                       min="{{$f->school_payment_times}}"
                                        max="30"
                                        name="school_payment_times" value="{{$f->school_payment_times}}">
                             </div>

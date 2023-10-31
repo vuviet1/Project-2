@@ -93,8 +93,6 @@ class TuitionController extends Controller
         $payment_times = $request->input('payment_times');
         $note = $request->input('note');
         $id_student = $request->input('id_student');
-        $id_fee = $request->input('id_fee');
-
         $result = DB::table('tuitions')->where('id', '=', $id)->update([
             'payment_times' => $payment_times, 'note' => $note
         ]);
