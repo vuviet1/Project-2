@@ -30,8 +30,7 @@ class UsersImport implements ToCollection, WithHeadingRow
             ->Where('cccd', $row['cccd'])
             ->Where('phone_number', $row['phone_number'])->exists();
             if ($check) {
-                flash()->addError("Thêm thất bại - Dữ liệu đã tồn tại");
-                return redirect()->route('user');
+                continue;
             }else{
             $user = User::create([
                 'student_code' => $row['student_code'],
@@ -44,7 +43,7 @@ class UsersImport implements ToCollection, WithHeadingRow
                 'cccd' => $row['cccd'],
                 'role' => 0,
             ]);
-            Student::create([
+            $student = Student::create([
                 'id_user' => $user->id,
                 'scholarship' => $row['scholarship'],
                 'status' => 1,
@@ -52,6 +51,11 @@ class UsersImport implements ToCollection, WithHeadingRow
             ]);
             }
         }
+        if(!empty($student) && !empty($user)){
+            flash()->addSuccess('Thêm thành công');
+        }else{
 
+            flash()->addError("Thêm thất bại - Dữ liệu đã tồn tại");
+        }
     }
 }
