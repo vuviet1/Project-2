@@ -57,7 +57,7 @@ class TuitionController extends Controller
         $original_fee = Fee::where('id', $id_fee)->value('original_fee');
         $fee = round(($original_fee - $scholarship) / 30);
         $result = DB::table('tuitions')->insert([
-            'payment_times' => $payment_times, 'fee' => $fee, 'note' => $note, 'id_student' => $id_student, 'id_fee' => $id_fee
+            'payment_times' => $payment_times, 'fee' => $fee, 'note' => $note, 'id_student' => $id_student, 'id_fee' => $id_fee, 'creat_at' => now(),
         ]);
         if($result){
             DB::table('students')->where('id', $id_student)->update(['school_payment_times' => $payment_times]);
@@ -97,7 +97,7 @@ class TuitionController extends Controller
         $note = $request->input('note');
         $id_student = $request->input('id_student');
         $result = DB::table('tuitions')->where('id', '=', $id)->update([
-            'payment_times' => $payment_times, 'note' => $note
+            'payment_times' => $payment_times, 'note' => $note, 'update_at' => now(),
         ]);
         if($result){
             DB::table('students')->where('id', $id_student)->update(['school_payment_times' => $payment_times]);
