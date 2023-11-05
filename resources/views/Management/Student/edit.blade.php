@@ -36,6 +36,15 @@
                                        placeholder="Số tiền"
                                        name="scholarship" value="{{$f->scholarship}}" readonly>
                             </div>
+                            <div class="col">
+                                <label for="idClass" class="form-label">Trạng thái</label>
+                                <select class="form-control" name="status">
+                                    <option selected>Trạng thái</option>
+                                    <option value="1">Đang học</option>
+                                    <option value="2">Đã học xong</option>
+                                    <option value="3">Bỏ học</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

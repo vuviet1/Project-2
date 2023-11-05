@@ -46,7 +46,7 @@ class UserController extends Controller
         $check =  DB::table('users')->get();
         foreach ($check as $key) {
             if($key -> student_code == $id ||$key -> email == $email || $key -> cccd == $cccd || $key -> phone_number == $phone_number){
-                flash()->addError("Thêm thất bại");
+                flash()->addError("Thêm thất bại - Dữ liệu đã tồn tại");
                 return redirect()->route('user');
             }
         }
@@ -79,7 +79,7 @@ class UserController extends Controller
         $check =  DB::table('users')->get();
         foreach ($check as $key) {
             if($key -> email == $email || $key -> cccd == $cccd || $key -> phone_number == $phone_number){
-                flash()->addError("Thêm thất bại");
+                flash()->addError("Thêm thất bại -Đữ liệu đã tồn tại");
                 return redirect()->route('user');
             }
         }
@@ -104,6 +104,11 @@ class UserController extends Controller
         //
         // Delete a specific major from the database based on the provided ID
         $id = $request->input('id');
+        $hasRelatedRecords = DB::table('students')->where('id_user', $id)->exists();
+        if ($hasRelatedRecords) {
+            flash()->addError("Xóa thất bại - Có dữ liệu liên quan");
+            return redirect()->back();
+        }
         $result = DB::table('users')->where('id', '=', $id)->delete();
         if($result){
             flash()->addSuccess('Xóa thành công');

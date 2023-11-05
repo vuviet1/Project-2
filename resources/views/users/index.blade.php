@@ -57,18 +57,24 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th>Mã SV</th>
                             <th>Họ và tên</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
+                            <th>Ngày sinh</th>
+                            <th>Địa chỉ</th>
                             <th>Hành động</th>
                         </tr>
                         </thead>
                         <tbody>
                         @forelse($user as $f)
                             <tr>
+                                <td>{{ $f->id}}</td>
                                 <td>{{ $f->name }}</td>
                                 <td>{{ $f->email }}</td>
                                 <td>{{ $f->phone_number }}</td>
+                                <td>{{ $f->birthday }}</td>
+                                <td>{{ $f->address }}</td>
                                 <td>
                                     <div class="d-flex">
                                     <!-- Button to trigger the modal Edit-->

@@ -24,6 +24,7 @@ class StudentController extends Controller
     public function index()
     {
         $this->data['student'] = $this->student->show();
+        $this->data['debt'] = $this->student->debt()->count();
         return view('Management.Student.student', $this->data);
     }
 
@@ -44,7 +45,7 @@ class StudentController extends Controller
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
         $id_user = $request->input('id_user');
-        
+
         $get_id = User::find($id_user);
         $hasRelatedRecords = DB::table('students')->where('id_user', $id_user)->exists();
         if ($hasRelatedRecords) {
@@ -84,20 +85,19 @@ class StudentController extends Controller
      */
     public function update(Request $request)
     {
-        //
-        // Update a specific school year in the database based on the provided ID
         $id = $request->input('id');
-        $school_payment_times = $request->input('school_payment_times');
-        $scholarship = $request->input('scholarship');
-        $check =  DB::table('students')->get();
+        $status = $request->input('status');
+        $check =  DB::table('students')->where('id', '=', $id)->get();
         foreach ($check as $key) {
-            if($key -> school_payment_times == $school_payment_times){
-                flash()->addError("Thêm thất bại");
-                return redirect()->route('student');
+            if($key->school_payment_times < 30){
+                if($key -> status == $status || $key -> status == 2 || $status == 2){
+                    flash()->addError("Sửa thất bại1");
+                    return redirect()->route('student');
+                }
             }
         }
         $result = DB::table('students')->where('id', '=', $id)->update([
-                'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times
+            'status' => $status
         ]);
         if($result){
             flash()->addSuccess('Sửa thành công');
@@ -115,8 +115,8 @@ class StudentController extends Controller
     {
         //
         $id = $request->input('id');
-        $hasRelatedRecords = DB::table('tuitions')->where('id_student', $id)->exists();
-        if ($hasRelatedRecords) {
+        $hasRelatedRecord = DB::table('tuitions')->where('id_student', $id)->exists();
+        if ($hasRelatedRecord) {
             flash()->addError("Xóa thất bại - Có dữ liệu liên quan");
             return redirect()->back();
         }

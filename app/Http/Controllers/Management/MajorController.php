@@ -116,6 +116,11 @@ class MajorController extends Controller
         //
         // Delete a specific major from the database based on the provided ID
         $id = $request->input('id');
+        $hasRelatedRecords = DB::table('fees')->where('id_major', $id)->exists();
+        if ($hasRelatedRecords) {
+            flash()->addError("Xóa thất bại - Có dữ liệu liên quan");
+            return redirect()->back();
+        }
         $result = DB::table('majors')->where('id', '=', $id)->delete();
         if($result){
             flash()->addSuccess('Xóa thành công');

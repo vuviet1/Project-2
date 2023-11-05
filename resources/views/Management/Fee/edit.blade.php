@@ -13,7 +13,7 @@
                 @csrf <!-- CSRF Protection -->
                 <div class="modal-body">
                     <div class="card-body">
-                        <div class="row g-3">
+                        <div class="row g-3" >
                             <input hidden name="id" value="{{$f->id}}">
                             <div class="col">
                                 <label for="payment_times" class="form-label">Số đợt đóng</label>
@@ -23,12 +23,6 @@
                                        max="30"
                                        name="school_payment_times" value="{{$f->school_payment_times}}">
                             </div>
-{{--                            <div class="col">--}}
-{{--                                <label for="fee" class="form-label">Tổng tiền</label>--}}
-{{--                                <input type="text" class="form-control"--}}
-{{--                                       placeholder=""--}}
-{{--                                       name="original_fee" value="{{$f->original_fee}}" disabled>--}}
-{{--                            </div>--}}
                         </div>
 
                         <div class="row g-3" hidden>

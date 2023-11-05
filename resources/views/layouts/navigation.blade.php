@@ -37,7 +37,7 @@
     <li class="nav-item @if(request()->routeIs('fee')) active @endif">
         <a class="nav-link" href="{{ route('fee') }}">
             <i class="fas fa-fw fa-eye"></i>
-            <span>{{ __('Quản lý đợt đóng') }}</span></a>
+            <span>{{ __('Đợt đóng học phí') }}</span></a>
     </li>
 
     <li class="nav-item @if(request()->routeIs('tuition')) active @endif">
@@ -49,7 +49,7 @@
     <li class="nav-item @if(request()->routeIs('student')) active @endif">
         <a class="nav-link" href="{{ route('student') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>{{ __('Quản lý học sinh') }}</span></a>
+            <span>{{ __('Danh sách sinh viên') }}</span></a>
     </li>
 
     <li class="nav-item @if(request()->routeIs('user')) active @endif">

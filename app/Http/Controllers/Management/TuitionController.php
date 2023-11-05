@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fee;
+use App\Models\Student;
 use App\Models\Tuition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,11 +50,12 @@ class TuitionController extends Controller
     {
         //
         $payment_times = $request->input('payment_times');
-        $fee = $request->input('fee');
         $note = $request->input('note');
         $id_student = $request->input('id_student');
         $id_fee = $request->input('id_fee');
-
+        $scholarship = Student::where('id', $id_student)->value('scholarship');
+        $original_fee = Fee::where('id', $id_fee)->value('original_fee');
+        $fee = round(($original_fee - $scholarship) / 30);
         $result = DB::table('tuitions')->insert([
             'payment_times' => $payment_times, 'fee' => $fee, 'note' => $note, 'id_student' => $id_student, 'id_fee' => $id_fee
         ]);

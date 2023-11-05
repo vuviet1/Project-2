@@ -24,9 +24,9 @@
 {{--                            </div>--}}
                             <div class="col">
                                 <label for="fee" class="form-label">Tổng tiền</label>
-                                <input type="text" class="form-control"
+                                <input type="number" class="form-control"
                                        placeholder=""
-                                       name="original_fee" required>
+                                       name="original_fee" required min="1">
                             </div>
                         </div>
 

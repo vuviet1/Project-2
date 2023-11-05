@@ -25,12 +25,27 @@ class Student extends Model
                 'fees.original_fee',
                 DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
             )
-            ->orderBy('payment_difference', 'desc') // Sắp xếp theo trường fees.school_payment_times - students.school_payment_times giảm dần
+            ->orderBy('payment_difference', 'desc')
+            ->having('payment_difference', '>', 0)
             ->orderBy('students.id', 'desc')
             ->paginate($this->limit);
 
         return $fillable;
     }
+
+    public function debt() {
+        $fillable = DB::table('students')
+            ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
+            ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
+            ->select(
+                DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
+            )
+            ->having('payment_difference', '>', 0) // Lọc ra các bản ghi có payment_difference > 0
+            ->get();
+
+        return $fillable;
+    }
+
 
 
     public function search($searchTerm){
@@ -38,7 +53,7 @@ class Student extends Model
             ->join('users', 'students.id_user', '=', 'users.id')
             ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
             ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
-            ->select('students.*', 'users.name', 'users.id as id_user', 'fees.school_payment_times as fee_time', 'fees.original_fee' )
+            ->select('students.*', 'users.name', 'users.student_code', 'users.id as id_user', 'fees.school_payment_times as fee_time', 'fees.original_fee' )
             ->where('students.id', 'like', "%$searchTerm%")
             ->orderBy('students.id', 'desc')
             ->paginate($this->limit);

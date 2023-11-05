@@ -29,6 +29,11 @@
                                 <p>Kết quả tìm kiếm</p>
                             </div>
                         @endif
+                        @if(!empty($debt))
+                            <div>
+                                <p style="color: red">Có {{$debt}} học sinh nợ học phí</p>
+                            </div>
+                        @endif
                     </form>
                     <div class="card">
                         <div class="card-body">
@@ -37,6 +42,7 @@
                                 <tr>
                                     <th scope="col">Mã SV</th>
                                     <th scope="col">Họ và tên</th>
+                                    <th scope="col">Học bổng</th>
                                     <th scope="col">Trạng thái học phí</th>
                                     <th scope="col">Trạng thái</th>
                                     <th>Hành động</th>
@@ -47,6 +53,7 @@
                                     <tr>
                                         <td>{{$f->student_code}}</td>
                                         <td>{{$f->name}}</td>
+                                        <td>{{$f->scholarship}}</td>
                                         <td>
                                             @if ($f->school_payment_times >= $f->fee_time)
                                             <button class="btn btn-success">Hoàn thành</button>
@@ -56,14 +63,15 @@
                                         </td>
                                         <td>
                                             @if ($f->status == 1)
-                                                <button class="btn btn-success">Đang học</button>
-                                            @elseif($f->student_code == 2)
-                                                <button class="btn btn-danger">Đã học xong</button>
+                                                <button class="btn btn-primary">Đang học</button>
+                                            @elseif($f->status == 2)
+                                                <button class="btn btn-success">Đã học xong</button>
                                             @else
                                                 <button class="btn btn-danger">Bỏ học</button>
                                             @endif
                                         </td>
                                         <td>
+                                            @if($f->status != 2)
                                             <div class="d-flex">
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#staticBackdropEdit{{$f->id}}" style="margin-right: 20px">
@@ -78,6 +86,9 @@
                                                 </button>
                                             </form>
                                             </div>
+                                            @else
+                                                <button class="btn btn-success">Hoàn thành</button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

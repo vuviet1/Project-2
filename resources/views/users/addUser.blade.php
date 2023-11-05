@@ -27,12 +27,6 @@
                                        placeholder="Họ và tên"
                                        name="name">
                             </div>
-                            {{--                            <div class="col">--}}
-                            {{--                                <label for="nameStudent" class="form-label">Cấp quyền</label>--}}
-                            {{--                                <input type="number" class="form-control"--}}
-                            {{--                                       placeholder="Quyền"--}}
-                            {{--                                       name="role">--}}
-                            {{--                            </div>--}}
                         </div>
 
                         <div class="row g-3">

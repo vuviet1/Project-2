@@ -65,7 +65,7 @@ class FeeController extends Controller
                 'school_payment_times' => '1',
                 'original_fee' => $original_fee,
                 'id_school_year' => $id_school_year,
-                'id_major' => $id_major
+                'id_major' => $id_major,
             ]);
         }
 

@@ -20,12 +20,6 @@
                                        placeholder="Lần đóng thứ"
                                        name="payment_times">
                             </div>
-                            <div class="col">
-                                <label for="fee" class="form-label">Số tiền 1 lần đóng</label>
-                                <input type="text" class="form-control"
-                                       placeholder="..."
-                                       name="fee" >
-                            </div>
                         </div>
 
                         <div class="row g-3">
@@ -41,10 +35,13 @@
                         <div class="row g-3">
                                 <div class="col">
                                     <label for="nameStudent" class="form-label">Họ và tên</label>
+
                                     <select class="form-control" name="id_student">
                                         <option selected>-- Chọn sinh viên --</option>
                                         @foreach($student as $s)
-                                            <option value="{{$s->id}}">{{$s->name}}</option>
+                                            <option value="{{$s->id}}">{{$s->name}}
+                                            </option>
+
                                         @endforeach
                                     </select>
                                 </div>
