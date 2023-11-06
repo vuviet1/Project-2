@@ -83,12 +83,14 @@
                                                 </button>
                                             </form>
                                             </div>
+                                            <button> in </button>
                                         </td>
                                         @else
                                         <td>
                                             <button type="button" class="btn btn-success">
                                                 Đã hoàn Thành
                                             </button>
+                                            <button> in </button>
                                         </td>
                                         @endif
                                     </tr>

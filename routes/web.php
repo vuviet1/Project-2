@@ -26,10 +26,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::middleware('auth')->group(function () {
-
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/home1', [App\Http\Controllers\HomeController::class, 'chartsearch'])->name('chartsearch');
     Route::view('about', 'about')->name('about');
 
 //    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
