@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::post('update_tuition', [TuitionController::class, 'update'])->name('update.tuition');
         Route::post('export_tuition', [TuitionController::class, 'export'])->name('export.tuition');
         Route::get('search_tuition', [TuitionController::class, 'search'])->name('search.tuition');
+        Route::post('print_tuition', [TuitionController::class, 'print'])->name('print.tuition');
     });
 
     Route::prefix('fee')->group(function () {

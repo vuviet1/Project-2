@@ -75,22 +75,29 @@
                                                 Sửa
                                             </button>
                                             @include('Management.Tuition.edit')
+                                                @include('Management.Tuition.invoice')
                                             <form action="{{ route('delete.tuition')}}" method="post">
                                                 @csrf
                                                 <input hidden name="id" value="{{$f->id}}">
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-danger" style="margin-right: 20px">
                                                     Xóa
                                                 </button>
                                             </form>
+                                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                                        data-target="#staticBackdropInvoice{{$f->id}}" style="margin-right: 20px">
+                                                    In hóa đơn
+                                                </button>
                                             </div>
-                                            <button> in </button>
                                         </td>
                                         @else
                                         <td>
-                                            <button type="button" class="btn btn-success">
+                                            <button type="button" class="btn btn-success" style="margin-right: 20px">
                                                 Đã hoàn Thành
                                             </button>
-                                            <button> in </button>
+                                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                                    data-target="#staticBackdropInvoice{{$f->id}}" style="margin-right: 20px">
+                                                In hóa đơn
+                                            </button>
                                         </td>
                                         @endif
                                     </tr>

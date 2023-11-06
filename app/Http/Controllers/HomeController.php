@@ -16,6 +16,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+    private $student;
     public function __construct()
     {
         $this->middleware('auth');
@@ -28,6 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->student = new Student();
+        $this->data['student'] = $this->student->show();
+        $this->data['studentCount'] = $this->data['student']->count();
         $data = Student::select('id', 'created_at')->get()->groupBy(function ($data) {
             return Carbon::parse($data->created_at)->format('Y');
         })->sortByDesc(function ($groupedData, $year) {
@@ -41,7 +45,7 @@ class HomeController extends Controller
             $years[] = $year;
             $yearsCount[] = count($value);
         }
-        return view('home', ['years'=>$years, 'totals' => $totals, 'yearsCount' => $yearsCount, 'yearss'=>$yearss] );
+        return view('home', ['years'=>$years, 'totals' => $totals, 'yearsCount' => $yearsCount, 'yearss'=>$yearss, 'data' => $this->data['studentCount']] );
     }
     public function chartsearch(Request $request){
         $data = DB::table('school_years')->join('fees', 'fees.id_school_year','=','school_years.id')
@@ -69,6 +73,9 @@ class HomeController extends Controller
             $years[] = $year;
             $yearsCount[] = count($value);
         }
-        return view('home', ['years'=>$years, 'totals' => $totals, 'yearsCount' => $yearsCount, 'yearss'=>$yearss] );
+        $this->student = new Student();
+        $this->data['student'] = $this->student->show();
+        $this->data['studentCount'] = $this->data['student']->count();
+        return view('home', ['years'=>$years, 'totals' => $totals, 'yearsCount' => $yearsCount, 'yearss'=>$yearss, 'data' => $this->data['studentCount']] );
     }
 }

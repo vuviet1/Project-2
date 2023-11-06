@@ -22,7 +22,11 @@ class Tuition extends Model
             ->select('students.school_payment_times as student_school_payment_times',
              'fees.school_payment_times',
               'fees.original_fee', 'users.name',
-               'tuitions.*', 'majors.majors_name', 'school_years.number_course', 'users.student_code', 'students.id as student_id')
+               'tuitions.*', 'majors.majors_name',
+                'school_years.number_course',
+                'users.student_code',
+                'students.id as student_id',
+                'users.address')
             ->orderBy('tuitions.id', 'desc')
             ->paginate($this->limit);
         return $fillable;
@@ -56,7 +60,8 @@ class Tuition extends Model
                'fees.school_payment_times as fee_school_payment_times',
                'fees.original_fee',
                'users.name',
-               'tuitions.*')
+               'tuitions.*',
+               'users.address')
            ->where('tuitions.id_student', 'like', "%$searchTerm%")
            ->orderBy('tuitions.id', 'desc')
            ->paginate($this->limit);

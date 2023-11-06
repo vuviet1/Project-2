@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\tuitionExport;
+use PDF;
+
 class TuitionController extends Controller
 {
 
@@ -140,5 +142,29 @@ class TuitionController extends Controller
             $this->data['tuitionCount'] = $this->data['tuition']->count();
         }
         return view('Management.Tuition.tuition', $this->data);
+    }
+
+//    Print Tuition
+    public function print(Request $request){
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->print_convert($request));
+        return $pdf->stream();
+    }
+    public function print_convert($request){
+        $reason = $request->reason;
+        $submission = $request->submission;
+        $name = $request->name;
+        $address = $request->address;
+        $fee = $request->fee;
+        if ($submission == 1){
+            $total = $fee;
+        }elseif ($submission == 2){
+            $total = $fee*3;
+        }elseif ($submission == 3){
+            $total = $fee*10;
+        }
+        $output = '';
+        $output.= include_once('../resources/views/layouts/print.blade.php') ;
+        return $output;
     }
 }
