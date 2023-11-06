@@ -43,7 +43,7 @@
         <div class="row">
             <div class="card-header">
                 <i class="fas fa-chart-bar me-1"></i>
-                        Biểu đồ học phí thu được theo từng năm
+                        Biểu đồ học phí thu được theo từng niên khóa
             </div>
             <form action="{{ route('chartsearch')}}" method="post">
                 @csrf
