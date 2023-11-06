@@ -24,9 +24,7 @@ class UsersImport implements ToCollection, WithHeadingRow
         foreach ($collection as $row) {
             $birthday = Carbon::createFromFormat('d/m/Y', $row['birthday'])->format('Y-m-d');
             $check = User::Where('student_code', $row['student_code'])
-            ->Where('name', $row['name'])
             ->Where('email', $row['email'])
-            ->Where('birthday', $birthday)
             ->Where('cccd', $row['cccd'])
             ->Where('phone_number', $row['phone_number'])->exists();
             if ($check) {
@@ -36,7 +34,6 @@ class UsersImport implements ToCollection, WithHeadingRow
                 'student_code' => $row['student_code'],
                 'name' => $row['name'],
                 'email' => $row['email'],
-                'password' => Hash::make($row['password']),
                 'birthday' => $birthday,
                 'address' => $row['address'],
                 'phone_number' => $row['phone_number'],

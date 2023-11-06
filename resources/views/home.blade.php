@@ -34,18 +34,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar me-1"></i>
-                        Bar Chart Example
-                    </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                </div>
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-1"></i>
+                        Biểu đồ học sinh nhập học theo từng năm
             </div>
+            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
         </div>
-
-
     </div>
     <!-- /.container-fluid -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -53,5 +47,53 @@
         var _ydata=JSON.parse('{!! json_encode($years) !!}');
         var _xdata=JSON.parse('{!! json_encode($yearsCount) !!}');
     </script>
-    <script src="{{asset('public')}}/build/assets/demo/chart-bar-demo.js"></script>
+    <script>
+        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#292b2c';
+
+// Bar Chart Example
+var ctx = document.getElementById("myBarChart");
+var myLineChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: _ydata,
+    datasets: [{
+      label: "Số lượng học sinh",
+      backgroundColor: "rgba(2, 117, 216, 1)",
+      borderColor: "rgba(2, 117, 216, 1)",
+      data: _xdata,
+      borderWidth: 1,
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'year'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 5,
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          min: 0,
+          maxTicksLimit: 5
+        },
+        gridLines: {
+          display: true
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+
+  },
+});
+    </script>
 @endsection
