@@ -54,7 +54,7 @@ class Student extends Model
             ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
             ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
             ->select('students.*', 'users.name', 'users.student_code', 'users.id as id_user', 'fees.school_payment_times as fee_time', 'fees.original_fee' )
-            ->where('students.id', 'like', "%$searchTerm%")
+            ->where('students.id_user', 'like', "%$searchTerm%")
             ->orderBy('students.id', 'desc')
             ->paginate($this->limit);
     }

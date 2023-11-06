@@ -14,47 +14,19 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row g-3">
-{{--                            <input hidden name="id" value="{{$f->id}}">--}}
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Mã hoc sinh</label>
                                 <input type="text" class="form-control"
                                        placeholder="Mã hoc sinh"
-                                       name="name" value="{{$f->id}}">
+                                       name="name" value="{{$f->id}}" readonly>
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Họ và tên</label>
                                 <input type="text" class="form-control"
                                        placeholder="Họ và tên"
-                                       name="name" value="{{$f->name}}">
+                                       name="name" value="{{$f->name}}" readonly>
                             </div>
-
-{{--                            <div class="col">--}}
-{{--                                <label for="role" class="form-label">Cấp quyền</label>--}}
-{{--                                <select id="role" class="form-control" name="role">--}}
-{{--                                    <option value="0">Học sinh</option>--}}
-{{--                                    <option value="1" disabled>Thu ngân</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
                         </div>
-
-{{--                        <div class="row g-3">--}}
-{{--                        <div class="col">--}}
-{{--                            <label for="nameStudent" class="form-label">Cấp quyền</label>--}}
-{{--                            <input type="text" class="form-control"--}}
-{{--                                   placeholder="Quyền"--}}
-{{--                                   name="role" value="{{$f->role}}">--}}
-{{--                        </div>--}}
-                            <div class="row g-3">
-                                <div class="col">
-                                    <label for="role" class="form-label">Cấp quyền</label>
-                                    <select id="role" class="form-control" name="role">
-                                        <option value="{{$f->role}}">Học sinh</option>
-                                        <option value="1" disabled>Thu ngân</option>
-                                    </select>
-                                </div>
-                            </div>
-{{--                        </div>--}}
-
                         <div class="row g-3">
                             <div class="col">
                                 <label for="idClass" class="form-label">Số điện thoại</label>
@@ -91,15 +63,6 @@
                                 <input type="text" class="form-control"
                                        placeholder="Địa chỉ"
                                        name="address" value="{{$f->address}}">
-                            </div>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col">
-                                <label for="nameStudent" class="form-label">Mật khẩu</label>
-                                <input type="password" class="form-control"
-                                       placeholder="Mật khẩu"
-                                       name="password">
                             </div>
                         </div>
                     </div>

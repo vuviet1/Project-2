@@ -53,7 +53,10 @@ class StudentController extends Controller
             return redirect()->back();
         }
         $result = DB::table('students')->insert([
-            'scholarship' => $scholarship, 'school_payment_times' => $school_payment_times, 'id_user' => $get_id->id, 'status' => '1'
+            'scholarship' => $scholarship,
+            'school_payment_times' => $school_payment_times,
+            'id_user' => $get_id->id, 'status' => '1',
+            'created_at' => now(),
         ]);
         if($result){
             flash()->addSuccess('Thêm thành công');
@@ -97,7 +100,8 @@ class StudentController extends Controller
             }
         }
         $result = DB::table('students')->where('id', '=', $id)->update([
-            'status' => $status
+            'status' => $status,
+            'updated_at' => now(),
         ]);
         if($result){
             flash()->addSuccess('Sửa thành công');

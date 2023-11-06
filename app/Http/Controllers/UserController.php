@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Imports\UsersImport;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Imports\StudentImport;
@@ -52,7 +53,16 @@ class UserController extends Controller
         }
 
         $result = DB::table('users')->insert([
-            'student_code'=>$id, 'name' => $name, 'email' => $email, 'birthday' => $birthday, 'phone_number' => $phone_number, 'address' => $address, 'cccd' => $cccd, 'password' => $password, 'role' => $role
+            'student_code'=>$id,
+            'name' => $name,
+            'email' => $email,
+            'birthday' => $birthday,
+            'phone_number' => $phone_number,
+            'address' => $address,
+            'cccd' => $cccd,
+            'password' => Hash::make($password),
+            'role' => $role,
+            'created_at' => now(),
         ]);
         if($result){
             flash()->addSuccess('Thêm thành công');
@@ -85,7 +95,14 @@ class UserController extends Controller
         }
 
         $result = DB::table('users')->where('id', '=', $id)->update([
-            'name' => $name, 'email' => $email, 'birthday' => $birthday, 'phone_number' => $phone_number, 'address' => $address, 'cccd' => $cccd, 'role' => $role, 'password' => $password,
+            'name' => $name,
+            'email' => $email, 'birthday' => $birthday,
+            'phone_number' => $phone_number,
+            'address' => $address,
+            'cccd' => $cccd,
+            'role' => $role,
+            'password' => $password,
+            'updated_at' => now(),
         ]);
         if($result){
             flash()->addSuccess('Sửa thành công');

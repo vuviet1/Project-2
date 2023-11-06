@@ -66,6 +66,7 @@ class FeeController extends Controller
                 'original_fee' => $original_fee,
                 'id_school_year' => $id_school_year,
                 'id_major' => $id_major,
+                'created_at' => now(),
             ]);
         }
 
@@ -115,7 +116,8 @@ class FeeController extends Controller
         }
 
         $result = DB::table('fees')->where('id', '=', $id)->update([
-                'school_payment_times' => $school_payment_times
+            'school_payment_times' => $school_payment_times,
+            'updated_at' => now(),
             ]);
         if($result){
             flash()->addSuccess('Sửa thành công');

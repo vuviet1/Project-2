@@ -13,7 +13,6 @@ public function collection()
             'Student code' => 'Student code',
             'Name' =>'Name',
             'Email' => 'Email',
-            'Password' => 'Password',
             'Birthday' => 'Birthday',
             'Address' => 'Address',
             'Phone number' => 'Phone number',

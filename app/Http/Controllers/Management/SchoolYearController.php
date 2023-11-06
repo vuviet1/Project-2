@@ -32,13 +32,7 @@ class SchoolYearController extends Controller
             'number_course' => 'required|integer|min:1',
         ]);
 
-
-        // Store a new school year in the database (if needed)
         $number_course = $request->input('number_course');
-//        $request->validate([
-//            'number_course' => 'required|integer|min:1',
-//        ]);
-
         $check =  DB::table('school_years')->get();
         foreach ($check as $key) {
             $request->validate([
@@ -50,7 +44,8 @@ class SchoolYearController extends Controller
             }
         }
         $result = DB::table('school_years')->insert([
-            'number_course' => $number_course
+            'number_course' => $number_course,
+            'created_at' => now()
         ]);
         if($result){
             flash()->addSuccess('Thêm thành công');
@@ -84,7 +79,8 @@ class SchoolYearController extends Controller
             }
         }
         $result = DB::table('school_years')->where('id', '=', $id)->update([
-            'number_course' => $number_course
+            'number_course' => $number_course,
+            'updated_at' => now()
         ]);
         if($result){
             flash()->addSuccess('Sửa thành công');

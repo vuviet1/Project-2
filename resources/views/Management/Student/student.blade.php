@@ -55,10 +55,12 @@
                                         <td>{{$f->name}}</td>
                                         <td>{{$f->scholarship}}</td>
                                         <td>
-                                            @if ($f->school_payment_times >= $f->fee_time)
-                                            <button class="btn btn-success">Hoàn thành</button>
+                                            @if($f->school_payment_times == 0)
+                                                <button class="btn btn-primary">Mới nhập học</button>
+                                            @elseif ($f->school_payment_times >= $f->fee_time)
+                                                <button class="btn btn-success">Hoàn thành</button>
                                         @else
-                                            <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
+                                                <button class="btn btn-danger">Nợ học phí: {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }} VND</button>
                                             @endif
                                         </td>
                                         <td>

@@ -54,7 +54,8 @@ class MajorController extends Controller
             }
         }
         $result = DB::table('majors')->insert([
-            'majors_name' => $majors_name
+            'majors_name' => $majors_name,
+            'created_at' => now(),
         ]);
         if($result){
             flash()->addSuccess('Thêm thành công');
@@ -97,7 +98,8 @@ class MajorController extends Controller
             }
         }
         $result = DB::table('majors')->where('id', '=', $id)->update([
-            'majors_name' => $majors_name
+            'majors_name' => $majors_name,
+            'updated_at' => now(),
         ]);
         if($result){
             flash()->addSuccess('Sửa thành công');
