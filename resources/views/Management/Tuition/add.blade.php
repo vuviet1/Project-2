@@ -44,11 +44,10 @@
                             </div>
 
                         </div>
-
                             <div class="row g-3">
                                 <div class="col">
                                     <label for="fee" class="form-label">Mã học phí</label>
-                                    <select class="form-control" name="id_fee">
+                                    <select class="form-control selectpicker" data-live-search="true" name="id_fee">
                                         <option selected>-- Chọn học phí --</option>
                                         @foreach($fee as $s)
                                             <option value="{{$s->id}}">Niên khóa: {{$s->number_course}} --
