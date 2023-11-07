@@ -94,7 +94,7 @@ class StudentController extends Controller
         foreach ($check as $key) {
             if($key->school_payment_times < 30){
                 if($key -> status == $status || $key -> status == 2 || $status == 2){
-                    flash()->addError("Sửa thất bại1");
+                    flash()->addError("Sửa thất bại");
                     return redirect()->route('student');
                 }
             }

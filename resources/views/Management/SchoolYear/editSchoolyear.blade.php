@@ -18,7 +18,7 @@
                             <label for="nameStudent" class="form-label">Niên khóa</label>
                             <input type="number" class="form-control"
                                    placeholder="Niên khóa"
-                                   name="number_course" value="{{$f->number_course}}">
+                                   name="number_course" value="{{$f->number_course}}" required>
                         </div>
                     </div>
                 </div>

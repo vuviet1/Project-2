@@ -42,8 +42,7 @@
                                     @endforeach
                                 </select>
                             </div>
-
-                        </div>
+                            </div>
                             <div class="row g-3">
                                 <div class="col">
                                     <label for="fee" class="form-label">Mã học phí</label>
@@ -68,6 +67,3 @@
         </div>
     </div>
 </div>
-<script>
-    $('.selectpicker').selectpicker();
-</script>

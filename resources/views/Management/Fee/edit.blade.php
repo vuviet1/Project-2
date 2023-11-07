@@ -21,14 +21,14 @@
                                        placeholder="Số đợt đóng"
                                        min="{{$f->school_payment_times}}"
                                        max="30"
-                                       name="school_payment_times" value="{{$f->school_payment_times}}">
+                                       name="school_payment_times" value="{{$f->school_payment_times}}" required>
                             </div>
                         </div>
 
                         <div class="row g-3" hidden>
                             <div class="col">
                                 <label for="idClass" class="form-label">Niên khóa</label>
-                                <select class="form-control" name="id_school_year">
+                                <select class="form-control" name="id_school_year" required>
                                     <option value="{{$f->id_school_year}}">{{$f->number_course}}</option>
                                     @foreach($year as $y)
                                         @if($y->number_course != $f->number_course)
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Chuyên ngành</label>
-                                <select class="form-control" name="id_major">
+                                <select class="form-control" name="id_major" required>
                                     <option value="{{$f->id_major}}">{{$f->majors_name}}</option>
                                     @foreach($major as $m)
                                         @if($m->majors_name != $f->majors_name)

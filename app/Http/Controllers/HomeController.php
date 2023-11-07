@@ -56,11 +56,15 @@ class HomeController extends Controller
         ->groupBy('number_course')
         ->orderBy('number_course', 'desc')
         ->get();
-
         $yearss = [];
+        $totals = [];
         foreach ($data as $year){
             $yearss[] = $year->number_course;
             $totals[] = $year->total;
+        }
+        if($totals == null){
+            flash()->addError("Không có dữ liệu trong khoảng thời gian bạn chọn!");
+            return redirect()->route('home');
         }
         $data = Student::select('id', 'created_at')->get()->groupBy(function ($data) {
             return Carbon::parse($data->created_at)->format('Y');

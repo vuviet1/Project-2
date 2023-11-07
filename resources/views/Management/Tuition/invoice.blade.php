@@ -21,7 +21,7 @@
                                 <label for="nameStudent" class="form-label">Lý do nộp</label>
                                 <input type="text" class="form-control"
                                        placeholder="Ghi chú"
-                                       name="reason">
+                                       name="reason" required>
                             </div>
                         </div>
                         <div class="row g-3">

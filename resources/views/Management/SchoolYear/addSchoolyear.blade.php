@@ -15,7 +15,7 @@
                         <div class="row g-3">
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Niên khóa</label>
-                                <input type="number" min="1" class="form-control" placeholder="Niên khóa" name="number_course">
+                                <input type="number" min="1" class="form-control" placeholder="Niên khóa" name="number_course" required>
                             </div>
                         </div>
                     </div>

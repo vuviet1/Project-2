@@ -15,9 +15,11 @@
 
         <div class="row">
             <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Có {{$data}} học sinh nợ học phí</div>
-                </div>
+{{--                <div class="card bg-warning text-white mb-4">--}}
+                    <a href="{{ route('student') }}" class="card bg-warning text-white mb-4">
+                        <div class="card-body">Có {{$data}} học sinh nợ học phí</div>
+                    </a>
+{{--                </div>--}}
             </div>
         </div>
         <div class="row">
@@ -34,16 +36,21 @@
             </div>
             <form action="{{ route('chartsearch')}}" method="post">
                 @csrf
-                <div>
-                <label for="startYear">Start Year:</label>
-                <input type="text" id="startYear" name="startYear" min="2000" max="2099" step="1" required>
-              </div>
-
-              <div>
-                <label for="endYear">End Year:</label>
-                <input type="text" id="endYear" name="endYear" min="2000" max="2099" step="1" required>
-              </div>
-              <button type="submit"> Tìm kiếm</button>
+                <div class="d-flex">
+                    <div class="row">
+                        <label for="startYear">Start Year:</label>
+                        <input type="text" id="startYear" name="startYear" min="2000"
+                               class="form-control" required>
+                    </div>
+                    <div class="row" style="margin-left: 50px">
+                        <label for="endYear">End Year:</label>
+                        <input type="text" id="endYear" name="endYear" min="2000"
+                               class="form-control" required>
+                    </div>
+                    <div class="row" style="margin-left: 50px; margin-top: 30px">
+                        <button type="submit" class="btn btn-primary form-control"> Tìm kiếm</button>
+                    </div>
+                </div>
             </form>
             <div class="card-body"><canvas id="BarChart1" width="100%" height="40"></canvas></div>
         </div>

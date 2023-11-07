@@ -19,7 +19,7 @@
                             <label for="nameStudent" class="form-label">Chuyên ngành</label>
                             <input type="text" class="form-control"
                                    placeholder="Chuyên ngành"
-                                   name="majors_name" value="{{$f->majors_name}}">
+                                   name="majors_name" value="{{$f->majors_name}}" required>
                         </div>
                     </div>
                 </div>
