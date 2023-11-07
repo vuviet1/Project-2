@@ -33,19 +33,17 @@
                         </div>
 
                         <div class="row g-3">
-                                <div class="col">
-                                    <label for="nameStudent" class="form-label">Họ và tên</label>
-
-                                    <select class="form-control" name="id_student">
-                                        <option selected>-- Chọn sinh viên --</option>
-                                        @foreach($student as $s)
-                                            <option value="{{$s->id}}">{{$s->name}}
-                                            </option>
-
-                                        @endforeach
-                                    </select>
-                                </div>
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Họ và tên</label>
+                                <select class="form-control select selectpicker" data-live-search="true" name="id_student" id="student-select">
+                                    <option selected>-- Chọn sinh viên --</option>
+                                    @foreach($student as $s)
+                                        <option value="{{$s->id}}">{{$s->id}} - {{$s->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
+
+                        </div>
 
                             <div class="row g-3">
                                 <div class="col">
@@ -71,3 +69,6 @@
         </div>
     </div>
 </div>
+<script>
+    $('.selectpicker').selectpicker();
+</script>
