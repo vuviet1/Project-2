@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\tuitionExport;
 use PDF;
+use Carbon\Carbon;
 
 class TuitionController extends Controller
 {
@@ -61,11 +62,11 @@ class TuitionController extends Controller
         $result = DB::table('tuitions')->insert([
             'payment_times' => $payment_times, 'fee' => $fee, 'note' => $note, 'id_student' => $id_student, 'id_fee' => $id_fee, 'created_at' => now(),
         ]);
-        if($result){
+        if ($result) {
             DB::table('students')->where('id', $id_student)->update(['school_payment_times' => $payment_times]);
             flash()->addSuccess('Thêm thành công');
             return redirect()->route('tuition');
-        }else{
+        } else {
             flash()->addError("Thêm thất bại");
             return redirect()->route('tuition');
         }
@@ -101,11 +102,11 @@ class TuitionController extends Controller
         $result = DB::table('tuitions')->where('id', '=', $id)->update([
             'payment_times' => $payment_times, 'note' => $note, 'updated_at' => now(),
         ]);
-        if($result){
+        if ($result) {
             DB::table('students')->where('id', $id_student)->update(['school_payment_times' => $payment_times]);
             flash()->addSuccess('Sửa thành công');
             return redirect()->route('tuition');
-        }else{
+        } else {
             flash()->addError("Sửa thất bại");
             return redirect()->route('tuition');
         }
@@ -119,17 +120,18 @@ class TuitionController extends Controller
         //
         $id = $request->input('id');
         $result = DB::table('tuitions')->where('id', '=', $id)->delete();
-        if($result){
+        if ($result) {
             flash()->addSuccess('Xóa thành công');
             return redirect()->route('tuition');
-        }else{
+        } else {
             flash()->addError("Xóa thất bại");
             return redirect()->route('tuition');
         }
     }
 
     //    Search
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $this->data['tuition'] = $this->tuition->show();
         $this->data['student'] = $this->tuition->showStudent();
         $this->data['fee'] = $this->tuition->showFee();
@@ -145,26 +147,135 @@ class TuitionController extends Controller
     }
 
 //    Print Tuition
-    public function print(Request $request){
+    public function print(Request $request)
+    {
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($this->print_convert($request));
         return $pdf->stream();
     }
-    public function print_convert($request){
+
+    public function print_convert($request)
+    {
         $reason = $request->reason;
         $submission = $request->submission;
         $name = $request->name;
         $address = $request->address;
         $fee = $request->fee;
-        if ($submission == 1){
+        if ($submission == 1) {
             $total = $fee;
-        }elseif ($submission == 2){
-            $total = $fee*3;
-        }elseif ($submission == 3){
-            $total = $fee*10;
+        } elseif ($submission == 2) {
+            $total = $fee * 3;
+        } elseif ($submission == 3) {
+            $total = $fee * 10;
         }
         $output = '';
-        $output.= include_once('../resources/views/layouts/print.blade.php') ;
+        $output = '
+<meta charset="UTF-8">
+<meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<style>
+body {
+    font-family: "DejaVu Sans";
+}
+.footer_print {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer_print > div {
+    flex: 1;
+    text-align: center;
+}
+
+.footer_print > div p {
+    text-align: center;
+    margin-top: 0;
+ }
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+.table th, .table td {
+    text-align: center;
+    padding: 8px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+
+</style>
+<body>
+<div class="head_print">
+    <h1 style="text-align: center">PHIẾU THU</h1>
+    <h3 style="text-align: center">Ngày ' . date('d') . ' Tháng ' . date('m') . ' Năm ' . date('Y') . '</h3>
+</div>
+
+<div class="body_print" style="text-indent: 15%">
+    <p>Họ tên người nộp tiền: '.$name.'</p>
+    <p>Địa chỉ: '.$address.'</p>
+    <p>Lý do nộp: '.$reason.'</p>
+    <p>Số tiền: '. number_format($total, 0, ',', '.') . ' VND'.'</p>
+    <p>Kèm theo: ................ chứng từ gốc </p>
+</div>
+
+<div class="footer_print">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Người nộp tiền
+                </th>
+                <th>
+                    Người lập phiếu
+                </th>
+                <th>
+                    Thủ quỹ
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>(Ký, họ tên)</td>
+                <td>(Ký, họ tên)</td>
+                <td>(Ký, họ tên)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>'.$name.'</td>
+                <td>An Thị Hiên</td>
+                <td>An Thị Hiên</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>';
         return $output;
     }
 }

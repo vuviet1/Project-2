@@ -94,6 +94,7 @@
                                             <button type="button" class="btn btn-success" style="margin-right: 20px">
                                                 Đã hoàn Thành
                                             </button>
+                                            @include('Management.Tuition.invoice')
                                             <button type="button" class="btn btn-info" data-toggle="modal"
                                                     data-target="#staticBackdropInvoice{{$f->id}}" style="margin-right: 20px">
                                                 In hóa đơn

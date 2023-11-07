@@ -49,7 +49,6 @@
                         </div>
                     @endif
                 </form>
-
             </div>
 
             <div class="card-body">
@@ -98,10 +97,7 @@
                         @endforelse
                         </tbody>
                     </table>
-
-{{--                    {{ $user->links() }}--}}
                     {{ $user->appends(['search' => $search ?? ''])->links() }}
-
                 </div>
             </div>
         </div>
