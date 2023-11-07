@@ -14,14 +14,6 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row g-3">
-{{--                            <div class="col">--}}
-{{--                                <label for="payment_times" class="form-label">Số đợt đóng</label>--}}
-{{--                                <input type="number" class="form-control"--}}
-{{--                                       placeholder="Số đợt đóng"--}}
-{{--                                       min="1"--}}
-{{--                                       max="30"--}}
-{{--                                       name="school_payment_times" required>--}}
-{{--                            </div>--}}
                             <div class="col">
                                 <label for="fee" class="form-label">Tổng tiền</label>
                                 <input type="number" class="form-control"

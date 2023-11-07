@@ -32,13 +32,13 @@
                                 <label for="idClass" class="form-label">Số điện thoại</label>
                                 <input type="text" class="form-control"
                                        placeholder="Số điện thoại"
-                                       name="phone_number" value="{{$f->phone_number}}">
+                                       name="phone_number" value="{{$f->phone_number}}" required>
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Ngày sinh</label>
                                 <input type="date" class="form-control"
                                        placeholder="Ngày sinh"
-                                       name="birthday" value="{{$f->birthday}}">
+                                       name="birthday" value="{{$f->birthday}}" required>
                             </div>
                         </div>
 
@@ -47,13 +47,13 @@
                                 <label for="idClass" class="form-label">Số căn cước công dân</label>
                                 <input type="text" class="form-control"
                                        placeholder="CCCD"
-                                       name="cccd" value="{{$f->cccd}}">
+                                       name="cccd" value="{{$f->cccd}}" required>
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Email</label>
                                 <input type="text" class="form-control"
                                        placeholder="Email"
-                                       name="email" value="{{$f->email}}">
+                                       name="email" value="{{$f->email}}" required>
                             </div>
                         </div>
 
@@ -62,7 +62,7 @@
                                 <label for="idClass" class="form-label">Địa chỉ</label>
                                 <input type="text" class="form-control"
                                        placeholder="Địa chỉ"
-                                       name="address" value="{{$f->address}}">
+                                       name="address" value="{{$f->address}}" required>
                             </div>
                         </div>
                     </div>

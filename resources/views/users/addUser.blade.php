@@ -19,13 +19,13 @@
                                 <label for="idClass" class="form-label">Mã hoc sinh</label>
                                 <input type="text" class="form-control"
                                        placeholder="Mã hoc sinh"
-                                       name="id">
+                                       name="id" required>
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Họ và tên</label>
                                 <input type="text" class="form-control"
                                        placeholder="Họ và tên"
-                                       name="name">
+                                       name="name" required>
                             </div>
                         </div>
 
@@ -44,13 +44,13 @@
                                 <label for="idClass" class="form-label">Số điện thoại</label>
                                 <input type="text" class="form-control"
                                        placeholder="Số điện thoại"
-                                       name="phone_number">
+                                       name="phone_number" required>
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Ngày sinh</label>
                                 <input type="date" class="form-control"
                                        placeholder="Ngày sinh"
-                                       name="birthday">
+                                       name="birthday" required>
                             </div>
                         </div>
 
@@ -59,13 +59,13 @@
                                 <label for="idClass" class="form-label">Số căn cước công dân</label>
                                 <input type="text" class="form-control"
                                        placeholder="CCCD"
-                                       name="cccd">
+                                       name="cccd" required>
                             </div>
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Email</label>
                                 <input type="text" class="form-control"
                                        placeholder="Email"
-                                       name="email">
+                                       name="email" required>
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@
                                 <label for="idClass" class="form-label">Địa chỉ</label>
                                 <input type="text" class="form-control"
                                        placeholder="Địa chỉ"
-                                       name="address">
+                                       name="address" required>
                             </div>
                         </div>
 

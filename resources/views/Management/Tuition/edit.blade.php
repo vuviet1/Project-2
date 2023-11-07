@@ -21,7 +21,7 @@
                                        placeholder="Lần đóng thứ"
                                        min="{{$f->payment_times}}"
                                        max="30"
-                                       name="payment_times" value="{{$f->payment_times}}">
+                                       name="payment_times" value="{{$f->payment_times}}" required>
                             </div>
                         </div>
                         <div class="row g-3">
@@ -30,7 +30,7 @@
                                 <label for="nameStudent" class="form-label">Ghi chú</label>
                                 <input type="text" class="form-control"
                                           placeholder="Ghi chú"
-                                          name="note" value="{{$f->note}}">
+                                          name="note" value="{{$f->note}}" required>
                             </div>
                         </div>
                         <div class="row g-3">

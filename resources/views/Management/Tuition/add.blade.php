@@ -18,7 +18,7 @@
                                 <label for="payment_times" class="form-label">Lần đóng thứ</label>
                                 <input type="number" class="form-control"
                                        placeholder="Lần đóng thứ"
-                                       name="payment_times">
+                                       name="payment_times" required>
                             </div>
                         </div>
 
@@ -28,7 +28,7 @@
                                 <label for="nameStudent" class="form-label">Ghi chú</label>
                                 <input type="text" class="form-control"
                                        placeholder="Ghi chú"
-                                       name="note">
+                                       name="note" required>
                             </div>
                         </div>
 
