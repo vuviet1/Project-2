@@ -23,38 +23,38 @@
     <!-- Nav Item - Tables -->
     <li class="nav-item @if(request()->routeIs('school_year')) active @endif">
         <a class="nav-link" href="{{ route('school_year') }}">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fa-solid fa-calendar-days"></i>
             <span>{{ __('Niên khóa') }}</span></a>
     </li>
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item @if(request()->routeIs('major')) active @endif">
         <a class="nav-link" href="{{ route('major') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-solid fa-list"></i>
             <span>{{ __('Chuyên ngành') }}</span></a>
     </li>
 
     <li class="nav-item @if(request()->routeIs('fee')) active @endif">
         <a class="nav-link" href="{{ route('fee') }}">
-            <i class="fas fa-fw fa-eye"></i>
+            <i class="fa-solid fa-layer-group"></i>
             <span>{{ __('Đợt đóng học phí') }}</span></a>
     </li>
 
     <li class="nav-item @if(request()->routeIs('tuition')) active @endif">
         <a class="nav-link" href="{{ route('tuition') }}">
-            <i class="fas fa-fw fa-eye"></i>
+            <i class="fa-solid fa-money-check-dollar"></i>
             <span>{{ __('Quản lý học phí') }}</span></a>
     </li>
 
     <li class="nav-item @if(request()->routeIs('student')) active @endif">
         <a class="nav-link" href="{{ route('student') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-solid fa-users"></i>
             <span>{{ __('Danh sách sinh viên') }}</span></a>
     </li>
 
     <li class="nav-item @if(request()->routeIs('user')) active @endif">
         <a class="nav-link" href="{{ route('user') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-solid fa-users"></i>
             <span>{{ __('Quản lý tài khoản') }}</span></a>
     </li>
 
