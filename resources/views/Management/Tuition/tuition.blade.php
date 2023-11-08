@@ -61,7 +61,15 @@
                                 @forelse ($tuition as $f)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$f->student_code}}</td>
+                                        <form id="searchForm" method="get" action="{{ route('search.student') }}">
+                                            @csrf
+                                            <div class="form-group row">
+                                                <div class="col-sm-10">
+                                                    <td class="student-code">{{$f->student_code}}</td>
+                                                    <input hidden autocomplete="off" name="search" type="text" class="form-control" placeholder="Nhập tìm kiếm" value="{{$f->student_code}}">
+                                                </div>
+                                            </div>
+                                        </form>
                                         <td>{{$f->name}}</td>
                                         <td>{{$f->payment_times}}</td>
                                         <td>{{ number_format($f->fee * $f->payment_times, 0, ',', '.') }} VND</td>
@@ -79,7 +87,7 @@
                                             <form action="{{ route('delete.tuition')}}" method="post">
                                                 @csrf
                                                 <input hidden name="id" value="{{$f->id}}">
-                                                <button type="submit" class="btn btn-danger" style="margin-right: 20px">
+                                                <button type="submit" class="btn btn-danger" style="margin-right: 20px" >
                                                     Xóa
                                                 </button>
                                             </form>
@@ -115,3 +123,4 @@
         </div>
     </div>
 @endsection
+

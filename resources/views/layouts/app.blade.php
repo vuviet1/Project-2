@@ -139,7 +139,17 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.student-code').click(function() {
+        $('#searchForm').submit();
+    });
+});
+</script>
+<script>
+    $('.selectpicker').selectpicker();
+</script>
 <!-- Page level custom scripts -->
 @yield('custom_scripts')
 

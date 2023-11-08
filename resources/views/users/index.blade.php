@@ -22,13 +22,13 @@
                         @csrf
                         <button type="submit" class="btn btn-info">Tải xuống file Exel mẫu</button>
                     </form>
-                    <form action="{{ route('import.user')}}" id="formImport" method="post" enctype="multipart/form-data"
-                          class="me-3">
+                    <form action="{{ route('import.user') }}" id="formImport" method="post" enctype="multipart/form-data"
+                        class="me-3">
                         @csrf
-                        <input onchange="document.getElementById('formImport').submit()"
-                               type="file" id="file" name="fileExel" hidden>
-                        <button onclick="document.getElementById('file').click()"
-                                type="button" class="btn btn-success">Cập nhật thông tin sinh viên
+                        <input onchange="document.getElementById('formImport').submit()" type="file" id="file"
+                            name="fileExel" hidden>
+                        <button onclick="document.getElementById('file').click()" type="button" class="btn btn-success">Cập
+                            nhật thông tin sinh viên
                         </button>
                     </form>
                 </div>
@@ -39,11 +39,12 @@
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm</b></label>
                         <div class="col-sm-10">
-                            <input autocomplete="off" name="search" type="text" class="form-control"  placeholder="Nhập tìm kiếm" value="{{$search ?? ''}}">
+                            <input autocomplete="off" name="search" type="text" class="form-control"
+                                placeholder="Nhập tìm kiếm" value="{{ $search ?? '' }}">
                         </div>
                     </div>
                     <button type="submit" hidden></button>
-                    @if(!empty($userCount))
+                    @if (!empty($userCount))
                         <div>
                             <p>Kết quả tìm kiếm</p>
                         </div>
@@ -55,46 +56,55 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                        <tr>
-                            <th>Mã SV</th>
-                            <th>Họ và tên</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Ngày sinh</th>
-                            <th>Địa chỉ</th>
-                            <th>Hành động</th>
-                        </tr>
+                            <tr>
+                                <th>Mã SV</th>
+                                <th>Họ và tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Ngày sinh</th>
+                                <th>Địa chỉ</th>
+                                <th>Hành động</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @forelse($user as $f)
-                            <tr>
-                                <td>{{ $f->id}}</td>
-                                <td>{{ $f->name }}</td>
-                                <td>{{ $f->email }}</td>
-                                <td>{{ $f->phone_number }}</td>
-                                <td>{{ $f->birthday }}</td>
-                                <td>{{ $f->address }}</td>
-                                <td>
-                                    <div class="d-flex">
-                                    <!-- Button to trigger the modal Edit-->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#staticBackdropEdit{{$f->id}}" style="margin-right: 20px">
-                                        Sửa
-                                    </button>
-                                    @include('users.editUser')
-                                    <form action="{{ route('delete.user')}}" method="post">
+                            @forelse($user as $f)
+                                <tr>
+                                    <form id="searchForm" method="get" action="{{ route('search.student') }}">
                                         @csrf
-                                        <input hidden name="id" value="{{$f->id}}">
-                                        <button type="submit" class="btn btn-danger">
-                                            Xóa
-                                        </button>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <td class="student-code">{{$f->student_code}}</td>
+                                                <input hidden autocomplete="off" name="search" type="text" class="form-control" placeholder="Nhập tìm kiếm" value="{{$f->student_code}}">
+                                            </div>
+                                        </div>
                                     </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <th>Không có dữ liệu</th>
-                        @endforelse
+                                    <td>{{ $f->name }}</td>
+                                    <td>{{ $f->email }}</td>
+                                    <td>{{ $f->phone_number }}</td>
+                                    <td>{{ $f->birthday }}</td>
+                                    <td>{{ $f->address }}</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <!-- Button to trigger the modal Edit-->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#staticBackdropEdit{{ $f->id }}"
+                                                style="margin-right: 20px">
+                                                Sửa
+                                            </button>
+                                            @include('users.editUser')
+                                            <form action="{{ route('delete.user') }}" method="post">
+                                                @csrf
+                                                <input hidden name="id" value="{{ $f->id }}">
+                                                <button type="submit" class="btn btn-danger">
+                                                    Xóa
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <th>Không có dữ liệu</th>
+                            @endforelse
                         </tbody>
                     </table>
                     {{ $user->appends(['search' => $search ?? ''])->links() }}
@@ -104,3 +114,4 @@
     </div>
     <!-- /.container-fluid -->
 @endsection
+

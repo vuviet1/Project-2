@@ -30,7 +30,7 @@
                                 <label for="nameStudent" class="form-label">Ghi chú</label>
                                 <input type="text" class="form-control"
                                           placeholder="Ghi chú"
-                                          name="note" value="{{$f->note}}" required>
+                                          name="note" value="{{$f->note}}" >
                             </div>
                         </div>
                         <div class="row g-3">

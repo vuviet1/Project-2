@@ -66,7 +66,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $('.selectpicker').selectpicker();
-</script>

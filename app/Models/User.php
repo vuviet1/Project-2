@@ -52,7 +52,7 @@ class User extends Authenticatable
     public function search($searchTerm){
         return DB::table('users')
             ->select('users.*')
-            ->where('users.id', 'like', "%$searchTerm%")
+            ->where('users.student_code', 'like', "%$searchTerm%")
             ->orWhere('users.email', 'like', "%$searchTerm%")
             ->orderBy('users.id', 'desc')
             ->paginate($this->limit);

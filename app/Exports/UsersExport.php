@@ -18,6 +18,8 @@ public function collection()
             'Phone number' => 'Phone number',
             'CCCD' => 'CCCD',
             'Scholarship' =>'Scholarship',
+            'Major'=> 'Major',
+            'School year'=> 'School year',
         ],
         // Add more data rows as needed
     ];

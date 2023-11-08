@@ -15,6 +15,8 @@ class Student extends Model
     public function show() {
         $fillable = DB::table('students')
             ->join('users', 'students.id_user', '=', 'users.id')
+            ->join('majors', 'students.id_major', '=', 'majors.id')
+            ->join('school_years', 'students.id_school_year', '=', 'majors.id')
             ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
             ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
             ->select(
@@ -23,10 +25,12 @@ class Student extends Model
                 'users.student_code',
                 'fees.school_payment_times as fee_time',
                 'fees.original_fee',
+                'school_years.number_course',
+                'majors.majors_name',
                 DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
             )
             ->orderBy('payment_difference', 'desc')
-            ->having('payment_difference', '>', 0)
+            ->having('payment_difference', '>', 1)
             ->orderBy('students.id', 'desc')
             ->paginate($this->limit);
 
@@ -40,7 +44,7 @@ class Student extends Model
             ->select(
                 DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
             )
-            ->having('payment_difference', '>', 0) // Lọc ra các bản ghi có payment_difference > 0
+            ->having('payment_difference', '>', 1)
             ->get();
 
         return $fillable;
@@ -60,10 +64,14 @@ class Student extends Model
     public function search($searchTerm){
         return DB::table('students')
             ->join('users', 'students.id_user', '=', 'users.id')
+            ->join('majors', 'students.id_major', '=', 'majors.id')
+            ->join('school_years', 'students.id_school_year', '=', 'majors.id')
             ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
             ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
-            ->select('students.*', 'users.name', 'users.student_code', 'users.id as id_user', 'fees.school_payment_times as fee_time', 'fees.original_fee' )
-            ->where('students.id_user', 'like', "%$searchTerm%")
+            ->select('students.*', 'users.name', 'users.student_code', 'users.id as id_user', 'fees.school_payment_times as fee_time', 'fees.original_fee',
+            'school_years.number_course',
+            'majors.majors_name',)
+            ->where('users.student_code', 'like', "%$searchTerm%")
             ->orderBy('students.id', 'desc')
             ->paginate($this->limit);
     }

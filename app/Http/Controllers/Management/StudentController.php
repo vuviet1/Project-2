@@ -37,7 +37,6 @@ class StudentController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -48,8 +47,7 @@ class StudentController extends Controller
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
         $id_user = $request->input('id_user');
-
-        $get_id = User::find($id_user);
+        $get_id = User::where('student_code', $id_user)->value('id');
         $hasRelatedRecords = DB::table('students')->where('id_user', $id_user)->exists();
         if ($hasRelatedRecords) {
             flash()->addError("Thêm thất bại - Đã tồn tại");
@@ -60,15 +58,14 @@ class StudentController extends Controller
             'school_payment_times' => $school_payment_times,
             'id_school_year' => $request->id_school_year,
             'id_major' => $request->id_major,
-            'id_user' => $get_id->id, 'status' => '1',
+            'id_user' =>  $get_id,
+            'status' => '1',
             'created_at' => now(),
         ]);
-        $id_fee = Fee::where('id_school_year', '=', $request->id_school_year)->where('id_major', '=', $request->id_major)->value('id');
-        dd($id_fee);
+        $id_fee = Fee::where('id_school_year', '=', $student->id_school_year)->where('id_major', '=', $student->id_major)->value('id');
         $scholarship = Student::where('id', $student->id)->value('scholarship');
         $original_fee = Fee::where('id', $id_fee)->value('original_fee');
         $fee = round(($original_fee - $scholarship) / 30);
-
         $tuition = Tuition::create([
             'payment_times' => 0,
             'fee' => $fee,
@@ -76,10 +73,10 @@ class StudentController extends Controller
             'created_at' => now(),
             'id_student' => $student->id,
         ]);
-        if(!empty($student && $tuition)){
+        if (!empty($student && $tuition)) {
             flash()->addSuccess('Thêm thành công');
             return redirect()->route('student');
-        }else{
+        } else {
             flash()->addError("Thêm thất bại");
             return redirect()->route('student');
         }
@@ -110,8 +107,8 @@ class StudentController extends Controller
         $status = $request->input('status');
         $check =  DB::table('students')->where('id', '=', $id)->get();
         foreach ($check as $key) {
-            if($key->school_payment_times < 30){
-                if($key -> status == $status || $key -> status == 2 || $status == 2){
+            if ($key->school_payment_times < 30) {
+                if ($key->status == $status || $key->status == 2 || $status == 2) {
                     flash()->addError("Sửa thất bại");
                     return redirect()->route('student');
                 }
@@ -121,10 +118,10 @@ class StudentController extends Controller
             'status' => $status,
             'updated_at' => now(),
         ]);
-        if($result){
+        if ($result) {
             flash()->addSuccess('Sửa thành công');
             return redirect()->route('student');
-        }else{
+        } else {
             flash()->addError("Sửa thất bại");
             return redirect()->route('student');
         }
@@ -143,21 +140,24 @@ class StudentController extends Controller
             return redirect()->back();
         }
         $result = DB::table('students')->where('id', '=', $id)->delete();
-        if($result){
+        if ($result) {
             flash()->addSuccess('Xóa thành công');
             return redirect()->route('student');
-        }else{
+        } else {
             flash()->addError("Xóa thất bại");
             return redirect()->route('student');
         }
     }
 
     //    Search
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $search = $request->input('search');
         if (empty($search)) {
             return redirect()->route('student');
         } else {
+            $this->data['year'] = $this->student->showYear();
+            $this->data['major'] = $this->student->showMajor();
             $this->data['student'] = (new Student)->search($search);
             $this->data['search'] = $search;
             $this->data['studentCount'] = $this->data['student']->count();
