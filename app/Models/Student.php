@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Student extends Model
 {
     use HasFactory;
-    protected $fillable = ['school_payment_times', 'scholarship', 'id_user', 'create_at', 'update_at', 'status'];
+    protected $fillable = ['school_payment_times', 'scholarship', 'id_user', 'id_school_year', 'id_major', 'create_at', 'update_at', 'status'];
     private $limit = 5;
 
     public function show() {
@@ -46,6 +46,15 @@ class Student extends Model
         return $fillable;
     }
 
+    public function showYear(){
+        $fillable = DB::table('school_years')->get();
+        return $fillable;
+    }
+
+    public function showMajor(){
+        $fillable = DB::table('majors')->get();
+        return $fillable;
+    }
 
 
     public function search($searchTerm){

@@ -76,7 +76,6 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('tuition')->group(function () {
         Route::get('show', [TuitionController::class, 'index'])->name('tuition');
-        Route::post('add_tuition', [TuitionController::class, 'store'])->name('add.tuition');
         Route::post('delete_tuition', [TuitionController::class, 'destroy'])->name('delete.tuition');
         Route::post('update_tuition', [TuitionController::class, 'update'])->name('update.tuition');
         Route::post('export_tuition', [TuitionController::class, 'export'])->name('export.tuition');

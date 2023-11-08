@@ -54,7 +54,7 @@
 
     <li class="nav-item @if(request()->routeIs('user')) active @endif">
         <a class="nav-link" href="{{ route('user') }}">
-            <i class="fa-solid fa-users"></i>
+            <i class="fa-solid fa-user-shield"></i>
             <span>{{ __('Quản lý tài khoản') }}</span></a>
     </li>
 

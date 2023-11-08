@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fee;
 use App\Models\Student;
+use App\Models\Tuition;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +27,8 @@ class StudentController extends Controller
     {
         $this->data['student'] = $this->student->show();
         $this->data['debt'] = $this->student->debt()->count();
+        $this->data['year'] = $this->student->showYear();
+        $this->data['major'] = $this->student->showMajor();
         return view('Management.Student.student', $this->data);
     }
 
@@ -41,7 +45,6 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // Store a new student in the database (if needed)
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
         $id_user = $request->input('id_user');
@@ -52,13 +55,28 @@ class StudentController extends Controller
             flash()->addError("Thêm thất bại - Đã tồn tại");
             return redirect()->back();
         }
-        $result = DB::table('students')->insert([
+        $student = Student::create([
             'scholarship' => $scholarship,
             'school_payment_times' => $school_payment_times,
+            'id_school_year' => $request->id_school_year,
+            'id_major' => $request->id_major,
             'id_user' => $get_id->id, 'status' => '1',
             'created_at' => now(),
         ]);
-        if($result){
+        $id_fee = Fee::where('id_school_year', '=', $request->id_school_year)->where('id_major', '=', $request->id_major)->value('id');
+        dd($id_fee);
+        $scholarship = Student::where('id', $student->id)->value('scholarship');
+        $original_fee = Fee::where('id', $id_fee)->value('original_fee');
+        $fee = round(($original_fee - $scholarship) / 30);
+
+        $tuition = Tuition::create([
+            'payment_times' => 0,
+            'fee' => $fee,
+            'id_fee' => $id_fee,
+            'created_at' => now(),
+            'id_student' => $student->id,
+        ]);
+        if(!empty($student && $tuition)){
             flash()->addSuccess('Thêm thành công');
             return redirect()->route('student');
         }else{

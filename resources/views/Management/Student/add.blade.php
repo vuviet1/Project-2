@@ -36,6 +36,27 @@
                                        name="scholarship" required>
                             </div>
                         </div>
+
+                            <div class="row g-3">
+                                <div class="col">
+                                    <label for="idClass" class="form-label">Niên khóa</label>
+                                    <select class="form-control selectpicker" data-live-search="true" name="id_school_year" required>
+                                        <option value="">-- Chọn niên khóa --</option>
+                                        @foreach($year as $y)
+                                            <option value="{{$y->id}}">{{$y->number_course}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="nameStudent" class="form-label">Chuyên ngành</label>
+                                    <select class="form-control selectpicker" data-live-search="true" name="id_major" required>
+                                        <option value="">-- Chọn chuyên ngành --</option>
+                                        @foreach($major as $m)
+                                            <option value="{{$m->id}}">{{$m->majors_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -45,3 +66,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('.selectpicker').selectpicker();
+</script>

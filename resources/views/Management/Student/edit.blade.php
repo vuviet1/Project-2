@@ -46,6 +46,24 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Niên khóa</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Niên khóa" value="{{$f->number_course}}" required>
+                            </div>
+                            <div class="col">
+                                <label for="nameStudent" class="form-label">Chuyên ngành</label>
+                                <select class="form-control selectpicker" data-live-search="true" name="id_major" required>
+                                    <option value="{{$f->id_major}}">{{$f->majors_name}}</option>
+                                    @foreach($major as $m)
+                                        <option value="{{$m->id}}">{{$m->majors_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -56,3 +74,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('.selectpicker').selectpicker();
+</script>

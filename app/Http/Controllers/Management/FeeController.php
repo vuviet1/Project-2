@@ -103,11 +103,8 @@ class FeeController extends Controller
         //
         $id = $request->input('id');
         $school_payment_times = $request->input('school_payment_times');
-        $id_school_year = $request->input('id_school_year');
-        $id_major = $request->input('id_major');
         $check = DB::table('fees')
-            ->where('id_school_year' , '=', $id_school_year)
-            ->where('id_major', '=', $id_major)->get();
+            ->where('id', '=', $id)->get();
         foreach ($check as $item){
             if ($item->school_payment_times >= $school_payment_times){
                 flash()->addError("Sửa thất bại");

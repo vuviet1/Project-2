@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @include('Management.Tuition.add')
+{{--    @include('Management.Tuition.add')--}}
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="container-fluid">
@@ -14,10 +14,10 @@
                     <h5 class="card-title fw-semibold mb-4">Danh sách thu phí</h5>
                     <div class="d-flex">
                         <!-- Button trigger modal Add-->
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#staticBackdropAdd">
-                            Thêm mới
-                        </button>
+{{--                        <button type="button" class="btn btn-primary" data-toggle="modal"--}}
+{{--                                data-target="#staticBackdropAdd">--}}
+{{--                            Thêm mới--}}
+{{--                        </button>--}}
                         <div class="flex-grow-1"></div>
                         <form action="{{ route('export.tuition') }}" method="post">
                             @csrf

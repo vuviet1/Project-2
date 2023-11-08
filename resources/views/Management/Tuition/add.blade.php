@@ -23,7 +23,6 @@
                         </div>
 
                         <div class="row g-3">
-
                             <div class="col">
                                 <label for="nameStudent" class="form-label">Ghi chú</label>
                                 <input type="text" class="form-control"
@@ -42,21 +41,21 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col">
+                                <label for="fee" class="form-label">Mã học phí</label>
+                                <select class="form-control selectpicker" data-live-search="true" name="id_fee">
+                                    <option selected>-- Chọn học phí --</option>
+                                    @foreach($fee as $s)
+                                        <option value="{{$s->id}}">Niên khóa: {{$s->number_course}} --
+                                            Chuyên ngành: {{$s->majors_name}} --
+                                            Số đợt đóng: {{$s->school_payment_times}}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="row g-3">
-                                <div class="col">
-                                    <label for="fee" class="form-label">Mã học phí</label>
-                                    <select class="form-control selectpicker" data-live-search="true" name="id_fee">
-                                        <option selected>-- Chọn học phí --</option>
-                                        @foreach($fee as $s)
-                                            <option value="{{$s->id}}">Niên khóa: {{$s->number_course}} --
-                                                Chuyên ngành: {{$s->majors_name}} --
-                                                Số đợt đóng: {{$s->school_payment_times}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                        </div>
 
                         </div>
                     </div>
