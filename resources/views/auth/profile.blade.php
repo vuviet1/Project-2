@@ -60,7 +60,7 @@
                                 <div class="input-group mb-3">
                                     <input type="password" name="password"
                                            class="form-control @error('password') is-invalid @enderror"
-                                           placeholder="{{ __('Mật kẩu mới') }}">
+                                           placeholder="{{ __('Mật khẩu mới') }}">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-lock"></span>

@@ -69,16 +69,17 @@
                         <tbody>
                             @forelse($user as $f)
                                 <tr>
-                                    <td class="student-code">{{$f->student_code}}
-{{--                                    <form id="searchForm" method="get" action="{{ route('search.student') }}">--}}
-{{--                                        @csrf--}}
-{{--                                        <div class="form-group row">--}}
-{{--                                            <div class="col-sm-10">--}}
-{{--                                                {{$f->student_code}}--}}
-{{--                                                <input hidden autocomplete="off" name="search" type="text" class="form-control" placeholder="Nhập tìm kiếm" value="{{$f->student_code}}">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </form>--}}
+                                    <td class="student-code">
+{{--                                        {{$f->student_code}}--}}
+                                    <form id="searchForm" method="get" action="{{ route('search.student') }}">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                {{$f->student_code}}
+                                                <input hidden autocomplete="off" name="search" type="text" class="form-control" placeholder="Nhập tìm kiếm" value="{{$f->student_code}}">
+                                            </div>
+                                        </div>
+                                    </form>
                                     </td>
                                     <td>{{ $f->name }}</td>
                                     <td>{{ $f->email }}</td>

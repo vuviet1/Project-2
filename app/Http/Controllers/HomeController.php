@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $this->student = new Student();
         $this->data['student'] = $this->student->show();
-        $this->data['studentCount'] = $this->data['student']->count();
+        $this->data['studentCount'] = $this->data['tuition']->count();
         $data = Student::select('id', 'created_at')->get()->groupBy(function ($data) {
             return Carbon::parse($data->created_at)->format('Y');
         })->sortByDesc(function ($groupedData, $year) {

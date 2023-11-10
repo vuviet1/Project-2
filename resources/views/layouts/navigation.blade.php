@@ -17,7 +17,7 @@
     <li class="nav-item @if(request()->routeIs('home')) active @endif">
         <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>{{ __('Dashboard') }}</span></a>
+            <span>{{ __('Trang chủ') }}</span></a>
     </li>
 
     <!-- Nav Item - Tables -->

@@ -10,7 +10,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Trang chủ</h1>
         </div>
 
         <div class="row">
@@ -38,12 +38,12 @@
                 @csrf
                 <div class="d-flex">
                     <div class="row">
-                        <label for="startYear">Start Year:</label>
+                        <label for="startYear">Từ năm:</label>
                         <input type="text" id="startYear" name="startYear" min="2000"
                                class="form-control" required>
                     </div>
                     <div class="row" style="margin-left: 50px">
-                        <label for="endYear">End Year:</label>
+                        <label for="endYear">Đến năm:</label>
                         <input type="text" id="endYear" name="endYear" min="2000"
                                class="form-control" required>
                     </div>

@@ -30,10 +30,11 @@ class Tuition extends Model
                 'users.student_code',
                 'students.id as student_id',
                 'users.address',
+                'students.scholarship',
             DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
             )
             ->orderBy('payment_difference', 'desc')
-            ->having('payment_difference', '>', 1)
+            ->having('payment_difference', '>', 0)
             ->orderBy('tuitions.id', 'desc')
             ->paginate($this->limit);
         return $fillable;

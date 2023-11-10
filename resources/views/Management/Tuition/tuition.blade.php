@@ -62,7 +62,7 @@
                                 @forelse ($tuition as $f)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td class="student_code">
+                                        <td class="student-code">
                                             <form id="searchForm" method="get" action="{{ route('search.student') }}">
                                                 @csrf
                                                 <div class="form-group row">
@@ -78,16 +78,14 @@
                                         <td>{{$f->name}}</td>
                                         <td>{{$f->payment_times}}</td>
                                         <td>{{ number_format($f->fee * $f->payment_times, 0, ',', '.') }} VND</td>
-                                        <td>{{$f->school_payment_times}}</td>
+                                        <td>{{$f->fee_time}}</td>
 
                                         <form id="searchForm" method="get" action="{{ route('search.tuition') }}">
                                             @csrf
                                             <div class="form-group row">
                                                 <div class="col-sm-10">
                                                     <td>
-                                                        @if ($f->school_payment_times == 0)
-                                                            <button class="btn btn-primary">Mới nhập học</button>
-                                                        @elseif ($f->school_payment_times >= $f->fee_time)
+                                                        @if ($f->school_payment_times >= $f->fee_time)
                                                             <button class="btn btn-success">Hoàn thành</button>
                                                         @else
                                                             <button class="btn btn-danger">Nợ học phí:
