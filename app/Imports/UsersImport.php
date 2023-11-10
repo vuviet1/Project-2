@@ -26,25 +26,27 @@ class UsersImport implements ToCollection, WithHeadingRow
     {
 
         foreach ($collection as $row) {
-            dd($row['birthday']);
-            $birthday = Carbon::createFromFormat('d/m/Y', $row['birthday'])->format('Y-m-d');
+                $timestamp = ($row['birthday'] - 25569) * 86400;
+                $date = date('Y-m-d', $timestamp);
             $check = User::Where('student_code', $row['student_code'])
             ->Where('email', $row['email'])
             ->Where('cccd', $row['cccd'])
             ->Where('phone_number', $row['phone_number'])->exists();
-            if ($check) {
+            if ($check == true) {
                 continue;
             }else{
             $id_major = Major::where('majors_name', $row['major'])->value('id');
             $id_year = School_year::where('number_course', $row['school_year'])->value('id');
+
             $id_fee = Fee::where('id_school_year', $id_year)
+
             ->Where('id_major', $id_major)
             ->value('id');
             $user = User::create([
                 'student_code' => $row['student_code'],
                 'name' => $row['name'],
                 'email' => $row['email'],
-                'birthday' => $birthday,
+                'birthday' => $date ,
                 'address' => $row['address'],
                 'phone_number' => $row['phone_number'],
                 'cccd' => $row['cccd'],

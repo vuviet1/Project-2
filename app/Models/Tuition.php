@@ -20,13 +20,20 @@ class Tuition extends Model
             ->join('majors', 'fees.id_major', '=', 'majors.id')
             ->join('school_years', 'fees.id_school_year', '=', 'school_years.id')
             ->select('students.school_payment_times as student_school_payment_times',
-             'fees.school_payment_times',
-              'fees.original_fee', 'users.name',
-               'tuitions.*', 'majors.majors_name',
+             'fees.school_payment_times as fee_time',
+              'students.school_payment_times',
+              'fees.original_fee',
+                'users.name',
+               'tuitions.*',
+                'majors.majors_name',
                 'school_years.number_course',
                 'users.student_code',
                 'students.id as student_id',
-                'users.address')
+                'users.address',
+            DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
+            )
+            ->orderBy('payment_difference', 'desc')
+            ->having('payment_difference', '>', 1)
             ->orderBy('tuitions.id', 'desc')
             ->paginate($this->limit);
         return $fillable;
@@ -59,13 +66,17 @@ class Tuition extends Model
            ->join('majors', 'fees.id_major', '=', 'majors.id')
            ->join('school_years', 'fees.id_school_year', '=', 'school_years.id')
            ->select('students.school_payment_times as student_school_payment_times',
-           'fees.school_payment_times',
-            'fees.original_fee', 'users.name',
-             'tuitions.*', 'majors.majors_name',
-              'school_years.number_course',
-              'users.student_code',
-              'students.id as student_id',
-              'users.address')
+                'fees.school_payment_times as fee_time',
+               'students.school_payment_times',
+                'fees.original_fee',
+                'users.name',
+                'tuitions.*',
+                'majors.majors_name',
+                'school_years.number_course',
+                'users.student_code',
+                'students.id as student_id',
+                'users.address',
+           )
            ->where('users.student_code', 'like', "%$searchTerm%")
            ->orderBy('tuitions.id', 'desc')
            ->paginate($this->limit);
