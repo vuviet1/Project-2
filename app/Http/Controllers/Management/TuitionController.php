@@ -34,6 +34,7 @@ class TuitionController extends Controller
         $this->data['tuition'] = $this->tuition->show();
         $this->data['student'] = $this->tuition->showStudent();
         $this->data['fee'] = $this->tuition->showFee();
+        $this->data['debt'] = $this->tuition->debt()->count();
         return view('Management.Tuition.tuition', $this->data);
     }
 

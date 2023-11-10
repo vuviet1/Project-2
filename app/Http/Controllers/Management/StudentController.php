@@ -26,7 +26,6 @@ class StudentController extends Controller
     public function index()
     {
         $this->data['student'] = $this->student->show();
-        $this->data['debt'] = $this->student->debt()->count();
         $this->data['year'] = $this->student->showYear();
         $this->data['major'] = $this->student->showMajor();
         return view('Management.Student.student', $this->data);
@@ -46,8 +45,8 @@ class StudentController extends Controller
     {
         $school_payment_times = $request->input('school_payment_times');
         $scholarship = $request->input('scholarship');
-        $id_user = $request->input('id_user');
-        $get_id = User::where('student_code', $id_user)->value('id');
+        $student_code = $request->input('id_user');
+        $id_user = User::where('student_code', $student_code)->value('id');
         $hasRelatedRecords = DB::table('students')->where('id_user', $id_user)->exists();
         if ($hasRelatedRecords) {
             flash()->addError("Thêm thất bại - Đã tồn tại");
@@ -58,7 +57,7 @@ class StudentController extends Controller
             'school_payment_times' => $school_payment_times,
             'id_school_year' => $request->id_school_year,
             'id_major' => $request->id_major,
-            'id_user' =>  $get_id,
+            'id_user' =>  $id_user,
             'status' => '1',
             'created_at' => now(),
         ]);

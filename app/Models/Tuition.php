@@ -39,7 +39,18 @@ class Tuition extends Model
             ->paginate($this->limit);
         return $fillable;
     }
+    public function debt() {
+        $fillable = DB::table('students')
+            ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
+            ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
+            ->select(
+                DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
+            )
+            ->having('payment_difference', '>', 0)
+            ->get();
 
+        return $fillable;
+    }
 
     public function showStudent()
     {
@@ -76,6 +87,7 @@ class Tuition extends Model
                 'school_years.number_course',
                 'users.student_code',
                 'students.id as student_id',
+                'students.scholarship',
                 'users.address',
            )
            ->where('users.student_code', 'like', "%$searchTerm%")

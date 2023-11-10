@@ -165,7 +165,7 @@
 <script>
     $(document).ready(function() {
         $('.student-code').click(function() {
-            $('#searchForm').submit();
+            $(this).find('.search-form').submit();
         });
     });
 </script>

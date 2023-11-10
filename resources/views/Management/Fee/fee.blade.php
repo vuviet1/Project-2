@@ -34,7 +34,7 @@
                             </div>
                         @endif
                     </form>
-
+                    <div id="notificationContainer"></div>
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title fw-semibold mb-4">Danh sách đợt đóng</h5>
@@ -84,7 +84,6 @@
                                         @endif
                                     </tr>
                                 @empty
-
                                     <th>Không có dữ liệu</th>
                                 @endforelse
                                 </tbody>

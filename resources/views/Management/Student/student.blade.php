@@ -29,11 +29,6 @@
                                 <p>Kết quả tìm kiếm</p>
                             </div>
                         @endif
-                        @if (!empty($debt))
-                            <div>
-                                <p style="color: red">Có {{ $debt }} học sinh nợ học phí</p>
-                            </div>
-                        @endif
                     </form>
                     <div class="card">
                         <div class="card-body">
@@ -52,12 +47,23 @@
                                 <tbody>
                                     @forelse ($student as $f)
                                         <tr>
-                                            <td>{{ $f->student_code }}</td>
+                                            <td class="student-code">
+                                                <form class="search-form" method="get" action="{{ route('search.tuition') }}">
+                                                    @csrf
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-10">
+                                                            {{ $f->student_code }}
+                                                            <input hidden autocomplete="off" name="search" type="text"
+                                                                class="form-control" placeholder="Nhập tìm kiếm"
+                                                                value="{{ $f->student_code }}">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </td>
                                             <td>{{ $f->name }}</td>
                                             <td>{{ $f->scholarship }}</td>
                                             <td>{{ $f->number_course }}</td>
                                             <td>{{ $f->majors_name }}</td>
-
                                             <td>
                                                 @if ($f->status == 1)
                                                     <button class="btn btn-primary">Đang học</button>

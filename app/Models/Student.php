@@ -16,7 +16,7 @@ class Student extends Model
         $fillable = DB::table('students')
             ->join('users', 'students.id_user', '=', 'users.id')
             ->join('majors', 'students.id_major', '=', 'majors.id')
-            ->join('school_years', 'students.id_school_year', '=', 'majors.id')
+            ->join('school_years', 'students.id_school_year', '=', 'school_years.id')
             ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
             ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
             ->select(
@@ -27,24 +27,9 @@ class Student extends Model
                 'fees.original_fee',
                 'school_years.number_course',
                 'majors.majors_name',
-                DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
             )
-            ->orderBy('payment_difference', 'desc')
             ->orderBy('students.id', 'desc')
             ->paginate($this->limit);
-
-        return $fillable;
-    }
-
-    public function debt() {
-        $fillable = DB::table('students')
-            ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
-            ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
-            ->select(
-                DB::raw('fees.school_payment_times - students.school_payment_times as payment_difference')
-            )
-            ->having('payment_difference', '>', 1)
-            ->get();
 
         return $fillable;
     }
@@ -64,7 +49,7 @@ class Student extends Model
         return DB::table('students')
             ->join('users', 'students.id_user', '=', 'users.id')
             ->join('majors', 'students.id_major', '=', 'majors.id')
-            ->join('school_years', 'students.id_school_year', '=', 'majors.id')
+            ->join('school_years', 'students.id_school_year', '=', 'school_years.id')
             ->leftJoin('tuitions', 'tuitions.id_student', '=', 'students.id')
             ->leftJoin('fees', 'fees.id', '=', 'tuitions.id_fee')
             ->select('students.*',
@@ -75,7 +60,6 @@ class Student extends Model
                 'fees.original_fee',
                 'school_years.number_course',
                 'majors.majors_name',
-
             )
             ->where('users.student_code', 'like', "%$searchTerm%")
             ->orderBy('students.id', 'desc')
