@@ -26,7 +26,7 @@
                     </div>
 
                     <hr>
-                   <form method="get" action="{{ route('search.tuition') }}">
+                    <form method="get" action="{{ route('search.tuition') }}">
                        @csrf
                        <div class="form-group row">
                            <label for="inputPassword" class="col-sm-2 col-form-label"><b>Tìm kiếm theo mã SV</b></label>
@@ -40,7 +40,7 @@
                                <p>Kết quả tìm kiếm</p>
                            </div>
                     @endif
-                   </form>
+                    </form>
 
                     <div class="card">
                         <div class="card-body">
@@ -54,6 +54,7 @@
                                     <th scope="col">Số lần đóng</th>
                                     <th scope="col">Số tiền đã đóng</th>
                                     <th scope="col">Số đợt đóng</th>
+                                    <th scope="col">Trạng thái học phí</th>
                                     <th>Hành động</th>
                                 </tr>
                                 </thead>
@@ -61,19 +62,46 @@
                                 @forelse ($tuition as $f)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <form id="searchForm" method="get" action="{{ route('search.student') }}">
-                                            @csrf
-                                            <div class="form-group row">
-                                                <div class="col-sm-10">
-                                                    <td class="student-code">{{$f->student_code}}</td>
-                                                    <input hidden autocomplete="off" name="search" type="text" class="form-control" placeholder="Nhập tìm kiếm" value="{{$f->student_code}}">
+                                        <td class="student_code">
+                                            <form id="searchForm" method="get" action="{{ route('search.student') }}">
+                                                @csrf
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        {{$f->student_code}}
+                                                        <input hidden autocomplete="off" name="search" type="text"
+                                                               class="form-control" placeholder="Nhập tìm kiếm"
+                                                               value="{{$f->student_code}}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </td>
                                         <td>{{$f->name}}</td>
                                         <td>{{$f->payment_times}}</td>
                                         <td>{{ number_format($f->fee * $f->payment_times, 0, ',', '.') }} VND</td>
                                         <td>{{$f->school_payment_times}}</td>
+
+                                        <form id="searchForm" method="get" action="{{ route('search.tuition') }}">
+                                            @csrf
+                                            <div class="form-group row">
+                                                <div class="col-sm-10">
+                                                    <td>
+                                                        @if ($f->school_payment_times == 0)
+                                                            <button class="btn btn-primary">Mới nhập học</button>
+                                                        @elseif ($f->school_payment_times >= $f->fee_time)
+                                                            <button class="btn btn-success">Hoàn thành</button>
+                                                        @else
+                                                            <button class="btn btn-danger">Nợ học phí:
+                                                                {{ number_format((($f->original_fee - $f->scholarship) / 30) * ($f->fee_time - $f->school_payment_times), 0, ',', '.') }}
+                                                                VND</button>
+                                                        @endif
+                                                    </td>
+                                                    <input hidden autocomplete="off" name="search" type="text"
+                                                           class="form-control" placeholder="Nhập tìm kiếm"
+                                                           value="{{ $f->student_code }}">
+                                                </div>
+                                            </div>
+                                        </form>
+
                                         @if($f->payment_times <30)
                                         <td>
                                             <div class="d-flex">

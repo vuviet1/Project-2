@@ -5,7 +5,7 @@
     <div class="content">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">{{ __('My profile') }}</h1>
+            <h1 class="h3 mb-2 text-gray-800">{{ __('Trang cá nhân') }}</h1>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -28,7 +28,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" name="name"
                                            class="form-control @error('name') is-invalid @enderror"
-                                           placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required>
+                                           placeholder="{{ __('Họ và tên') }}" value="{{ old('name', auth()->user()->name) }}" required>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-user"></span>
@@ -60,7 +60,7 @@
                                 <div class="input-group mb-3">
                                     <input type="password" name="password"
                                            class="form-control @error('password') is-invalid @enderror"
-                                           placeholder="{{ __('New password') }}">
+                                           placeholder="{{ __('Mật kẩu mới') }}">
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-lock"></span>
@@ -76,7 +76,7 @@
                                 <div class="input-group mb-3">
                                     <input type="password" name="password_confirmation"
                                            class="form-control @error('password_confirmation') is-invalid @enderror"
-                                           placeholder="{{ __('New password confirmation') }}"
+                                           placeholder="{{ __('Nhập lại mật khẩu') }}"
                                            autocomplete="new-password">
                                     <div class="input-group-append">
                                         <div class="input-group-text">

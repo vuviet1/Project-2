@@ -142,7 +142,7 @@ class StudentController extends Controller
         $result = DB::table('students')->where('id', '=', $id)->delete();
         if ($result) {
             flash()->addSuccess('Xóa thành công');
-            return redirect()->route('student');
+            return redirect()->back();
         } else {
             flash()->addError("Xóa thất bại");
             return redirect()->route('student');

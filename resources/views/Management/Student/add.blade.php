@@ -20,6 +20,17 @@
                                        placeholder="Mã hoc sinh"
                                        name="id_user" required>
                             </div>
+
+{{--                            <div class="col">--}}
+{{--                                <label for="idClass" class="form-label">Mã sinh viên</label>--}}
+{{--                                <select class="form-control selectpicker" data-live-search="true" name="id_user" required>--}}
+{{--                                    <option value="">-- Mã sinh viên --</option>--}}
+{{--                                    @foreach($student as $s)--}}
+{{--                                        <option value="{{$s->student_code}}">{{$s->student_code}} - {{$s->name}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+
                             <div class="col" hidden>
                                 <label for="nameStudent" class="form-label">Số lần đóng</label>
                                 <input type="text" class="form-control"
